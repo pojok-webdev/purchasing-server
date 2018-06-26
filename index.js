@@ -32,6 +32,7 @@ app.get('/sendmail/:recipient',function(req,res){
 })
 app.get('/help/:method',function(req,res){
     obj = help.getdata(req.params.method)
+    console.log("Obj",obj)
     res.render("help.html",{
         data:{
             name:req.params.name,
