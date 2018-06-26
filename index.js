@@ -6,6 +6,7 @@ query = require('./js/queries.js'),
 help = require('./js/help.js'),
 bodyParser = require('body-parser'),
 mailer = require('./js/mailer.js'),
+config = require("./js/configs.js"),
 otp = require('./js/otp.js');
 app.engine("html",require("ejs").renderFile);
     app.set('views',path.join(__dirname,'views'));
@@ -32,6 +33,7 @@ app.get('/sendmail/:recipient',function(req,res){
 })
 app.get('/help/:method',function(req,res){
     obj = help.getdata(req.params.method)
+    appconfig = config.appserver()
     console.log("Obj",obj)
     res.render("help.html",{
         data:{
@@ -42,8 +44,8 @@ app.get('/help/:method',function(req,res){
             description:obj.description,
             format:obj.format,
             syntax:obj.syntax,
-            server:'localhost',
-            port:'2018'
+            server:appconfig.name,
+            port:appconfig.port
         }
     });
 })
