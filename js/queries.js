@@ -1,18 +1,20 @@
 var saveVendor = (obj)=>{
         sql = 'insert into vendors ';
-        sql+= '(name,address,phone,bankaccount)';
+        sql+= '(name,address,phone,bankaccount,createuser)';
         sql+= 'values ';
         sql+= '(';
         sql+= '"'+obj.name+'",';
         sql+= '"'+obj.address+'",';
         sql+= '"'+obj.phone+'",';
-        sql+= '"'+obj.bankaccount+'"';
+        sql+= '"'+obj.bankaccount+'",';
+        sql+= '"'+obj.createuser+'"';
         sql+= ')';
         sql+= 'on duplicate key update ';
         sql+= 'name="'+obj.name+'",';
         sql+= 'address="'+obj.address+'",'
         sql+= 'phone="'+obj.phone+'",';
-        sql+= 'bankaccount="'+obj.bankaccount+'" '
+        sql+= 'bankaccount="'+obj.bankaccount+'", '
+        sql+= 'createuser="'+obj.createuser+'" '
         return sql;
     }
     getVendor = (obj)=>{
@@ -25,23 +27,22 @@ var saveVendor = (obj)=>{
         return sql;
     },
     saveProduct = (obj)=>{
+        console.log("OBJ",obj)
         sql = 'insert into products ';
-        sql+= '(name,partnumber,unit,discountlevel,price,lastupdate)';
+        sql+= '(name,partnumber,unit,discountlevel,price)';
         sql+= 'values ';
         sql+= '(';
         sql+= '"'+obj.name+'",';
         sql+= '"'+obj.partnumber+'",';
         sql+= '"'+obj.unit+'",';
-        sql+= '"'+obj.discountlevel+'",';
-        sql+= '"'+obj.price+'",';
-        sql+= '"'+obj.lastupdate+'")';
+        sql+= '"1",';
+        sql+= '"'+obj.price+'")';
         sql+= 'on duplicate key update ';
         sql+= 'name="'+obj.name+'",';
-        sql+= 'address="'+obj.partnumber+'",'
-        sql+= 'phone="'+obj.unit+'",';
-        sql+= 'bankaccount="'+obj.discountlevel+'", '
-        sql+= 'phone="'+obj.price+'",';
-        sql+= 'bankaccount="'+obj.lastupdate+'" '
+        sql+= 'partnumber="'+obj.partnumber+'",'
+        sql+= 'unit="'+obj.unit+'",';
+        sql+= 'discountlevel="1", '
+        sql+= 'price="'+obj.price+'"';
         return sql;
     },
     getProduct = (obj)=>{

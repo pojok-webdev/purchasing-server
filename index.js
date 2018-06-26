@@ -1,10 +1,16 @@
 var express = require('express'),
 app = express(),
+path = require('path'),
 con = require('./js/connections.js'),
 query = require('./js/queries.js'),
+help = require('./js/help.js'),
 bodyParser = require('body-parser'),
 mailer = require('./js/mailer.js'),
 otp = require('./js/otp.js');
+app.engine("html",require("ejs").renderFile);
+    app.set('views',path.join(__dirname,'views'));
+    app.use(express.static(__dirname+'views'));
+
 app.use(function(req,res,next){
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
@@ -24,28 +30,32 @@ app.get('/sendmail/:recipient',function(req,res){
         res.send("Mail Sent : ",recipient);
     });
 })
+app.get('/help/:method',function(req,res){
+    obj = help.getdata(req.params.method)
+    res.render("help.html",{
+        data:{
+            name:req.params.name,
+            method:req.params.method,
+            name:obj.name,
+            method:obj.method,
+            description:obj.description,
+            format:obj.format,
+            syntax:obj.syntax,
+            server:'localhost',
+            port:'2018'
+        }
+    });
+})
 app.post('/saveproduct',function(req,res){
-    name = req.body.name;
-    partnumber = req.body.partnumber;
-    unit = req.body.unit;
-    price = req.body.price;
-    discountlevel = req.body.discountlevel;
-    lastupdate = req.body.lastupdate;
     con.getdata(query.saveProduct({
-        name:name,
-        partnumber:partnumber,
-        unit:unit,
-        price:price,
-        discountlevel:discountlevel,
-        lastupdate:lastupdate
+        name:req.body.name,
+        partnumber:req.body.partnumber,
+        unit:req.body.unit,
+        price:req.body.price,
+        discountlevel:req.body.discountlevel
     }),function(result){
         console.log("Save Product",result);
-        mail = {
-            msg : "Product saved : "+result
-        }
-        mailer.sendmail(mail,function(content){
-            res.send("Product Saved : "+content);
-        });
+        res.send(result);
     });
 });
 app.get('/getproduct/:id',function(req,res){
@@ -66,9 +76,10 @@ app.post('/savevendor',function(req,res){
     name = req.body.name;
     address = req.body.address;
     phone = req.body.phone;
-    bank_account = req.body.bank_account;
+    bankaccount = req.body.bankaccount;
+    createuser = req.body.createuser;
     con.getdata(query.saveVendor({
-        name:name,address:address,phone:phone,bank_account:bank_account
+        name:name,address:address,phone:phone,bankaccount:bankaccount,createuser:createuser
     }),function(result){
         console.log("save vendor post data",req.body);
         res.send(result);
