@@ -61,6 +61,19 @@ app.post('/saveproduct',function(req,res){
         res.send(result);
     });
 });
+app.post('/updateproduct',function(req,res){
+    con.getdata(query.updateProduct({
+        id:req.body.id,
+        name:req.body.name,
+        partnumber:req.body.partnumber,
+        unit:req.body.unit,
+        price:req.body.price,
+        discountlevel:req.body.discountlevel
+    }),function(result){
+        console.log("Save Product",result);
+        res.send(result);
+    });
+});
 app.get('/getproduct/:id',function(req,res){
     console.log("Query",query.getProduct(req.params.id));
     con.getdata(query.getProduct(req.params.id),function(result){
@@ -83,6 +96,20 @@ app.post('/savevendor',function(req,res){
     createuser = req.body.createuser;
     con.getdata(query.saveVendor({
         name:name,address:address,phone:phone,bankaccount:bankaccount,createuser:createuser
+    }),function(result){
+        console.log("save vendor post data",req.body);
+        res.send(result);
+    })
+})
+app.post('/updatevendor',function(req,res){
+    id = req.body.id;
+    name = req.body.name;
+    address = req.body.address;
+    phone = req.body.phone;
+    bankaccount = req.body.bankaccount;
+    createuser = req.body.createuser;
+    con.getdata(query.updateVendor({
+        id:id,name:name,address:address,phone:phone,bankaccount:bankaccount,createuser:createuser
     }),function(result){
         console.log("save vendor post data",req.body);
         res.send(result);

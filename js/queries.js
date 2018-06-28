@@ -16,14 +16,24 @@ var saveVendor = (obj)=>{
         sql+= 'bankaccount="'+obj.bankaccount+'", '
         sql+= 'createuser="'+obj.createuser+'" '
         return sql;
-    }
+    },
+    updateVendor = (obj)=>{
+        sql = 'update vendors ';
+        sql+= 'set name="'+obj.name+'",';
+        sql+= 'address="'+obj.address+'",';
+        sql+= 'phone="'+obj.phone+'",';
+        sql+= 'bankaccount="'+obj.bankaccount+'",';
+        sql+= 'createuser="'+obj.createuser+'"';
+        sql+= 'where id ="'+obj.id+'" '
+        return sql;
+    },
     getVendor = (obj)=>{
         sql = 'select name,address,phone,bankaccount from vendors ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
     }
     getVendors = ()=>{
-        sql = 'select name,address,phone,bankaccount from vendors ';
+        sql = 'select id,name,address,phone,bankaccount from vendors ';
         return sql;
     },
     saveProduct = (obj)=>{
@@ -45,13 +55,24 @@ var saveVendor = (obj)=>{
         sql+= 'price="'+obj.price+'"';
         return sql;
     },
+    updateProduct = (obj)=>{
+        console.log("OBJ",obj)
+        sql = 'update products ';
+        sql+= 'set name="'+obj.name+'",';
+        sql+= 'partnumber="'+obj.partnumber+'",';
+        sql+= 'unit="'+obj.unit+'",';
+        sql+= 'discountlevel="1",';
+        sql+= 'price="'+obj.price+'" ';
+        sql+= 'where id="'+obj.id+'"';
+        return sql;
+    },
     getProduct = (obj)=>{
         sql = 'select name,partnumber,unit,discountlevel,price,lastupdate from products ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
     },
     getProducts = ()=>{
-        sql = 'select name,partnumber,unit,discountlevel,price,lastupdate from products ';
+        sql = 'select id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
         return sql;
     },
 
@@ -61,5 +82,7 @@ module.exports = {
     getVendors:getVendors,
     saveProduct:saveProduct,
     getProduct:getProduct,
-    getProducts:getProducts
+    getProducts:getProducts,
+    updateProduct:updateProduct,
+    updateVendor:updateVendor
 }
