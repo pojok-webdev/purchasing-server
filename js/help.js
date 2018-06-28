@@ -1,4 +1,4 @@
-var config = require("./js/configs.js"),
+var config = require("./configs.js"),
     appconfig = config.appserver(),
     server = appconfig.name,
     port = appconfig.port;
