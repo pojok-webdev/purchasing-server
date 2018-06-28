@@ -34,7 +34,7 @@ getdata = function(method){
                 name:"updatevendor",
                 format:"json",
                 description:"update a vendor into database",
-                syntax:'curl -d "id=vendors id&name=vendors name&address=vendors address&phone=vendors phone&bankaccount=vendors bank account&createuser=vendors createuser" -X POST http://'+server+':'+port+'/savevendor',
+                syntax:'curl -d "id=vendors id&name=vendors name&address=vendors address&phone=vendors phone&bankaccount=vendors bank account&createuser=vendors createuser" -X POST http://'+server+':'+port+'/updatevendor',
                 example:'curl -d "id=1&name=ABC, PT&address=jl mayjen sungkono 83&phone=031 88776655&bankaccount=001234455667&createuser=puji" -X POST http://'+server+':'+port+'/updatevendor'
             }
         case 'getproducts' :
@@ -68,7 +68,7 @@ getdata = function(method){
                 name:"updateproduct",
                 format:"json",
                 description:"update a product into database",
-                syntax:'curl -d "id=product id&name=product name&partnumber=product partnumber&unit=product unit&price=product price&discountlevel=product discountlevel" -X POST http://'+server+':'+port+'/saveproduct',
+                syntax:'curl -d "id=product id&name=product name&partnumber=product partnumber&unit=product unit&price=product price&discountlevel=product discountlevel" -X POST http://'+server+':'+port+'/updateproduct',
                 example:'curl -d "id=1&name=laptop&partnumber=112 334 53436&unit=buah&price=4750000&discountlevel=1" -X POST http://'+server+':'+port+'/updateproduct'
             }
         default:
