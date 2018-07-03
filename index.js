@@ -143,20 +143,16 @@ app.get('/getsubmissions',function(req,res){
         res.send(result);
     })
 })
-app.get('/makehash',function(req,res){
-   saltedPass = common.createHash(common.randomString(32),hashed=>{
-        console.log("Salted Pass",hashed)
-        res.send(hashed)
-   })
-})
-app.get('/createuser',function(req,res){
-    user = common.createuser('puji','puji','puji@padi.net.id')
-    console.log(user)
-    res.send(user)
-})
 app.post('/saveuser',(req,res)=>{
-    console.log("USERNAME",req.body.username)
     obj = common.saveUser(req.body.username,req.body.password,req.body.email)
+    res.send(obj)
+})
+app.post('/updateuser',(req,res)=>{
+    obj = common.updateUser(req.body)
+    res.send(obj)
+})
+app.post('/changepassword',(req,res)=>{
+    obj = common.changePassword(req.body.email,req.body.password)
     res.send(obj)
 })
 app.listen(process.env.PORT || 2018);

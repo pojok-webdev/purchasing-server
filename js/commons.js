@@ -39,9 +39,32 @@ saveUser = (username,password,email)=>{
         return result
     })
 }
+getUserByEmail = (email,callback) => {
+    con.getdata(query.getUserByEmail(email),result=>{
+        callback(result[0])
+    })
+}
+changePassword = (email,password) => {
+    var _obj
+    getUserByEmail(email,obj=>{
+        console.log("Result",obj)
+        _obj = obj
+
+        createHash(password+obj.salt,result=>{
+            _obj.password = result
+            con.getdata(query.changePassword(email,_obj.password),res=>{
+                return _obj
+            })
+        })
+
+    });
+    
+//    return _obj
+}
 module.exports = {
     randomString : randomString,
     createHash:createHash,
     createuser:createuser,
-    saveUser:saveUser
+    saveUser:saveUser,
+    changePassword:changePassword
 }
