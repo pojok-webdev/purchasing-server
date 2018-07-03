@@ -71,6 +71,15 @@ getdata = function(method){
                 syntax:'curl -d "id=product id&name=product name&partnumber=product partnumber&unit=product unit&price=product price&discountlevel=product discountlevel" -X POST http://'+server+':'+port+'/updateproduct',
                 example:'curl -d "id=1&name=laptop&partnumber=112 334 53436&unit=buah&price=4750000&discountlevel=1" -X POST http://'+server+':'+port+'/updateproduct'
             }
+        case 'makesubmission':
+            return {
+                method: "post",
+                name:"makesubmission",
+                format:"json",
+                description:"make a submission (membuat pengajuan pembelian)",
+                syntax:'curl -d "staff_name=staff name&submission_date=submission date&implementation_target=implementation target date&purchase_target=purchase target date&createuser=user created" -X POST http://'+server+':'+port+'/makesubmission',
+                example:'curl -d "staff_name=puji&submission_date=2018-7-2&implementation_target=2018-7-30&purchase_target=2018-7-25&createuser=pujiw" -X POST http://'+server+':'+port+'/makesubmission'
+            }
         default:
             return {
                 method:"",
