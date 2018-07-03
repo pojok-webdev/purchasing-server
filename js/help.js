@@ -89,6 +89,30 @@ getdata = function(method){
                 description:'show all saved submissions (pengajuan pembelian)',
                 syntax:''
             }
+        case 'saveuser':
+            return {
+                method:'post',
+                name:'saveuser',
+                format:'json',
+                description:'save a user',
+                syntax:''
+            }
+        case 'changepassword':
+            return {
+                method:'post',
+                name:'changepassword',
+                format:'json',
+                description:'change user s password',
+                syntax:''
+            }
+        case 'login':
+            return {
+                method:'post',
+                name:'login',
+                format:'json / boolean',
+                description:'login, return false if password/email incorrect, otherwise return user object',
+                syntax:''
+            }
         default:
             return {
                 method:"",

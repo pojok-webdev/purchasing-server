@@ -62,10 +62,11 @@ login = (email,password) => {
         createHash(password+obj.salt,result=>{
             if(result===obj.password){
                 console.log('Password cocok')
+                return obj
             }else{
                 console.log('Password tidak cocok')
+                return false
             }
-            return result
         })
     })
 }
