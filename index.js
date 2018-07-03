@@ -129,11 +129,16 @@ app.get('/getvendors',function(req,res){
         res.send(result);
     })
 })
-app.post('/makesubmission',function(req,res){
-    console.log("Submission invoked");
+app.post('/savesubmission',function(req,res){
+    console.log("Save Submission invoked");
     console.log("Query",query.makeSubmission(req.body))
     con.getdata(query.makeSubmission(req.body),result=>{
         console.log("Result",result);
+        res.send(result);
+    })
+})
+app.get('/getsubmissions',function(req,res){
+    con.getdata(query.getSubmissions(),result=>{
         res.send(result);
     })
 })

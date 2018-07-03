@@ -75,11 +75,15 @@ var saveVendor = (obj)=>{
         sql = 'select id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
         return sql;
     },
-    makeSubmission = (obj)=>{
+    saveSubmission = obj=>{
         sql = 'insert into submissions ';
         sql+= '(submission_date,staff_name,implementation_target,purchase_target,createuser)';
         sql+= 'values ';
         sql+= '("'+obj.submission_date+'","'+obj.staff_name+'","'+obj.implementation_target+'","'+obj.purchase_target+'","'+obj.createuser+'")';
+        return sql;
+    },
+    getSubmissions = ()=>{
+        sql = 'select * from submissions ';
         return sql;
     }
 module.exports = {
@@ -91,5 +95,6 @@ module.exports = {
     getProducts:getProducts,
     updateProduct:updateProduct,
     updateVendor:updateVendor,
-    makeSubmission:makeSubmission
+    saveSubmission:saveSubmission,
+    getSubmissions:getSubmissions
 }
