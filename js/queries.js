@@ -85,6 +85,13 @@ var saveVendor = (obj)=>{
     getSubmissions = ()=>{
         sql = 'select * from submissions ';
         return sql;
+    },
+    saveUser = obj => {
+        sql = 'insert into users '
+        sql+= '(username,email,salt,password) '
+        sql+= 'values '
+        sql+= '("'+obj.username+'","'+obj.email+'","'+obj.salt+'","'+obj.password+'")'
+        return sql;
     }
 module.exports = {
     saveVendor: saveVendor,
@@ -96,5 +103,6 @@ module.exports = {
     updateProduct:updateProduct,
     updateVendor:updateVendor,
     saveSubmission:saveSubmission,
-    getSubmissions:getSubmissions
+    getSubmissions:getSubmissions,
+    saveUser:saveUser
 }

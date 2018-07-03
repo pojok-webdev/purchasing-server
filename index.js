@@ -7,7 +7,8 @@ help = require('./js/help.js'),
 bodyParser = require('body-parser'),
 mailer = require('./js/mailer.js'),
 config = require("./js/configs.js"),
-otp = require('./js/otp.js');
+common = require("./js/commons.js"),
+crypto = require('crypto');
 app.engine("html",require("ejs").renderFile);
     app.set('views',path.join(__dirname,'views'));
     app.use(express.static(__dirname+'views'));
@@ -141,5 +142,21 @@ app.get('/getsubmissions',function(req,res){
     con.getdata(query.getSubmissions(),result=>{
         res.send(result);
     })
+})
+app.get('/makehash',function(req,res){
+   saltedPass = common.createHash(common.randomString(32),hashed=>{
+        console.log("Salted Pass",hashed)
+        res.send(hashed)
+   })
+})
+app.get('/createuser',function(req,res){
+    user = common.createuser('puji','puji','puji@padi.net.id')
+    console.log(user)
+    res.send(user)
+})
+app.post('/saveuser',(req,res)=>{
+    console.log("USERNAME",req.body.username)
+    obj = common.saveUser(req.body.username,req.body.password,req.body.email)
+    res.send(obj)
 })
 app.listen(process.env.PORT || 2018);
