@@ -49,22 +49,31 @@ changePassword = (email,password) => {
     getUserByEmail(email,obj=>{
         console.log("Result",obj)
         _obj = obj
-
         createHash(password+obj.salt,result=>{
             _obj.password = result
             con.getdata(query.changePassword(email,_obj.password),res=>{
                 return _obj
             })
         })
-
     });
-    
-//    return _obj
+}
+login = (email,password) => {
+    getUserByEmail(email,obj=>{
+        createHash(password+obj.salt,result=>{
+            if(result===obj.password){
+                console.log('Password cocok')
+            }else{
+                console.log('Password tidak cocok')
+            }
+            return result
+        })
+    })
 }
 module.exports = {
     randomString : randomString,
     createHash:createHash,
     createuser:createuser,
     saveUser:saveUser,
-    changePassword:changePassword
+    changePassword:changePassword,
+    login:login
 }

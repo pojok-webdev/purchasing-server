@@ -155,4 +155,8 @@ app.post('/changepassword',(req,res)=>{
     obj = common.changePassword(req.body.email,req.body.password)
     res.send(obj)
 })
+app.post('/login',(req,res)=>{
+    obj = common.login(req.body.email,req.body.password)
+    res.send(obj)
+})
 app.listen(process.env.PORT || 2018);
