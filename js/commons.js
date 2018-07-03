@@ -7,7 +7,7 @@ randomString = length => {
     for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result;
 }
-createuser = (username,password,email)=>{
+createuser = (username,password,email,callback)=>{
     var obj = {
         username : username,
         password: '',
@@ -15,12 +15,14 @@ createuser = (username,password,email)=>{
         email:email
     }
     createHash(randomString(32),result=>{
+        console.log("Obj 1",obj)
         obj.salt = result
+        createHash(password+result,passwordresult=>{
+            obj.password = passwordresult
+            console.log("Obj 2",obj)
+            callback(obj)
+        })
     })
-    createHash(password+obj.salt,result=>{
-        obj.password = result
-    })
-    return obj
 }
 createHash = (tohash,callback) => {
     hash = crypto.createHash('sha256')
@@ -34,9 +36,10 @@ createHash = (tohash,callback) => {
     hash.end()
 }
 saveUser = (username,password,email)=>{
-    obj = createuser(username,password,email)    
-    con.getdata(query.saveUser(obj),result=>{
-        return result
+    createuser(username,password,email,obj=>{
+        con.getdata(query.saveUser(obj),result=>{
+            return result
+        })    
     })
 }
 getUserByEmail = (email,callback) => {
