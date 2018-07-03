@@ -129,4 +129,12 @@ app.get('/getvendors',function(req,res){
         res.send(result);
     })
 })
+app.post('/makesubmission',function(req,res){
+    console.log("Submission invoked");
+    console.log("Query",query.makeSubmission(req.body))
+    con.getdata(query.makeSubmission(req.body),result=>{
+        console.log("Result",result);
+        res.send(result);
+    })
+})
 app.listen(process.env.PORT || 2018);
