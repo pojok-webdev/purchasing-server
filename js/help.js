@@ -78,8 +78,8 @@ getdata = function(method){
                 name:"savesubmission",
                 format:"json",
                 description:"save a submission (membuat pengajuan pembelian)",
-                syntax:'curl -d "staff_name=staff name&submission_date=submission date&implementation_target=implementation target date&purchase_target=purchase target date&createuser=user created" -X POST http://'+server+':'+port+'/makesubmission',
-                example:'curl -d "staff_name=puji&submission_date=2018-7-2&implementation_target=2018-7-30&purchase_target=2018-7-25&createuser=pujiw" -X POST http://'+server+':'+port+'/makesubmission'
+                syntax:'curl -d "staff_name=staff name&submission_date=submission date&implementation_target=implementation target date&purchase_target=purchase target date&createuser=user created" -X POST http://'+server+':'+port+'/savesubmission',
+                example:'curl -d "staff_name=puji&submission_date=2018-7-2&implementation_target=2018-7-30&purchase_target=2018-7-25&createuser=pujiw" -X POST http://'+server+':'+port+'/savesubmission'
             }
         case 'getsubmissions':
             return {
