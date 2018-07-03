@@ -7,12 +7,14 @@ randomString = length => {
     for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result;
 }
-createuser = (username,password,email,callback)=>{
+createUser = (username,password,email,level,createuser,callback)=>{
     var obj = {
         username : username,
         password: '',
         salt:'',
-        email:email
+        email:email,
+        level:level,
+        createuser:createuser
     }
     createHash(randomString(32),result=>{
         console.log("Obj 1",obj)
@@ -35,8 +37,8 @@ createHash = (tohash,callback) => {
     hash.write(tohash)
     hash.end()
 }
-saveUser = (username,password,email)=>{
-    createuser(username,password,email,obj=>{
+saveUser = (username,password,email,level,createuser)=>{
+    createUser(username,password,email,level,createuser,obj=>{
         con.getdata(query.saveUser(obj),result=>{
             return result
         })    
@@ -76,7 +78,7 @@ login = (email,password) => {
 module.exports = {
     randomString : randomString,
     createHash:createHash,
-    createuser:createuser,
+    createUser:createUser,
     saveUser:saveUser,
     changePassword:changePassword,
     login:login

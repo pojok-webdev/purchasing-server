@@ -88,9 +88,9 @@ var saveVendor = (obj)=>{
     },
     saveUser = obj => {
         sql = 'insert into users '
-        sql+= '(username,email,salt,password) '
+        sql+= '(username,email,salt,password,level,createuser) '
         sql+= 'values '
-        sql+= '("'+obj.username+'","'+obj.email+'","'+obj.salt+'","'+obj.password+'")'
+        sql+= '("'+obj.username+'","'+obj.email+'","'+obj.salt+'","'+obj.password+'","'+obj.level+'","'+obj.createuser+'")'
         return sql;
     }
     getUserByEmail = email => {

@@ -144,7 +144,7 @@ app.get('/getsubmissions',function(req,res){
     })
 })
 app.post('/saveuser',(req,res)=>{
-    obj = common.saveUser(req.body.username,req.body.password,req.body.email)
+    obj = common.saveUser(req.body.username,req.body.password,req.body.email,req.body.level,req.body.createuser)
     res.send(obj)
 })
 app.post('/updateuser',(req,res)=>{
