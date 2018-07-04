@@ -7,8 +7,7 @@ help = require('./js/help.js'),
 bodyParser = require('body-parser'),
 mailer = require('./js/mailer.js'),
 config = require("./js/configs.js"),
-common = require("./js/commons.js"),
-crypto = require('crypto');
+common = require("./js/commons.js");
 app.engine("html",require("ejs").renderFile);
     app.set('views',path.join(__dirname,'views'));
     app.use(express.static(__dirname+'views'));
