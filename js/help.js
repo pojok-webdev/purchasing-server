@@ -11,7 +11,8 @@ getdata = function(method){
                 name:"getvendors",
                 format:"json",
                 description:"get list of all vendors from database",
-                syntax:"getvendors"
+                syntax:"getvendors",
+                example:""
             }
         case 'getvendor' : 
             return {
@@ -19,7 +20,8 @@ getdata = function(method){
                 name:"getvendor",
                 format:"json",
                 description:"get certain vendor by id from database",
-                syntax:"getvendor/:vendor_id"
+                syntax:"getvendor/:vendor_id",
+                example:""
             }
         case 'savevendor' : 
             return {
@@ -27,7 +29,8 @@ getdata = function(method){
                 name:"savevendor",
                 format:"json",
                 description:"save a vendor into database",
-                syntax:'curl -d "name=vendors name&address=vendors address&phone=vendors phone&bankaccount=vendors bank account&createuser=vendors create user" -X POST http://'+server+':'+port+'/savevendor'
+                syntax:'curl -d "name=vendors name&address=vendors address&phone=vendors phone&bankaccount=vendors bank account&createuser=vendors create user" -X POST http://'+server+':'+port+'/savevendor',
+                example:""
             }
         case 'updatevendor' : 
             return {
@@ -44,7 +47,8 @@ getdata = function(method){
                 name:"getproducts",
                 format:"json",
                 description:"get list of all products from database",
-                syntax:"getproducts"
+                syntax:"getproducts",
+                example:""
             }
         case 'getproduct' : 
             return {
@@ -52,7 +56,8 @@ getdata = function(method){
                 name:"getproduct",
                 format:"json",
                 description:"get certain product by id from database",
-                syntax:"getproduct/:product_id"
+                syntax:"getproduct/:product_id",
+                example:""
             }
         case 'saveproduct' : 
             return {
@@ -87,7 +92,8 @@ getdata = function(method){
                 name:'getsubmissions',
                 format:'json',
                 description:'show all saved submissions (pengajuan pembelian)',
-                syntax:''
+                syntax:'',
+                example:""
             }
         case 'saveuser':
             return {
@@ -104,7 +110,8 @@ getdata = function(method){
                 name:'changepassword',
                 format:'json',
                 description:'change user s password',
-                syntax:''
+                syntax:'',
+                example:""
             }
         case 'login':
             return {
@@ -112,7 +119,8 @@ getdata = function(method){
                 name:'login',
                 format:'json / boolean',
                 description:'login, return false if password/email incorrect, otherwise return user object',
-                syntax:''
+                syntax:'',
+                example:""
             }
         default:
             return {
