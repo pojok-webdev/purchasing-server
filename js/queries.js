@@ -28,7 +28,7 @@ var saveVendor = (obj)=>{
         return sql;
     },
     getVendor = (obj)=>{
-        sql = 'select name,address,phone,bankaccount from vendors ';
+        sql = 'select id,name,address,phone,bankaccount from vendors ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
     }
