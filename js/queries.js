@@ -67,7 +67,7 @@ var saveVendor = (obj)=>{
         return sql;
     },
     getProduct = (obj)=>{
-        sql = 'select name,partnumber,unit,discountlevel,price,lastupdate from products ';
+        sql = 'select id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
     },

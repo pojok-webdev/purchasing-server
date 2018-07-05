@@ -70,7 +70,7 @@ app.post('/updateproduct',function(req,res){
         price:req.body.price,
         discountlevel:req.body.discountlevel
     }),function(result){
-        console.log("Save Product",result);
+        console.log("Update Product",result);
         res.send(result);
     });
 });
