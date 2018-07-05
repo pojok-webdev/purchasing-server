@@ -76,7 +76,7 @@ app.post('/updateproduct',function(req,res){
 });
 app.get('/getproduct/:id',function(req,res){
     console.log("Query",query.getProduct(req.params.id));
-    con.getdata(query.getProduct(req.params.id),function(result){
+    con.getdata(query.getProduct({id:req.params.id}),function(result){
         console.log("Result",result);
         res.send(result);
     })
