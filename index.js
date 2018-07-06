@@ -149,6 +149,18 @@ app.post('/savesubmissiondetail',(req,res)=>{
         res.send(result)
     })
 })
+app.get('/getusers',(req,res)=>{
+    con.getdata(query.getUsers(),result=>{
+        console.log("Result",result)
+        res.send(result)
+    })
+})
+app.post('/getuser',(req,res)=>{
+    con.getdata(query.getUser({id:req.body.id}),result=>{
+        console.log("Result",result)
+        res.send(result)
+    })
+})
 app.post('/saveuser',(req,res)=>{
     obj = common.saveUser(req.body)
     res.send(obj)

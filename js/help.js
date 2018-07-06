@@ -104,14 +104,14 @@ getdata = function(method){
                 syntax:'curl -d "username=username&password=user password&email=user email&level=user level&createuser=user who create this user" -X POST http://localhost:2018/saveuser',
                 example:'curl -d "username=agus&password=agus&email=agus@padi.net.id&level=1&createuser=puji" -X POST http://localhost:2018/saveuser'
             }
-            case 'updateuser':
+        case 'updateuser':
             return {
                 method:'post',
                 name:'updateuser',
                 format:'json',
-                description:'save a user',
-                syntax:'curl -d "id=userid&username=username&password=user password&email=user email&level=user level&createuser=user who create this user" -X POST http://localhost:2018/updateuser',
-                example:'curl -d "id=1&username=agus&password=agus&email=agus@padi.net.id&level=1&createuser=puji" -X POST http://localhost:2018/updateuser'
+                description:'update a user, fetch the user first before update to get current users datas',
+                syntax:'curl -d "id=userid&username=username&password=user password&email=user email&level=user level&active=user status&createuser=user who create this user" -X POST http://localhost:2018/updateuser',
+                example:'curl -d "id=1&username=agus&password=agus&email=agus@padi.net.id&level=1&active=1&createuser=puji" -X POST http://localhost:2018/updateuser'
             }
         case 'changepassword':
             return {

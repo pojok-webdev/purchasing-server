@@ -93,6 +93,15 @@ var saveVendor = (obj) => {
         sql+= '("'+obj.submission_id+'","'+obj.itemname+'","'+obj.brand+'","'+obj.partnumber+'","'+obj.description+'","'+obj.proposed_vendor+'","'+obj.amount+'","'+obj.proposed_price+'","'+obj.proposed_totalprice+'","'+obj.information+'","'+obj.purchase_reason+'","'+obj.placement_location+'","'+obj.vendor_comparation+'","'+obj.createuser+'") '
         return sql
     }
+    getUsers = () => {
+        sql = 'select * from users '
+        return sql
+    }
+    getUser = (obj) => {
+        sql = 'select * from users '
+        sql+= 'where id = ' + obj.id + ' '
+        return sql
+    }
     saveUser = obj => {
         sql = 'insert into users '
         sql+= '(username,email,salt,password,level,createuser) '
@@ -102,7 +111,7 @@ var saveVendor = (obj) => {
     }
     updateUser = obj => {
         sql = 'update users '
-        sql+= 'set username="' + obj.username + '",email="' + obj.email + '",level="' + obj.level + '" '
+        sql+= 'set username="' + obj.username + '",email="' + obj.email + '",level="' + obj.level + '",active="' + obj.active + '" '
         sql+= 'where id=' + obj.id
         return sql
     }
@@ -127,6 +136,8 @@ module.exports = {
     updateVendor:updateVendor,
     saveSubmission:saveSubmission,
     getSubmissions:getSubmissions,
+    getUsers:getUsers,
+getUser:getUser,
     saveUser:saveUser,
     updateUser:updateUser,
     getUserByEmail:getUserByEmail,
