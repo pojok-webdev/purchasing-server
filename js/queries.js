@@ -1,4 +1,4 @@
-var saveVendor = (obj)=>{
+var saveVendor = (obj) => {
         sql = 'insert into vendors ';
         sql+= '(name,address,phone,bankaccount,createuser)';
         sql+= 'values ';
@@ -17,7 +17,7 @@ var saveVendor = (obj)=>{
         sql+= 'createuser="'+obj.createuser+'" '
         return sql;
     },
-    updateVendor = (obj)=>{
+    updateVendor = (obj) => {
         sql = 'update vendors ';
         sql+= 'set name="'+obj.name+'",';
         sql+= 'address="'+obj.address+'",';
@@ -27,16 +27,16 @@ var saveVendor = (obj)=>{
         sql+= 'where id ="'+obj.id+'" '
         return sql;
     },
-    getVendor = (obj)=>{
+    getVendor = (obj) => {
         sql = 'select id,name,address,phone,bankaccount from vendors ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
     }
-    getVendors = ()=>{
+    getVendors = () => {
         sql = 'select id,name,address,phone,bankaccount from vendors ';
         return sql;
     },
-    saveProduct = (obj)=>{
+    saveProduct = (obj) => {
         console.log("OBJ",obj)
         sql = 'insert into products ';
         sql+= '(name,partnumber,unit,discountlevel,price)';
@@ -55,7 +55,7 @@ var saveVendor = (obj)=>{
         sql+= 'price="'+obj.price+'"';
         return sql;
     },
-    updateProduct = (obj)=>{
+    updateProduct = (obj) => {
         console.log("OBJ",obj)
         sql = 'update products ';
         sql+= 'set name="'+obj.name+'",';
@@ -71,11 +71,11 @@ var saveVendor = (obj)=>{
         sql+= 'where id="'+obj.id+'"';
         return sql;
     },
-    getProducts = ()=>{
+    getProducts = () => {
         sql = 'select id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
         return sql;
     },
-    saveSubmission = obj=>{
+    saveSubmission = obj => {
         sql = 'insert into submissions ';
         sql+= '(submission_date,staff_name,implementation_target,purchase_target,createuser)';
         sql+= 'values ';
@@ -86,6 +86,13 @@ var saveVendor = (obj)=>{
         sql = 'select * from submissions ';
         return sql;
     },
+    saveSubmissionDetail = obj => {
+        sql = 'insert into submission_details '
+        sql+= '(submission_id,itemname,brand,partnumber,description,proposed_vendor,amount,proposed_price,proposed_totalprice,information,purchase_reason,placement_location,vendor_comparation,createuser) '
+        sql+= 'values '
+        sql+= '("'+obj.submission_id+'","'+obj.itemname+'","'+obj.brand+'","'+obj.partnumber+'","'+obj.description+'","'+obj.proposed_vendor+'","'+obj.amount+'","'+obj.proposed_price+'","'+obj.proposed_totalprice+'","'+obj.information+'","'+obj.purchase_reason+'","'+obj.placement_location+'","'+obj.vendor_comparation+'","'+obj.createuser+'") '
+        return sql
+    }
     saveUser = obj => {
         sql = 'insert into users '
         sql+= '(username,email,salt,password,level,createuser) '
@@ -116,5 +123,6 @@ module.exports = {
     getSubmissions:getSubmissions,
     saveUser:saveUser,
     getUserByEmail:getUserByEmail,
-    changePassword:changePassword
+    changePassword:changePassword,
+    saveSubmissionDetail:saveSubmissionDetail
 }

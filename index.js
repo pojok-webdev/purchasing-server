@@ -20,7 +20,7 @@ app.use(function(req,res,next){
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-app.get('/sendmail/:recipient',function(req,res){
+app.get('/sendmail/:recipient',(req,res) => {
     res.header("Access-Control-Allow-Origin","*");
     var recipient = req.params.recipient;
     mail = {
@@ -31,7 +31,7 @@ app.get('/sendmail/:recipient',function(req,res){
         res.send("Mail Sent : ",recipient);
     });
 })
-app.get('/help/:method',function(req,res){
+app.get('/help/:method',(req,res) => {
     obj = help.getdata(req.params.method)
     appconfig = config.appserver()
     console.log("Obj",obj)
@@ -49,19 +49,19 @@ app.get('/help/:method',function(req,res){
         }
     });
 })
-app.post('/saveproduct',function(req,res){
+app.post('/saveproduct',(req,res) => {
     con.getdata(query.saveProduct({
         name:req.body.name,
         partnumber:req.body.partnumber,
         unit:req.body.unit,
         price:req.body.price,
         discountlevel:req.body.discountlevel
-    }),function(result){
+    }),(result) => {
         console.log("Save Product",result);
         res.send(result);
     });
 });
-app.post('/updateproduct',function(req,res){
+app.post('/updateproduct',(req,res) => {
     con.getdata(query.updateProduct({
         id:req.body.id,
         name:req.body.name,
@@ -69,26 +69,26 @@ app.post('/updateproduct',function(req,res){
         unit:req.body.unit,
         price:req.body.price,
         discountlevel:req.body.discountlevel
-    }),function(result){
+    }),(result) => {
         console.log("Update Product",result);
         res.send(result);
     });
 });
-app.get('/getproduct/:id',function(req,res){
+app.get('/getproduct/:id',(req,res) => {
     console.log("Query",query.getProduct(req.params.id));
-    con.getdata(query.getProduct({id:req.params.id}),function(result){
+    con.getdata(query.getProduct({id:req.params.id}),(result) => {
         console.log("Result",result);
         res.send(result);
     })
 })
-app.get('/getproducts',function(req,res){
+app.get('/getproducts',(req,res) => {
     console.log("Query",query.getProducts());
-    con.getdata(query.getProducts(),function(result){
+    con.getdata(query.getProducts(),(result) => {
         console.log("Result",result);
         res.send(result);
     })
 })
-app.post('/savevendor',function(req,res){
+app.post('/savevendor',(req,res) => {
     name = req.body.name;
     address = req.body.address;
     phone = req.body.phone;
@@ -96,12 +96,12 @@ app.post('/savevendor',function(req,res){
     createuser = req.body.createuser;
     con.getdata(query.saveVendor({
         name:name,address:address,phone:phone,bankaccount:bankaccount,createuser:createuser
-    }),function(result){
+    }),(result) => {
         console.log("save vendor post data",req.body);
         res.send(result);
     })
 })
-app.post('/updatevendor',function(req,res){
+app.post('/updatevendor',(req,res) => {
     id = req.body.id;
     name = req.body.name;
     address = req.body.address;
@@ -110,36 +110,43 @@ app.post('/updatevendor',function(req,res){
     createuser = req.body.createuser;
     con.getdata(query.updateVendor({
         id:id,name:name,address:address,phone:phone,bankaccount:bankaccount,createuser:createuser
-    }),function(result){
+    }),(result) => {
         console.log("save vendor post data",req.body);
         res.send(result);
     })
 })
-app.get('/getvendor/:id',function(req,res){
+app.get('/getvendor/:id',(req,res) => {
     console.log("Query",query.getVendor(req.params.id));
-    con.getdata(query.getVendor(req.params.id),function(result){
+    con.getdata(query.getVendor(req.params.id),(result) => {
         console.log("Result",result);
         res.send(result);
     })
 })
-app.get('/getvendors',function(req,res){
+app.get('/getvendors',(req,res) => {
     console.log("Query",query.getVendors());
-    con.getdata(query.getVendors(),function(result){
+    con.getdata(query.getVendors(),(result) => {
         console.log("Result",result);
         res.send(result);
     })
 })
-app.post('/savesubmission',function(req,res){
+app.post('/savesubmission',(req,res) => {
     console.log("Save Submission invoked");
-    console.log("Query",query.makeSubmission(req.body))
-    con.getdata(query.makeSubmission(req.body),result=>{
+    console.log("Query",query.saveSubmission(req.body))
+    con.getdata(query.saveSubmission(req.body),result=>{
         console.log("Result",result);
         res.send(result);
     })
 })
-app.get('/getsubmissions',function(req,res){
+app.get('/getsubmissions',(req,res) => {
     con.getdata(query.getSubmissions(),result=>{
+    console.log("Result",result);
         res.send(result);
+    })
+})
+app.post('/savesubmissiondetail',(req,res)=>{
+    con.getdata(query.saveSubmissionDetail(req.body),result=>{
+        console.log("Result",result)
+        res.send(result)
     })
 })
 app.post('/saveuser',(req,res)=>{
