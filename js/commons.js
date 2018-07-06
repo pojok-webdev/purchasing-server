@@ -7,22 +7,22 @@ randomString = length => {
     for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result;
 }
-createUser = (username,password,email,level,createuser,callback)=>{
-    var obj = {
-        username : username,
+createUser = (obj,callback)=>{
+    var _obj = {
+        username : obj.username,
         password: '',
         salt:'',
-        email:email,
-        level:level,
-        createuser:createuser
+        email:obj.email,
+        level:obj.level,
+        createuser:obj.createuser
     }
     createHash(randomString(32),result=>{
-        console.log("Obj 1",obj)
-        obj.salt = result
-        createHash(password+result,passwordresult=>{
-            obj.password = passwordresult
-            console.log("Obj 2",obj)
-            callback(obj)
+        console.log("_obj 1",_obj)
+        _obj.salt = result
+        createHash(obj.password+result,passwordresult=>{
+            _obj.password = passwordresult
+            console.log("_obj 2",_obj)
+            callback(_obj)
         })
     })
 }
@@ -37,8 +37,8 @@ createHash = (tohash,callback) => {
     hash.write(tohash)
     hash.end()
 }
-saveUser = (username,password,email,level,createuser)=>{
-    createUser(username,password,email,level,createuser,obj=>{
+saveUser = (user)=>{
+    createUser(user,obj=>{
         con.getdata(query.saveUser(obj),result=>{
             return result
         })    

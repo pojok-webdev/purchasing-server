@@ -76,14 +76,14 @@ app.post('/updateproduct',(req,res) => {
 });
 app.get('/getproduct/:id',(req,res) => {
     console.log("Query",query.getProduct(req.params.id));
-    con.getdata(query.getProduct({id:req.params.id}),(result) => {
+    con.getdata(query.getProduct({id:req.params.id}),result => {
         console.log("Result",result);
         res.send(result);
     })
 })
 app.get('/getproducts',(req,res) => {
     console.log("Query",query.getProducts());
-    con.getdata(query.getProducts(),(result) => {
+    con.getdata(query.getProducts(),result => {
         console.log("Result",result);
         res.send(result);
     })
@@ -117,14 +117,14 @@ app.post('/updatevendor',(req,res) => {
 })
 app.get('/getvendor/:id',(req,res) => {
     console.log("Query",query.getVendor(req.params.id));
-    con.getdata(query.getVendor(req.params.id),(result) => {
+    con.getdata(query.getVendor(req.params.id),result => {
         console.log("Result",result);
         res.send(result);
     })
 })
 app.get('/getvendors',(req,res) => {
     console.log("Query",query.getVendors());
-    con.getdata(query.getVendors(),(result) => {
+    con.getdata(query.getVendors(),result => {
         console.log("Result",result);
         res.send(result);
     })
@@ -150,7 +150,7 @@ app.post('/savesubmissiondetail',(req,res)=>{
     })
 })
 app.post('/saveuser',(req,res)=>{
-    obj = common.saveUser(req.body.username,req.body.password,req.body.email,req.body.level,req.body.createuser)
+    obj = common.saveUser(req.body)
     res.send(obj)
 })
 app.post('/updateuser',(req,res)=>{
