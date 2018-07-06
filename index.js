@@ -139,12 +139,31 @@ app.post('/savesubmission',(req,res) => {
 })
 app.get('/getsubmissions',(req,res) => {
     con.getdata(query.getSubmissions(),result=>{
-    console.log("Result",result);
+        console.log("Result",result);
         res.send(result);
     })
 })
+app.get('/getsubmissiondetails/:submission_id',(req,res)=>{
+    console.log("Query",query.getSubmissionDetails({submission_id:req.params.submission_id}));
+    con.getdata(query.getSubmissionDetails({submission_id:req.params.submission_id}),result=>{
+        console.log("Result",result)
+        res.send(result)
+    })
+})
+app.get('/getsubmissiondetail/:id',(req,res)=>{
+    con.getdata(query.getSubmissionDetails({id:req.params.id}),result=>{
+        console.log("Result",result)
+        res.send(result)
+    })
+})
 app.post('/savesubmissiondetail',(req,res)=>{
-    con.getdata(query.saveSubmissionDetail(req.body),result=>{
+    con.getdata(query.saveSubmissionDetail(req.body),result => {
+        console.log("Result",result)
+        res.send(result)
+    })
+})
+app.post('/updatesubmissiondetail',(req,res) => {
+    con.getdata(query.updateSubmissionDetail(req.body),result => {
         console.log("Result",result)
         res.send(result)
     })

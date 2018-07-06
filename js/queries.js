@@ -66,7 +66,7 @@ var saveVendor = (obj) => {
         sql+= 'where id="'+obj.id+'"';
         return sql;
     },
-    getProduct = (obj)=>{
+    getProduct = (obj) => {
         sql = 'select id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
@@ -82,15 +82,44 @@ var saveVendor = (obj) => {
         sql+= '("'+obj.submission_date+'","'+obj.staff_name+'","'+obj.implementation_target+'","'+obj.purchase_target+'","'+obj.createuser+'")';
         return sql;
     },
-    getSubmissions = ()=>{
+    getSubmissions = () => {
         sql = 'select * from submissions ';
         return sql;
+    },
+    getSubmissionDetails = (obj) => {
+        sql = 'select * from submission_details '
+sql+= 'where submission_id='+obj.submission_id+' '
+        return sql
+    },
+    getSubmissionDetail = (obj) => {
+        sql = 'select * from submission_details '
+        sql+= 'where id = ' + obj.id
+        return sql
     },
     saveSubmissionDetail = obj => {
         sql = 'insert into submission_details '
         sql+= '(submission_id,itemname,brand,partnumber,description,proposed_vendor,amount,proposed_price,proposed_totalprice,information,purchase_reason,placement_location,vendor_comparation,createuser) '
         sql+= 'values '
         sql+= '("'+obj.submission_id+'","'+obj.itemname+'","'+obj.brand+'","'+obj.partnumber+'","'+obj.description+'","'+obj.proposed_vendor+'","'+obj.amount+'","'+obj.proposed_price+'","'+obj.proposed_totalprice+'","'+obj.information+'","'+obj.purchase_reason+'","'+obj.placement_location+'","'+obj.vendor_comparation+'","'+obj.createuser+'") '
+        return sql
+    }
+    updateSubmissionDetail = obj => {
+        sql = 'update submission_details '
+        sql+= 'set item_name="'+obj.item_name+'",'
+        sql+= 'brand="'+obj.brand+'",'
+        sql+= 'partnumber="'+obj.partnumber+'",'
+        sql+= 'description="'+obj.description+'",'
+        sql+= 'proposed_vendor="'+obj.proposed_vendor+'",'
+        sql+= 'amount="'+obj.amount+'",'
+        sql+= 'proposed_price="'+obj.proposed_price+'",'
+        sql+= 'proposed_totalprice="'+obj.proposed_totalprice+'",'
+        sql+= 'vendor="'+obj.vendor+'",'
+        sql+= 'price="'+obj.price+'",'
+        sql+= 'totalprice="'+obj.totalprice+'",'
+        sql+= 'information="'+obj.information+'",'
+        sql+= 'purchase_reason="'+obj.purchase_reason+'",'
+        sql+= 'placement_location="'+obj.placement_location+'",'
+        sql+= 'vendor_comparation="'+obj.vendor_comparation+'" '
         return sql
     }
     getUsers = () => {
@@ -137,10 +166,13 @@ module.exports = {
     saveSubmission:saveSubmission,
     getSubmissions:getSubmissions,
     getUsers:getUsers,
-getUser:getUser,
+    getUser:getUser,
     saveUser:saveUser,
     updateUser:updateUser,
     getUserByEmail:getUserByEmail,
     changePassword:changePassword,
-    saveSubmissionDetail:saveSubmissionDetail
+    getSubmissionDetails:getSubmissionDetails,
+    getSubmissionDetail:getSubmissionDetail,
+    saveSubmissionDetail:saveSubmissionDetail,
+    updateSubmissionDetail:updateSubmissionDetail
 }
