@@ -100,6 +100,12 @@ var saveVendor = (obj) => {
         sql+= '("'+obj.username+'","'+obj.email+'","'+obj.salt+'","'+obj.password+'","'+obj.level+'","'+obj.createuser+'")'
         return sql;
     }
+    updateUser = obj => {
+        sql = 'update users '
+        sql+= 'set username="' + obj.username + '",email="' + obj.email + '",level="' + obj.level + '" '
+        sql+= 'where id=' + obj.id
+        return sql
+    }
     getUserByEmail = email => {
         sql = 'select * from users '
         sql+= 'where email="'+email+'"'
@@ -122,6 +128,7 @@ module.exports = {
     saveSubmission:saveSubmission,
     getSubmissions:getSubmissions,
     saveUser:saveUser,
+    updateUser:updateUser,
     getUserByEmail:getUserByEmail,
     changePassword:changePassword,
     saveSubmissionDetail:saveSubmissionDetail

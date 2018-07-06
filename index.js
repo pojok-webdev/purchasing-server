@@ -154,8 +154,9 @@ app.post('/saveuser',(req,res)=>{
     res.send(obj)
 })
 app.post('/updateuser',(req,res)=>{
-    obj = common.updateUser(req.body)
-    res.send(obj)
+    con.getdata(query.updateUser(req.body),result=>{
+        res.send(result)
+    })
 })
 app.post('/changepassword',(req,res)=>{
     obj = common.changePassword(req.body.email,req.body.password)
