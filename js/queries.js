@@ -210,5 +210,9 @@ module.exports = {
     getSubmissionDetails:getSubmissionDetails,
     getSubmissionDetail:getSubmissionDetail,
     saveSubmissionDetail:saveSubmissionDetail,
-    updateSubmissionDetail:updateSubmissionDetail
+    updateSubmissionDetail:updateSubmissionDetail,
+    getCategories:getCategories,
+    getCategory:getCategory,
+    saveCategory:saveCategory,
+    updateCategory:updateCategory
 }
