@@ -84,14 +84,16 @@ var saveVendor = (obj) => {
     saveCategory = (obj) => {
         console.log("OBJ",obj)
         sql = 'insert into categories ';
-        sql+= '(name,description)';
+        sql+= '(name,description,createuser)';
         sql+= 'values ';
         sql+= '(';
         sql+= '"'+obj.name+'",';
-        sql+= '"'+obj.description+'")';
+        sql+= '"'+obj.description+'",';
+        sql+= '"'+obj.createuser+'")';
         sql+= 'on duplicate key update ';
         sql+= 'name="'+obj.name+'",';
-        sql+= 'description="'+obj.description+'" ';
+        sql+= 'description="'+obj.description+'",';
+        sql+= 'createuser="'+obj.createuser+'" ';
         return sql;
     },
     updateCategory = (obj) => {

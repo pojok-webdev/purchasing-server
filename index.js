@@ -132,7 +132,8 @@ app.get('/getvendors',(req,res) => {
 app.post('/savecategory',(req,res) => {
     con.getdata(query.saveCategory({
         name:req.body.name,
-        description:req.body.description
+        description:req.body.description,
+        createuser:req.body.createuser
     }),(result) => {
         console.log("Save Category",result);
         res.send(result);
