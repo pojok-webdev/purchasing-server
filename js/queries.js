@@ -39,16 +39,20 @@ var saveVendor = (obj) => {
     saveProduct = (obj) => {
         console.log("OBJ",obj)
         sql = 'insert into products ';
-        sql+= '(name,partnumber,unit,discountlevel,price)';
+        sql+= '(name,vendor_id,category_id,partnumber,unit,discountlevel,price)';
         sql+= 'values ';
         sql+= '(';
         sql+= '"'+obj.name+'",';
+        sql+= '"'+obj.vendor_id+'",';
+        sql+= '"'+obj.category_id+'",';
         sql+= '"'+obj.partnumber+'",';
         sql+= '"'+obj.unit+'",';
         sql+= '"1",';
         sql+= '"'+obj.price+'")';
         sql+= 'on duplicate key update ';
         sql+= 'name="'+obj.name+'",';
+        sql+= 'vendor_id="'+obj.vendor_id+'",';
+        sql+= 'category_id="'+obj.category_id+'",';
         sql+= 'partnumber="'+obj.partnumber+'",'
         sql+= 'unit="'+obj.unit+'",';
         sql+= 'discountlevel="1", '
@@ -60,6 +64,8 @@ var saveVendor = (obj) => {
         sql = 'update products ';
         sql+= 'set name="'+obj.name+'",';
         sql+= 'partnumber="'+obj.partnumber+'",';
+        sql+= 'vendor_id="'+obj.vendor_id+'",';
+        sql+= 'category_id="'+obj.category_id+'",';
         sql+= 'unit="'+obj.unit+'",';
         sql+= 'discountlevel="1",';
         sql+= 'price="'+obj.price+'" ';
@@ -67,12 +73,12 @@ var saveVendor = (obj) => {
         return sql;
     },
     getProduct = (obj) => {
-        sql = 'select id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
+        sql = 'select id,vendor_id,category_id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
     },
     getProducts = () => {
-        sql = 'select id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
+        sql = 'select id,vendor_id,category_id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
         return sql;
     },
     saveSubmission = obj => {
@@ -88,7 +94,7 @@ var saveVendor = (obj) => {
     },
     getSubmissionDetails = (obj) => {
         sql = 'select * from submission_details '
-sql+= 'where submission_id='+obj.submission_id+' '
+        sql+= 'where submission_id='+obj.submission_id+' '
         return sql
     },
     getSubmissionDetail = (obj) => {

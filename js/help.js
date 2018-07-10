@@ -65,8 +65,8 @@ getdata = function(method){
                 name:"saveproduct",
                 format:"json",
                 description:"save a product into database",
-                syntax:'curl -d "name=laptop&partnumber=112 334 53436&unit=buah&price=4750000&discountlevel=1" -X POST http://'+server+':'+port+'/saveproduct',
-                example:'curl -d "name=laptop&partnumber=112 334 53436&unit=buah&price=4750000&discountlevel=1" -X POST http://'+server+':'+port+'/saveproduct'
+                syntax:'curl -d "name=product name&vendor_id=id of vendor&category_id=id of category&partnumber=part number&unit=unit&price=price&discountlevel=discountlevel" -X POST http://'+server+':'+port+'/saveproduct',
+                example:'curl -d "name=laptop&vendor_id=1&category_id=1&partnumber=112 334 53436&unit=buah&price=4750000&discountlevel=1" -X POST http://'+server+':'+port+'/saveproduct'
             }
         case 'updateproduct' : 
             return {
@@ -74,8 +74,8 @@ getdata = function(method){
                 name:"updateproduct",
                 format:"json",
                 description:"update a product into database",
-                syntax:'curl -d "id=product id&name=product name&partnumber=product partnumber&unit=product unit&price=product price&discountlevel=product discountlevel" -X POST http://'+server+':'+port+'/updateproduct',
-                example:'curl -d "id=1&name=laptop&partnumber=112 334 53436&unit=buah&price=4750000&discountlevel=1" -X POST http://'+server+':'+port+'/updateproduct'
+                syntax:'curl -d "id=product id&name=product name&vendor_id=id of vendor&category_id=id of category&partnumber=product partnumber&unit=product unit&price=product price&discountlevel=product discountlevel" -X POST http://'+server+':'+port+'/updateproduct',
+                example:'curl -d "id=1&name=laptop&vendor_id=1&category_id=1&partnumber=112 334 53436&unit=buah&price=4750000&discountlevel=1" -X POST http://'+server+':'+port+'/updateproduct'
             }
         case 'savesubmission':
             return {
