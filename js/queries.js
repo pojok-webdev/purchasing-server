@@ -84,7 +84,7 @@ var saveVendor = (obj) => {
     saveCategory = (obj) => {
         console.log("OBJ",obj)
         sql = 'insert into categories ';
-        sql+= '(name,description,)';
+        sql+= '(name,description)';
         sql+= 'values ';
         sql+= '(';
         sql+= '"'+obj.name+'",';
