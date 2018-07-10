@@ -77,6 +77,44 @@ getdata = function(method){
                 syntax:'curl -d "id=product id&name=product name&vendor_id=id of vendor&category_id=id of category&partnumber=product partnumber&unit=product unit&price=product price&discountlevel=product discountlevel" -X POST http://'+server+':'+port+'/updateproduct',
                 example:'curl -d "id=1&name=laptop&vendor_id=1&category_id=1&partnumber=112 334 53436&unit=buah&price=4750000&discountlevel=1" -X POST http://'+server+':'+port+'/updateproduct'
             }
+
+        case 'getcategories' :
+            return {
+                method:"get",
+                name:"getcategories",
+                format:"json",
+                description:"get list of all categories from database",
+                syntax:"getcategories",
+                example:""
+            }
+        case 'getcategory' : 
+            return {
+                method:"get",
+                name:"getcategory",
+                format:"json",
+                description:"get certain category by id from database",
+                syntax:"getcategory/:category_id",
+                example:""
+            }
+        case 'savecategory' : 
+            return {
+                method:"post",
+                name:"savecategory",
+                format:"json",
+                description:"save a category into database",
+                syntax:'curl -d "name=category name&description=description of category" -X POST http://'+server+':'+port+'/saveproduct',
+                example:'curl -d "name=category name&description=description of category" -X POST http://'+server+':'+port+'/saveproduct'
+            }
+        case 'updatecategory' : 
+            return {
+                method:"post",
+                name:"updatecategory",
+                format:"json",
+                description:"update a category into database",
+                syntax:'curl -d "id=category id&name=category name&description=description of category" -X POST http://'+server+':'+port+'/updateproduct',
+                example:'curl -d "id=1&name=laptop&description=category description" -X POST http://'+server+':'+port+'/updateproduct'
+            }
+
         case 'savesubmission':
             return {
                 method: "post",
