@@ -129,6 +129,39 @@ app.get('/getvendors',(req,res) => {
         res.send(result);
     })
 })
+app.post('/savecategory',(req,res) => {
+    con.getdata(query.saveCategory({
+        name:req.body.name,
+        description:req.body.description
+    }),(result) => {
+        console.log("Save Category",result);
+        res.send(result);
+    });
+});
+app.post('/updatecategory',(req,res) => {
+    con.getdata(query.updateCategory({
+        id:req.body.id,
+        name:req.body.name,
+        description:req.body.description
+    }),(result) => {
+        console.log("Update Category",result);
+        res.send(result);
+    });
+});
+app.get('/getcategory/:id',(req,res) => {
+    console.log("Query",query.getCategory(req.params.id));
+    con.getdata(query.getCategory({id:req.params.id}),result => {
+        console.log("Result",result);
+        res.send(result);
+    })
+})
+app.get('/getcategories',(req,res) => {
+    console.log("Query",query.getCategories());
+    con.getdata(query.getCategories(),result => {
+        console.log("Result",result);
+        res.send(result);
+    })
+})
 app.post('/savesubmission',(req,res) => {
     console.log("Save Submission invoked");
     console.log("Query",query.saveSubmission(req.body))
