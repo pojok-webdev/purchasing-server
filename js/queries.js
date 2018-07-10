@@ -81,6 +81,36 @@ var saveVendor = (obj) => {
         sql = 'select id,vendor_id,category_id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
         return sql;
     },
+    saveCategory = (obj) => {
+        console.log("OBJ",obj)
+        sql = 'insert into categories ';
+        sql+= '(name,description,)';
+        sql+= 'values ';
+        sql+= '(';
+        sql+= '"'+obj.name+'",';
+        sql+= '"'+obj.description+'")';
+        sql+= 'on duplicate key update ';
+        sql+= 'name="'+obj.name+'",';
+        sql+= 'price="'+obj.description+'" ';
+        return sql;
+    },
+    updateCategory = (obj) => {
+        console.log("OBJ",obj)
+        sql = 'update categories ';
+        sql+= 'set name="'+obj.name+'",';
+        sql+= 'description="'+obj.description+'" ';
+        sql+= 'where id="'+obj.id+'"';
+        return sql;
+    },
+    getCategory = (obj) => {
+        sql = 'select id,name,description,createuser,createdate from categories ';
+        sql+= 'where id="'+obj.id+'"';
+        return sql;
+    },
+    getCategories = () => {
+        sql = 'select id,name,description,createuser,createdate from categories ';
+        return sql;
+    },
     saveSubmission = obj => {
         sql = 'insert into submissions ';
         sql+= '(submission_date,staff_name,implementation_target,purchase_target,createuser)';
