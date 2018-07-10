@@ -91,7 +91,7 @@ var saveVendor = (obj) => {
         sql+= '"'+obj.description+'")';
         sql+= 'on duplicate key update ';
         sql+= 'name="'+obj.name+'",';
-        sql+= 'price="'+obj.description+'" ';
+        sql+= 'description="'+obj.description+'" ';
         return sql;
     },
     updateCategory = (obj) => {
