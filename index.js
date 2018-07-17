@@ -35,7 +35,7 @@ app.post('/login',(req,res) => {
             var payload = {id:_result.id,name:_result.username,email:_result.email,defaultRoute:result.defaultRoute}
             var token = jwt.sign(payload,secretOrKey,{expiresIn:config.jwt().expiresIn})
             console.log('token',token)
-            res.send({message:'ok',token:token,defaultRoute:'/fbs'})
+            res.send({message:'ok',token:token,defaultRoute:result.defaultRoute})
         }else{
             res.send({message:'auth error'})
         }
