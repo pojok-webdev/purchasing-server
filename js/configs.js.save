@@ -1,0 +1,32 @@
+var mail = ()=>{
+    return {
+        host:'http://mail.padi.net.id',
+        auth:{
+            user:'puji@padi.net.id',
+            pass:'puji'
+        },
+        from:'puji@padi.net.id',
+        to:'puji@padi.net.id',
+        cc:'puji@padi.net.id',
+        subject:'Test Mail',
+        text:'Test Mail'
+    }
+},
+mysql = ()=>{
+    return {
+        host:'localhost',
+        database:'purchasing',
+        user:'purchasing',
+        password:'Purchasing(8('
+    }
+},
+appserver = ()=>{
+	return {
+		name:'delima.padinet.com',
+		port:'2018'
+	}
+}
+module.exports = {
+    mail:mail,
+    mysql:mysql
+}

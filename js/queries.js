@@ -39,7 +39,7 @@ var saveVendor = (obj) => {
     saveProduct = (obj) => {
         console.log("OBJ",obj)
         sql = 'insert into products ';
-        sql+= '(name,vendor_id,category_id,partnumber,unit,discountlevel,price)';
+        sql+= '(name,vendor_id,category_id,partnumber,unit,discountlevel,createuser,price)';
         sql+= 'values ';
         sql+= '(';
         sql+= '"'+obj.name+'",';
@@ -47,7 +47,8 @@ var saveVendor = (obj) => {
         sql+= '"'+obj.category_id+'",';
         sql+= '"'+obj.partnumber+'",';
         sql+= '"'+obj.unit+'",';
-        sql+= '"1",';
+	sql+= '"'+obj.discountlevel+'",';
+	sql+= '"'+obj.createuser+'",';
         sql+= '"'+obj.price+'")';
         sql+= 'on duplicate key update ';
         sql+= 'name="'+obj.name+'",';

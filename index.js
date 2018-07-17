@@ -52,9 +52,12 @@ app.get('/help/:method',(req,res) => {
 app.post('/saveproduct',(req,res) => {
     con.getdata(query.saveProduct({
         name:req.body.name,
+        vendor_id:req.body.vendor_id,
+        category_id:req.body.category_id,
         partnumber:req.body.partnumber,
         unit:req.body.unit,
         price:req.body.price,
+	createuser:req.body.createuser,
         discountlevel:req.body.discountlevel
     }),(result) => {
         console.log("Save Product",result);
@@ -62,12 +65,16 @@ app.post('/saveproduct',(req,res) => {
     });
 });
 app.post('/updateproduct',(req,res) => {
+console.log("Query",query.updateProduct(req.body));
     con.getdata(query.updateProduct({
         id:req.body.id,
+	vendor_id:req.body.vendor_id,
+	category_id:req.body.category_id,
         name:req.body.name,
         partnumber:req.body.partnumber,
         unit:req.body.unit,
         price:req.body.price,
+	createuser:req.body.createuser,
         discountlevel:req.body.discountlevel
     }),(result) => {
         console.log("Update Product",result);
