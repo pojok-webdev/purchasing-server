@@ -192,6 +192,29 @@ var saveVendor = (obj) => {
         sql+= 'where email="'+email+'"'
         return sql
     }
+    login = obj => {
+        sql = 'select id,salt,password from users '
+        sql+= 'where email="'+obj.email+'" '
+        return sql
+    }
+    updatePassword = (obj,password) => {
+        sql = 'update users set password="'+password+'" '
+        sql+= 'where email = "' + obj.email + '" '
+        return sql
+    }
+    activateUser = (obj,active) => {
+        sql = 'update users set active="'+active+'" '
+        sql+= 'where email = "' + obj.email + '" '
+        return sql
+    }
+    createUser = obj => {
+        sql = 'insert into users '
+        sql+= '(username,email,password,salt) '
+        sql+= 'values '
+        sql+= '("'+obj.username+'","'+obj.email+'","'+obj.password+'","'+obj.salt+'")'
+        return sql
+    }
+    
 module.exports = {
     saveVendor: saveVendor,
     getVendor: getVendor,
@@ -216,5 +239,9 @@ module.exports = {
     getCategories:getCategories,
     getCategory:getCategory,
     saveCategory:saveCategory,
-    updateCategory:updateCategory
+    updateCategory:updateCategory,
+    login:login,
+    updatePassword:updatePassword,
+    activateUser:activateUser,
+    createUser:createUser
 }
