@@ -194,7 +194,7 @@ var saveVendor = (obj) => {
         return sql
     }
     login = obj => {
-        sql = 'select id,salt,password from users '
+        sql = 'select id,salt,password,defaultRoute from users '
         sql+= 'where email="'+obj.email+'" '
         return sql
     }
