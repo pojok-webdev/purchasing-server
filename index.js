@@ -167,6 +167,13 @@ app.get('/getproducts',(req,res) => {
         res.send(result);
     })
 })
+app.get('/setproductactive/:id/:status',(req,res) => {
+    con.getdata(query.setProductActive({id:req.params.id,status:req.params.status}),result => {
+        console.log('setproductactive',result)
+        res.send(result)
+    })
+})
+
 app.post('/savevendor',(req,res) => {
     name = req.body.name;
     address = req.body.address;

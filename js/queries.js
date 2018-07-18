@@ -31,7 +31,7 @@ var saveVendor = (obj) => {
         sql = 'select id,name,address,phone,bankaccount from vendors ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
-    }
+    },
     getVendors = () => {
         sql = 'select id,name,address,phone,bankaccount from vendors ';
         return sql;
@@ -40,7 +40,7 @@ var saveVendor = (obj) => {
         sql = "update vendors set status='"+obj.status+"' "
         sql+= "where id="+obj.id+ " "
         return sql
-    }
+    },
     saveProduct = (obj) => {
         console.log("OBJ",obj)
         sql = 'insert into products ';
@@ -86,6 +86,11 @@ var saveVendor = (obj) => {
     getProducts = () => {
         sql = 'select id,vendor_id,category_id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
         return sql;
+    },
+    setProductActive = (obj) => {
+        sql = "update products set status='"+obj.status+"' "
+        sql+= "where id="+obj.id+ " "
+        return sql
     },
     saveCategory = (obj) => {
         console.log("OBJ",obj)
@@ -146,7 +151,7 @@ var saveVendor = (obj) => {
         sql+= 'values '
         sql+= '("'+obj.submission_id+'","'+obj.itemname+'","'+obj.brand+'","'+obj.partnumber+'","'+obj.description+'","'+obj.proposed_vendor+'","'+obj.amount+'","'+obj.proposed_price+'","'+obj.proposed_totalprice+'","'+obj.information+'","'+obj.purchase_reason+'","'+obj.placement_location+'","'+obj.vendor_comparation+'","'+obj.createuser+'") '
         return sql
-    }
+    },
     updateSubmissionDetail = obj => {
         sql = 'update submission_details '
         sql+= 'set item_name="'+obj.item_name+'",'
@@ -165,54 +170,54 @@ var saveVendor = (obj) => {
         sql+= 'placement_location="'+obj.placement_location+'",'
         sql+= 'vendor_comparation="'+obj.vendor_comparation+'" '
         return sql
-    }
+    },
     getUsers = () => {
         sql = 'select * from users '
         return sql
-    }
+    },
     getUser = (obj) => {
         sql = 'select * from users '
         sql+= 'where id = ' + obj.id + ' '
         return sql
-    }
+    },
     saveUser = obj => {
         sql = 'insert into users '
         sql+= '(username,email,salt,password,level,createuser) '
         sql+= 'values '
         sql+= '("'+obj.username+'","'+obj.email+'","'+obj.salt+'","'+obj.password+'","'+obj.level+'","'+obj.createuser+'")'
         return sql;
-    }
+    },
     updateUser = obj => {
         sql = 'update users '
         sql+= 'set username="' + obj.username + '",email="' + obj.email + '",level="' + obj.level + '",active="' + obj.active + '" '
         sql+= 'where id=' + obj.id
         return sql
-    }
+    },
     getUserByEmail = email => {
         sql = 'select * from users '
         sql+= 'where email="'+email+'"'
         return sql
-    }
+    },
     changePassword = (email,password) => {
         sql = 'update users set password="'+password+'" '
         sql+= 'where email="'+email+'"'
         return sql
-    }
+    },
     login = obj => {
         sql = 'select id,salt,password,defaultRoute,email,username from users '
         sql+= 'where email="'+obj.email+'" '
         return sql
-    }
+    },
     updatePassword = (obj,password) => {
         sql = 'update users set password="'+password+'" '
         sql+= 'where email = "' + obj.email + '" '
         return sql
-    }
+    },
     activateUser = (obj,active) => {
         sql = 'update users set active="'+active+'" '
         sql+= 'where email = "' + obj.email + '" '
         return sql
-    }
+    },
     createUser = obj => {
         sql = 'insert into users '
         sql+= '(username,email,password,salt) '
@@ -231,6 +236,7 @@ module.exports = {
     getProducts:getProducts,
     updateProduct:updateProduct,
     updateVendor:updateVendor,
+    setProductActive:setProductActive,
     saveSubmission:saveSubmission,
     getSubmissions:getSubmissions,
     getUsers:getUsers,
