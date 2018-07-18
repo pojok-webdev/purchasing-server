@@ -225,6 +225,7 @@ module.exports = {
     saveVendor: saveVendor,
     getVendor: getVendor,
     getVendors:getVendors,
+    setVendorActive:setVendorActive,
     saveProduct:saveProduct,
     getProduct:getProduct,
     getProducts:getProducts,
