@@ -37,6 +37,7 @@ app.post('/login',(req,res) => {
             console.log('token',token)
             console.log("RESULT",result)
             _result.token = token
+            _result.message = "ok"
             res.send(_result)
         }else{
             res.send({message:'auth error'})
