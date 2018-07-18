@@ -41,6 +41,15 @@ getdata = function(method){
                 syntax:'curl -d "id=vendors id&name=vendors name&address=vendors address&phone=vendors phone&bankaccount=vendors bank account&createuser=vendors createuser" -X POST http://'+server+':'+port+'/updatevendor',
                 example:'curl -d "id=1&name=ABC, PT&address=jl mayjen sungkono 83&phone=031 88776655&bankaccount=001234455667&createuser=puji" -X POST http://'+server+':'+port+'/updatevendor'
             }
+        case 'setvendoractive':
+            return {
+                method:'get',
+                name:'setvendoractive',
+                format:'json',
+                description:'update status of vendor, 1 or 0',
+                syntax:'http://'+server+':'+port+'/setvendoractive/<vendor_id>/<status>',
+                example:'curl http://localhost:2000/setvendoractive/1/1'
+            }
         case 'getproducts' :
             return {
                 method:"get",
@@ -76,6 +85,15 @@ getdata = function(method){
                 description:"update a product into database",
                 syntax:'curl -d "id=product id&name=product name&vendor_id=id of vendor&category_id=id of category&partnumber=product partnumber&unit=product unit&price=product price&discountlevel=product discountlevel" -X POST http://'+server+':'+port+'/updateproduct',
                 example:'curl -d "id=1&name=laptop&vendor_id=1&category_id=1&partnumber=112 334 53436&unit=buah&price=4750000&discountlevel=1" -X POST http://'+server+':'+port+'/updateproduct'
+            }
+        case 'setproductactive':
+            return {
+                method:'get',
+                name:'setproductactive',
+                format:'json',
+                description:'update status of product, 1 or 0',
+                syntax:'http://'+server+':'+port+'/setproductactive/<product_id>/<status>',
+                example:'curl http://localhost:2000/setproductactive/1/1'
             }
 
         case 'getcategories' :
