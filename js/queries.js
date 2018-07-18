@@ -36,6 +36,11 @@ var saveVendor = (obj) => {
         sql = 'select id,name,address,phone,bankaccount from vendors ';
         return sql;
     },
+    setVendorActive = (obj) => {
+        sql = "update vendors set active='"+obj.active+"' "
+        sql+= "where id="+obj.id+ " "
+        return sql
+    }
     saveProduct = (obj) => {
         console.log("OBJ",obj)
         sql = 'insert into products ';

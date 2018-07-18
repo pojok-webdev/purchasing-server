@@ -194,6 +194,11 @@ app.post('/updatevendor',(req,res) => {
         res.send(result);
     })
 })
+app.get('/setvendoractive/:id/:active',(req,res) => {
+    con.getdata(query.setVendorActive({id:req.params.id,active:req.params.active}),result => {
+        console.log('setvendoractive',result)
+    })
+})
 app.get('/getvendor/:id',(req,res) => {
     console.log("Query",query.getVendor(req.params.id));
     con.getdata(query.getVendor({id:req.params.id}),result => {
