@@ -146,7 +146,7 @@ console.log("Query",query.updateProduct(req.body));
         partnumber:req.body.partnumber,
         unit:req.body.unit,
         price:req.body.price,
-	createuser:req.body.createuser,
+	    createuser:req.body.createuser,
         discountlevel:req.body.discountlevel
     }),(result) => {
         console.log("Update Product",result);

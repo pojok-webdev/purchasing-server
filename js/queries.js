@@ -73,7 +73,7 @@ var saveVendor = (obj) => {
         sql+= 'vendor_id="'+obj.vendor_id+'",';
         sql+= 'category_id="'+obj.category_id+'",';
         sql+= 'unit="'+obj.unit+'",';
-        sql+= 'discountlevel="1",';
+        sql+= 'discountlevel="'+obj.discountlevel+'",';
         sql+= 'price="'+obj.price+'" ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
