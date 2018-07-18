@@ -37,7 +37,7 @@ var saveVendor = (obj) => {
         return sql;
     },
     setVendorActive = (obj) => {
-        sql = "update vendors set active='"+obj.active+"' "
+        sql = "update vendors set status='"+obj.status+"' "
         sql+= "where id="+obj.id+ " "
         return sql
     }
