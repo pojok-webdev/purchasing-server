@@ -196,7 +196,7 @@ app.post('/updatevendor',(req,res) => {
 })
 app.get('/getvendor/:id',(req,res) => {
     console.log("Query",query.getVendor(req.params.id));
-    con.getdata(query.getVendor(req.params.id),result => {
+    con.getdata(query.getVendor({id:req.params.id}),result => {
         console.log("Result",result);
         res.send(result);
     })
