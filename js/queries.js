@@ -34,6 +34,7 @@ var saveVendor = (obj) => {
     },
     getVendors = () => {
         sql = 'select id,name,address,phone,bankaccount from vendors ';
+        sql+= 'where status="1" '
         return sql;
     },
     setVendorActive = (obj) => {
@@ -85,6 +86,7 @@ var saveVendor = (obj) => {
     },
     getProducts = () => {
         sql = 'select id,vendor_id,category_id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
+        sql+= 'where status="1" '
         return sql;
     },
     setProductActive = (obj) => {
