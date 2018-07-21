@@ -167,6 +167,16 @@ app.get('/getproducts',(req,res) => {
         res.send(result);
     })
 })
+app.get('/getproductpage/:page/:pageSize', (req,res) => {
+    con.getdata(query.getProductpage(req.params),result => {
+        res.send(result)
+    })
+})
+app.get('/getproductcount', (req,res) => {
+    con.getdata(query.getProductCount(req.params),result => {
+        res.send(result)
+    })
+})
 app.get('/setproductactive/:id/:status',(req,res) => {
     con.getdata(query.setProductActive({id:req.params.id,status:req.params.status}),result => {
         console.log('setproductactive',result)
@@ -221,6 +231,18 @@ app.get('/getvendors',(req,res) => {
         res.send(result);
     })
 })
+app.get('/getvendorpage/:page/:pageSize', (req,res) => {
+    console.log("QUERY",query.getVendorpage(req.params))
+    con.getdata(query.getVendorpage(req.params),result => {
+        res.send(result)
+    })
+})
+app.get('/getvendorcount', (req,res) => {
+    con.getdata(query.getVendorCount(req.params),result => {
+        res.send(result)
+    })
+})
+
 app.post('/savecategory',(req,res) => {
     con.getdata(query.saveCategory({
         name:req.body.name,
@@ -253,6 +275,27 @@ app.get('/getcategories',(req,res) => {
     con.getdata(query.getCategories(),result => {
         console.log("Result",result);
         res.send(result);
+    })
+})
+app.get('/getcategorypage/:page/:pageSize', (req,res) => {
+    con.getdata(query.getCategorypage(req.params),result => {
+        res.send(result)
+    })
+})
+app.get('/getcategorycount', (req,res) => {
+    con.getdata(query.getCategoryCount(req.params),result => {
+        res.send(result)
+    })
+})
+app.post('/searchcategory', (req,res) => {
+    con.getdata(query.searchCategory(req.body),result => {
+        res.send(result)
+    })
+})
+app.post('/searchcategorycount', (req,res) => {
+    console.log("req.bdy",req.body)
+    con.getdata(query.searchCategoryCount(req.body),result => {
+        res.send(result)
     })
 })
 app.post('/savesubmission',(req,res) => {

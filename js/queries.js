@@ -37,6 +37,17 @@ var saveVendor = (obj) => {
         sql+= 'where status="1" '
         return sql;
     },
+    getVendorpage = (obj) => {
+        sql = 'select id,name,address,phone,bankaccount from vendors ';
+        sql+= 'where status="1" '
+        sql+= 'limit '+obj.page+','+obj.pageSize+' '
+        return sql;
+    },
+    getVendorCount = () => {
+        sql = 'select count(id)cnt from vendors ';
+        sql+= 'where status="1" '
+        return sql;
+    }
     setVendorActive = (obj) => {
         sql = "update vendors set status='"+obj.status+"' "
         sql+= "where id="+obj.id+ " "
@@ -53,8 +64,8 @@ var saveVendor = (obj) => {
         sql+= '"'+obj.category_id+'",';
         sql+= '"'+obj.partnumber+'",';
         sql+= '"'+obj.unit+'",';
-	sql+= '"'+obj.discountlevel+'",';
-	sql+= '"'+obj.createuser+'",';
+        sql+= '"'+obj.discountlevel+'",';
+        sql+= '"'+obj.createuser+'",';
         sql+= '"'+obj.price+'")';
         sql+= 'on duplicate key update ';
         sql+= 'name="'+obj.name+'",';
@@ -89,6 +100,17 @@ var saveVendor = (obj) => {
         sql+= 'where status="1" '
         return sql;
     },
+    getProductpage = (obj) => {
+        sql = 'select id,vendor_id,category_id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
+        sql+= 'where status="1" '
+        sql+= 'limit '+obj.page+','+obj.pageSize
+        return sql;
+    },
+    getProductCount = (obj) => {
+        sql = 'select count(id)cnt from products ';
+        sql+= 'where status="1" '
+        return sql;
+    },
     setProductActive = (obj) => {
         sql = "update products set status='"+obj.status+"' "
         sql+= "where id="+obj.id+ " "
@@ -119,13 +141,42 @@ var saveVendor = (obj) => {
     },
     getCategory = (obj) => {
         sql = 'select id,name,description,createuser,createdate from categories ';
-        sql+= 'where id="'+obj.id+'"';
+        sql+= 'where id="'+obj.id+'" ';
+        sql+= 'and status="1" '
         return sql;
     },
     getCategories = () => {
         sql = 'select id,name,description,createuser,createdate from categories ';
+        sql+= 'where status="1" '
         return sql;
     },
+    getCategorypage = (obj) => {
+        sql = 'select id,name,description,createuser,createdate from categories ';
+        sql+= 'limit '+obj.page+','+obj.pageSize
+        return sql;
+    },
+    getCategoryCount = () => {
+        sql = 'select count(id) cnt from categories ';
+        return sql;
+    },
+    searchCategory = (obj) => {
+        sql = 'select id,name,description,createuser,createdate from categories '
+        sql+= 'where '
+        sql+= 'status="1" '
+        sql+= 'and '
+        sql+= 'name like "%'+obj.searchData+'%" '
+        console.log("Search Query",sql)
+        return sql
+    }
+    searchCategoryCount = (obj) => {
+        sql = 'select count(id) cnt from categories '
+        sql+= 'where '
+        sql+= 'status="1" '
+        sql+= 'and '
+        sql+= 'name like "%'+obj.searchData+'%" '
+        console.log("Count Query",sql)
+        return sql
+    }
     saveSubmission = obj => {
         sql = 'insert into submissions ';
         sql+= '(submission_date,staff_name,implementation_target,purchase_target,createuser)';
@@ -236,8 +287,12 @@ module.exports = {
     saveProduct:saveProduct,
     getProduct:getProduct,
     getProducts:getProducts,
+    getProductpage : getProductpage,
+    getProductCount : getProductCount,
     updateProduct:updateProduct,
     updateVendor:updateVendor,
+    getVendorpage : getVendorpage,
+    getVendorCount : getVendorCount,
     setProductActive:setProductActive,
     saveSubmission:saveSubmission,
     getSubmissions:getSubmissions,
@@ -255,6 +310,10 @@ module.exports = {
     getCategory:getCategory,
     saveCategory:saveCategory,
     updateCategory:updateCategory,
+    getCategoryCount:getCategoryCount,
+    getCategorypage:getCategorypage,
+    searchCategory : searchCategory,
+    searchCategoryCount : searchCategoryCount,
     login:login,
     updatePassword:updatePassword,
     activateUser:activateUser,
