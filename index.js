@@ -298,6 +298,11 @@ app.post('/searchcategorycount', (req,res) => {
         res.send(result)
     })
 })
+app.get('/setcategoryactive', (req,res) => {
+    con.getdata(query.setCategoryActive(req.params), result => {
+        res.send(result)
+    })
+})
 app.post('/savesubmission',(req,res) => {
     console.log("Save Submission invoked");
     console.log("Query",query.saveSubmission(req.body))

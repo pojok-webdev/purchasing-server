@@ -177,6 +177,12 @@ var saveVendor = (obj) => {
         console.log("Count Query",sql)
         return sql
     }
+    setCategoryActive = (obj) => {
+        sql = 'update categories '
+        sql+= 'set active='+obj.active+' '
+        sql+= 'where id='+obj.page+' '
+        return sql
+    }
     saveSubmission = obj => {
         sql = 'insert into submissions ';
         sql+= '(submission_date,staff_name,implementation_target,purchase_target,createuser)';
@@ -314,6 +320,7 @@ module.exports = {
     getCategorypage:getCategorypage,
     searchCategory : searchCategory,
     searchCategoryCount : searchCategoryCount,
+    setCategoryActive : setCategoryActive,
     login:login,
     updatePassword:updatePassword,
     activateUser:activateUser,
