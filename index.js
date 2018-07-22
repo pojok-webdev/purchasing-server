@@ -298,7 +298,7 @@ app.post('/searchcategorycount', (req,res) => {
         res.send(result)
     })
 })
-app.get('/setcategoryactive', (req,res) => {
+app.get('/setcategoryactive/:id/:status', (req,res) => {
     con.getdata(query.setCategoryActive(req.params), result => {
         res.send(result)
     })

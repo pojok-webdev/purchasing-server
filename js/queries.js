@@ -179,8 +179,8 @@ var saveVendor = (obj) => {
     }
     setCategoryActive = (obj) => {
         sql = 'update categories '
-        sql+= 'set active='+obj.active+' '
-        sql+= 'where id='+obj.page+' '
+        sql+= 'set status='+obj.status+' '
+        sql+= 'where id='+obj.id+' '
         return sql
     }
     saveSubmission = obj => {
