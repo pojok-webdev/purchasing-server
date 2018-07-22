@@ -152,11 +152,13 @@ var saveVendor = (obj) => {
     },
     getCategorypage = (obj) => {
         sql = 'select id,name,description,createuser,createdate from categories ';
+        sql+= 'where status="1" '
         sql+= 'limit '+obj.page+','+obj.pageSize
         return sql;
     },
     getCategoryCount = () => {
         sql = 'select count(id) cnt from categories ';
+        sql+= 'where status="1" '
         return sql;
     },
     searchCategory = (obj) => {
