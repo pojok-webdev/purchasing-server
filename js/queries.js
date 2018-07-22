@@ -167,7 +167,7 @@ var saveVendor = (obj) => {
         sql+= 'name like "%'+obj.searchData+'%" '
         console.log("Search Query",sql)
         return sql
-    }
+    },
     searchCategoryCount = (obj) => {
         sql = 'select count(id) cnt from categories '
         sql+= 'where '
@@ -176,13 +176,14 @@ var saveVendor = (obj) => {
         sql+= 'name like "%'+obj.searchData+'%" '
         console.log("Count Query",sql)
         return sql
-    }
+    },
     setCategoryActive = (obj) => {
         sql = 'update categories '
         sql+= 'set status='+obj.status+' '
         sql+= 'where id='+obj.id+' '
+        console.log('Query',sql)
         return sql
-    }
+    },
     saveSubmission = obj => {
         sql = 'insert into submissions ';
         sql+= '(submission_date,staff_name,implementation_target,purchase_target,createuser)';
