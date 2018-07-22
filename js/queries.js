@@ -179,7 +179,7 @@ var saveVendor = (obj) => {
     },
     setCategoryActive = (obj) => {
         sql = 'update categories '
-        sql+= 'set status='+obj.status+' '
+        sql+= 'set status="'+obj.status+'" '
         sql+= 'where id='+obj.id+' '
         console.log('Query',sql)
         return sql
