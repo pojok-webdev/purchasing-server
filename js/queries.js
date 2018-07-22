@@ -140,18 +140,18 @@ var saveVendor = (obj) => {
         return sql;
     },
     getCategory = (obj) => {
-        sql = 'select id,name,description,createuser,createdate from categories ';
+        sql = 'select id,name,description,status,createuser,createdate from categories ';
         sql+= 'where id="'+obj.id+'" ';
         sql+= 'and status="1" '
         return sql;
     },
     getCategories = () => {
-        sql = 'select id,name,description,createuser,createdate from categories ';
+        sql = 'select id,name,description,status,createuser,createdate from categories ';
         sql+= 'where status="1" '
         return sql;
     },
     getCategorypage = (obj) => {
-        sql = 'select id,name,description,createuser,createdate from categories ';
+        sql = 'select id,name,description,status,createuser,createdate from categories ';
         sql+= 'where status="1" '
         sql+= 'limit '+obj.page+','+obj.pageSize
         return sql;
@@ -162,7 +162,7 @@ var saveVendor = (obj) => {
         return sql;
     },
     searchCategory = (obj) => {
-        sql = 'select id,name,description,createuser,createdate from categories '
+        sql = 'select id,name,description,status,createuser,createdate from categories '
         sql+= 'where '
         sql+= 'status="1" '
         sql+= 'and '
