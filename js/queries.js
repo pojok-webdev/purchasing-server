@@ -62,6 +62,7 @@ var saveVendor = obj => {
         sql+= 'or phone like "%'+obj.searchData+'%" '
         sql+= 'or bankaccount like "%'+obj.searchData+'%" '
         sql+= ') '
+        sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         console.log('SQL',sql)
         return sql
     },
@@ -160,6 +161,7 @@ var saveVendor = obj => {
         sql+= 'or c.name like "%'+obj.searchData+'%" '
         sql+= ') '
         sql+= 'and a.status="1" '
+        sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         console.log('SQL',sql)
         return sql
     },
