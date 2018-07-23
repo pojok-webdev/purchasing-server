@@ -173,7 +173,7 @@ will set update the vendor with id 1
 ```sh
 obj : Observable<any>
 http : HttpClient
-obj = http.post<any>('http://servername:port/savevendor',{id:1,name:padinet,address:mayjen sungkono 83,phone:031-123456&bankaccount:9988776655,createuser:anonymous})
+obj = http.post<any>('http://servername:port/savevendor',{id:1,name:padinet,address:mayjen sungkono 83,phone:031-123456,bankaccount:9988776655,createuser:anonymous})
 obj.subscribe(
 data=>{},
 err=>{}
@@ -217,24 +217,25 @@ err=>{}
 )
 ```
 
-## searchproduct
+## searchvendor
 
-    - search products with parameters : name, partnumber, unit, bankaccount, vendor_name, category_name
+    - search vendors with parameters : name, address, phone, bankaccount
     - method : POST
-    - return :list of products
+    - return :list of vendors
 
-    ### syntax :
+### syntax :
 
-    ```sh
-        searchproduct
-    ```
+```sh
+searchvendor
+```
 
 ### example :
 
 #### curl :
-    ```sh
-    curl -d "name=lintas buwana&address=&phone=&bankaccount="  -X POST http://servername:port/searchvendor
-    ```
+
+```sh
+curl -d "name=lintas buwana&address=&phone=&bankaccount="  -X POST http://servername:port/searchvendor
+```
 
 #### angular Observable
 ```sh
@@ -262,16 +263,17 @@ err=>{}
     
 ### syntax :
 
-    ```sh
-        searchvendor
-    ```
+```sh
+searchvendor
+```
 
 ### example :
 
 #### curl :
-    ```sh
-    curl -d "name=lintas buwana&address=&phone=&bankaccount="  -X POST http://servername:port/searchvendorcount
-    ```
+
+```sh
+curl -d "name=lintas buwana&address=&phone=&bankaccount="  -X POST http://servername:port/searchvendorcount
+```
 
 #### angular Observable
 ```sh

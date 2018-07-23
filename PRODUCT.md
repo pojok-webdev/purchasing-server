@@ -205,6 +205,7 @@ http://servername:port/getproductcount
 
 
   #### angular Observable
+
 ```sh
 obj : Observable<any>
 http : HttpClient
@@ -223,16 +224,17 @@ err=>{}
     
 ### syntax :
 
-    ```sh
-        searchproduct
-    ```
+```sh
+searchproduct
+```
 
     ### example :
 
 #### curl :
-    ```sh
-    curl -d "vendor_name=&category_name=1&name=laptop&partnumber=&unit=buah"  -X POST http://servername:port/searchproduct
-    ```
+
+```sh
+curl -d "vendor_name=&category_name=1&name=laptop&partnumber=&unit=buah"  -X POST http://servername:port/searchproduct
+```
 
 #### angular Observable
 ```sh
@@ -254,16 +256,17 @@ err=>{}
     
 ### syntax :
 
-    ```sh
-        searchproduct
-    ```
+```sh
+searchproductcount
+```
 
 ### example :
 
 #### curl :
-    ```sh
-    curl -d "vendor_name=&category_name=1&name=laptop&partnumber=&unit=buah"  -X POST http://servername:port/searchproductcount
-    ```
+
+```sh
+curl -d "vendor_name=&category_name=1&name=laptop&partnumber=&unit=buah"  -X POST http://servername:port/searchproductcount
+```
 
 #### angular Observable
 ```sh
