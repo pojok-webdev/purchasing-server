@@ -1,4 +1,12 @@
-** Server for Sales team **
+# Padi-Procurement API
+
+This is a documentation about padi-procurement server
+
+
+
+
+
+** Server for Padi-Procurement **
 
 nano /etc/init/node-app.conf
 
@@ -44,3 +52,9 @@ cd /lib/systemd/system/
 sudo systemctl enable <service name>
 systemctl add-wants multi-user.target <servicename>.service
 @manuelgomezo
+
+
+
+
+
+
