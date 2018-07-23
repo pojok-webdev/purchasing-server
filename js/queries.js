@@ -57,10 +57,10 @@ var saveVendor = obj => {
         sql = 'select id,name,address,phone,bankaccount from vendors '
         sql+= 'where status="1" '
         sql+= 'and ('
-        sql+= 'name like "%'+obj.name+'%" ' 
-        sql+= 'and address like "%'+obj.address+'%" '
-        sql+= 'and phone like "%'+obj.phone+'%" '
-        sql+= 'and bankaccount like "%'+obj.bankaccount+'%" '
+        sql+= 'name like "%'+obj.searchData+'%" ' 
+        sql+= 'or address like "%'+obj.searchData+'%" '
+        sql+= 'or phone like "%'+obj.searchData+'%" '
+        sql+= 'or bankaccount like "%'+obj.searchData+'%" '
         sql+= ') '
         console.log('SQL',sql)
         return sql
@@ -69,10 +69,10 @@ var saveVendor = obj => {
         sql = 'select count(id) cnt from vendors '
         sql+= 'where status="1" '
         sql+= 'and ('
-        sql+= 'name like "%'+obj.name+'%" ' 
-        sql+= 'and address like "%'+obj.address+'%" '
-        sql+= 'and phone like "%'+obj.phone+'%" '
-        sql+= 'and bankaccount like "%'+obj.bankaccount+'%" '
+        sql+= 'or like "%'+obj.searchData+'%" ' 
+        sql+= 'or address like "%'+obj.searchData+'%" '
+        sql+= 'or phone like "%'+obj.searchData+'%" '
+        sql+= 'or bankaccount like "%'+obj.searchData+'%" '
         sql+= ') '
         console.log('SQL',sql)
         return sql
@@ -147,30 +147,36 @@ var saveVendor = obj => {
         return sql
     },
     searchProduct = obj => {
+        console.log("OBJ",obj)
         sql = 'select a.id,a.name,b.name vendor_name,c.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a '
         sql+= 'left outer join vendors b on b.id=a.vendor_id '
         sql+= 'left outer join categories c on c.id=a.category_id '
         sql+= 'where  '
         sql+= ' ('
-        sql+= 'a.name like "%'+obj.name+'%" ' 
-        sql+= 'and a.partnumber like "%'+obj.partnumber+'%" '
-        sql+= 'and a.unit like "%'+obj.unit+'%" '
-        sql+= 'and b.name like "%'+obj.vendor_name+'%" '
-        sql+= 'and c.name like "%'+obj.category_name+'%" '
+        sql+= 'a.name like "%'+obj.searchData+'%" ' 
+        sql+= 'or a.partnumber like "%'+obj.searchData+'%" '
+        sql+= 'or a.unit like "%'+obj.searchData+'%" '
+        sql+= 'or b.name like "%'+obj.searchData+'%" '
+        sql+= 'or c.name like "%'+obj.searchData+'%" '
         sql+= ') '
         sql+= 'and a.status="1" '
         console.log('SQL',sql)
         return sql
     },
     searchProductCount = obj => {
-        sql = 'select count(id) cnt from vendors '
-        sql+= 'where status="1" '
-        sql+= 'and ('
-        sql+= 'name like "%'+obj.name+'%" ' 
-        sql+= 'or address like "%'+obj.address+'%" '
-        sql+= 'or phone like "%'+obj.phone+'%" '
-        sql+= 'or bankaccount like "%'+obj.bankaccount+'%" '
+        sql = 'select count(a.id)cnt from products a '
+        sql+= 'left outer join vendors b on b.id=a.vendor_id '
+        sql+= 'left outer join categories c on c.id=a.category_id '
+        sql+= 'where  '
+        sql+= ' ('
+        sql+= 'a.name like "%'+obj.searchData+'%" ' 
+        sql+= 'or a.partnumber like "%'+obj.searchData+'%" '
+        sql+= 'or a.unit like "%'+obj.searchData+'%" '
+        sql+= 'or b.name like "%'+obj.searchData+'%" '
+        sql+= 'or c.name like "%'+obj.searchData+'%" '
         sql+= ') '
+        sql+= 'and a.status="1" '
+        console.log('SQL',sql)
         return sql
     },
     saveCategory = obj => {

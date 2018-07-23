@@ -184,6 +184,7 @@ app.get('/setproductactive/:id/:status',(req,res) => {
     })
 })
 app.post('/searchproduct', (req,res) => {
+    console.log("Params",req.body)
     con.getdata(query.searchProduct(req.body),result => {
         res.send(result)
     })

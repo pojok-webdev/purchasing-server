@@ -141,7 +141,17 @@ curl -d "vendor_id=1&category_id=1&name=laptop&partnumber=1122 3344 5566&unit=bu
 ```sh
 obj : Observable<any>
 http : HttpClient
-obj = http.post<any>('http://servername:port/saveproduct',{vendor_id:1,category_id:1,name:laptop,partnumber:1122 3344 5566,unit:buah&discountlevel:1,price:2000000,createuser:anonymous})
+product = {
+  vendor_id:1,
+  category_id:1,
+  name:laptop,
+  partnumber:1122 3344 5566,
+  unit:buah,
+  discountlevel:1,
+  price:2000000,
+  createuser:anonymous
+}
+obj = http.post<any>('http://servername:port/saveproduct',product)
 obj.subscribe(
 data=>{},
 err=>{}
@@ -171,7 +181,17 @@ curl -d "id=1&category_id=1&vendor_id=1&name=laptop&partnumber=1122 3344 5566&un
 ```sh
 obj : Observable<any>
 http : HttpClient
-obj = http.post<any>('http://servername:port/saveproduct',{id:1,vendor_id:1,category_id:1,name:laptop,partnumber:1122 3344 5566,unit:buah,price=2000000,createuser:anonymous})
+product = {
+  id:1,
+  vendor_id:1,
+  category_id:1,
+  name:laptop,
+  partnumber:1122 3344 5566,
+  unit:buah,
+  price=2000000,
+  createuser:anonymous
+}
+obj = http.post<any>('http://servername:port/updateproduct',product)
 obj.subscribe(
 data=>{},
 err=>{}
@@ -228,19 +248,26 @@ err=>{}
 searchproduct
 ```
 
-    ### example :
+### example :
 
 #### curl :
 
 ```sh
-curl -d "vendor_name=&category_name=1&name=laptop&partnumber=&unit=buah"  -X POST http://servername:port/searchproduct
+curl -d "vendor_name=&category_name=&name=laptop&partnumber=&unit="  -X POST http://servername:port/searchproduct
 ```
 
 #### angular Observable
 ```sh
 obj : Observable<any[]>
 http : HttpClient
-obj = http.post<any[]>('http://servername:port/searchproduct')
+product = {
+  name:'',
+  category_name:'',
+  vendor_name:'',
+  partnumber:'',
+  unit:''
+}
+obj = http.post<any[]>('http://servername:port/searchproduct',product)
 obj.subscribe(
 data=>{},
 err=>{}
@@ -250,7 +277,7 @@ err=>{}
 
 ## searchproductcount
 
-    - search products with parameters : name, partnumber, unit, bankaccount, vendor_name, category_name
+    - search products with parameters : name, partnumber, unit, vendor_name, category_name
     - method : POST
     - return :list of products
     
@@ -265,14 +292,21 @@ searchproductcount
 #### curl :
 
 ```sh
-curl -d "vendor_name=&category_name=1&name=laptop&partnumber=&unit=buah"  -X POST http://servername:port/searchproductcount
+curl -d "vendor_name=&category_name=&name=&partnumber=&unit="  -X POST http://servername:port/searchproductcount
 ```
 
 #### angular Observable
 ```sh
 obj : Observable<any[]>
 http : HttpClient
-obj = http.post<any[]>('http://servername:port/searchproductcount')
+vendor = {
+  vendor_name:'',
+  category_name:'',
+  name:'',
+  partnumber:'',
+  unit:''
+}
+obj = http.post<any[]>('http://servername:port/searchproductcount',vendor)
 obj.subscribe(
 data=>{},
 err=>{}

@@ -1,60 +1,27 @@
-# Padi-Procurement API
+# BudgetingPadiNet
 
-This is a documentation about padi-procurement server
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
+## Development server
 
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Code scaffolding
 
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-** Server for Padi-Procurement **
+## Build
 
-nano /etc/init/node-app.conf
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-start on filesystem and started networking
-respawn
-chdir /home/deploy/node-app
-env NODE_ENV=production #change this to staging if this is a staging server
-env PORT=3000
-exec /usr/local/bin/node bin/www
+## Running unit tests
 
-start node-app
-stop node-app
-restart node-app #performs a stop and start. This is all we need for deployments
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-echo "deploy ALL=(root) NOPASSWD: /sbin/restart node-app" >> /etc/sudoers
+## Running end-to-end tests
 
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-working solution:
-in ubuntu dist > 15.04 they uses systemd instead of upstart so my solution was
+## Further help
 
-log to root
-su
-
-nano /lib/systemd/system/<service name>.service
-
-and write this
-
-[Unit]
-Description=Start <appname> node.js app
-
-[Service]
-ExecStart=/usr/local/bin/node /home/deploy/<app name>/bin/www
-Restart=always
-
-to start and stop service use
-
-service <service name> start
-service <service name> stop
-
-to make it start with boot
-
-cd /lib/systemd/system/
-sudo systemctl enable <service name>
-systemctl add-wants multi-user.target <servicename>.service
-@manuelgomezo
-
-
-
-
-
-
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
