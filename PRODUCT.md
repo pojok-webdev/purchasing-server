@@ -221,7 +221,7 @@ err=>{}
     - method : POST
     - return :list of products
     
-    ### syntax :
+### syntax :
 
     ```sh
         searchproduct
@@ -229,12 +229,12 @@ err=>{}
 
     ### example :
 
-    #### curl :
+#### curl :
     ```sh
     curl -d "vendor_name=&category_name=1&name=laptop&partnumber=&unit=buah"  -X POST http://servername:port/searchproduct
     ```
 
-     #### angular Observable
+#### angular Observable
 ```sh
 obj : Observable<any[]>
 http : HttpClient
@@ -252,20 +252,20 @@ err=>{}
     - method : POST
     - return :list of products
     
-    ### syntax :
+### syntax :
 
     ```sh
         searchproduct
     ```
 
-    ### example :
+### example :
 
-    #### curl :
+#### curl :
     ```sh
     curl -d "vendor_name=&category_name=1&name=laptop&partnumber=&unit=buah"  -X POST http://servername:port/searchproductcount
     ```
 
-     #### angular Observable
+#### angular Observable
 ```sh
 obj : Observable<any[]>
 http : HttpClient
