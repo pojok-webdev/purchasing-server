@@ -1,4 +1,4 @@
-var saveVendor = (obj) => {
+var saveVendor = obj => {
         sql = 'insert into vendors ';
         sql+= '(name,address,phone,bankaccount,createuser)';
         sql+= 'values ';
@@ -17,7 +17,7 @@ var saveVendor = (obj) => {
         sql+= 'createuser="'+obj.createuser+'" '
         return sql;
     },
-    updateVendor = (obj) => {
+    updateVendor = obj => {
         sql = 'update vendors ';
         sql+= 'set name="'+obj.name+'",';
         sql+= 'address="'+obj.address+'",';
@@ -27,7 +27,7 @@ var saveVendor = (obj) => {
         sql+= 'where id ="'+obj.id+'" '
         return sql;
     },
-    getVendor = (obj) => {
+    getVendor = obj => {
         sql = 'select id,name,address,phone,bankaccount from vendors ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
@@ -37,7 +37,7 @@ var saveVendor = (obj) => {
         sql+= 'where status="1" '
         return sql;
     },
-    getVendorpage = (obj) => {
+    getVendorpage = obj => {
         sql = 'select id,name,address,phone,bankaccount from vendors ';
         sql+= 'where status="1" '
         sql+= 'limit '+obj.page+','+obj.pageSize+' '
@@ -48,12 +48,36 @@ var saveVendor = (obj) => {
         sql+= 'where status="1" '
         return sql;
     }
-    setVendorActive = (obj) => {
+    setVendorActive = obj => {
         sql = "update vendors set status='"+obj.status+"' "
         sql+= "where id="+obj.id+ " "
         return sql
     },
-    saveProduct = (obj) => {
+    searchVendor = obj => {
+        sql = 'select id,name,address,phone,bankaccount from vendors '
+        sql+= 'where status="1" '
+        sql+= 'and ('
+        sql+= 'name like "%'+obj.name+'%" ' 
+        sql+= 'and address like "%'+obj.address+'%" '
+        sql+= 'and phone like "%'+obj.phone+'%" '
+        sql+= 'and bankaccount like "%'+obj.bankaccount+'%" '
+        sql+= ') '
+        console.log('SQL',sql)
+        return sql
+    },
+    searchVendorCount = obj => {
+        sql = 'select count(id) cnt from vendors '
+        sql+= 'where status="1" '
+        sql+= 'and ('
+        sql+= 'name like "%'+obj.name+'%" ' 
+        sql+= 'and address like "%'+obj.address+'%" '
+        sql+= 'and phone like "%'+obj.phone+'%" '
+        sql+= 'and bankaccount like "%'+obj.bankaccount+'%" '
+        sql+= ') '
+        console.log('SQL',sql)
+        return sql
+    }
+    saveProduct = obj => {
         console.log("OBJ",obj)
         sql = 'insert into products ';
         sql+= '(name,vendor_id,category_id,partnumber,unit,discountlevel,createuser,price)';
@@ -77,7 +101,7 @@ var saveVendor = (obj) => {
         sql+= 'price="'+obj.price+'"';
         return sql;
     },
-    updateProduct = (obj) => {
+    updateProduct = obj => {
         console.log("OBJ",obj)
         sql = 'update products ';
         sql+= 'set name="'+obj.name+'",';
@@ -90,33 +114,66 @@ var saveVendor = (obj) => {
         sql+= 'where id="'+obj.id+'"';
         return sql;
     },
-    getProduct = (obj) => {
-        sql = 'select id,vendor_id,category_id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
-        sql+= 'where id="'+obj.id+'"';
+    getProduct = obj => {
+        sql = 'select a.id,a.vendor_id,a.category_id,a.name,b.name vendor_name,c.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a ';
+        sql+= 'left outer join vendors b on b.id=a.vendor_id '
+        sql+= 'left outer join categories c on c.id=a.category_id '
+        sql+= 'where a.id="'+obj.id+'"';
         return sql;
     },
     getProducts = () => {
-        sql = 'select id,vendor_id,category_id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
-        sql+= 'where status="1" '
+        sql = 'select a.id,a.vendor_id,a.category_id,b.name vendor_name,c.name category_name,a.name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a ';
+        sql+= 'left outer join vendors b on b.id=a.vendor_id '
+        sql+= 'left outer join categories c on c.id=a.category_id '
+        sql+= 'where a.status="1" '
         return sql;
     },
-    getProductpage = (obj) => {
-        sql = 'select id,vendor_id,category_id,name,partnumber,unit,discountlevel,price,lastupdate from products ';
-        sql+= 'where status="1" '
+    getProductpage = obj => {
+        sql = 'select a.id,a.vendor_id,a.category_id,a.name,b.name vendor_name,c.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a ';
+        sql+= 'left outer join vendors b on b.id=a.vendor_id '
+        sql+= 'left outer join categories c on c.id=a.category_id '
+        sql+= 'where a.status="1" '
         sql+= 'limit '+obj.page+','+obj.pageSize
         return sql;
     },
-    getProductCount = (obj) => {
-        sql = 'select count(id)cnt from products ';
-        sql+= 'where status="1" '
+    getProductCount = obj => {
+        sql = 'select count(id)cnt from products a ';
+        sql+= 'where a.status="1" '
         return sql;
     },
-    setProductActive = (obj) => {
+    setProductActive = obj => {
         sql = "update products set status='"+obj.status+"' "
         sql+= "where id="+obj.id+ " "
         return sql
     },
-    saveCategory = (obj) => {
+    searchProduct = obj => {
+        sql = 'select a.id,a.name,b.name vendor_name,c.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a '
+        sql+= 'left outer join vendors b on b.id=a.vendor_id '
+        sql+= 'left outer join categories c on c.id=a.category_id '
+        sql+= 'where  '
+        sql+= ' ('
+        sql+= 'a.name like "%'+obj.name+'%" ' 
+        sql+= 'and a.partnumber like "%'+obj.partnumber+'%" '
+        sql+= 'and a.unit like "%'+obj.unit+'%" '
+        sql+= 'and b.name like "%'+obj.vendor_name+'%" '
+        sql+= 'and c.name like "%'+obj.category_name+'%" '
+        sql+= ') '
+        sql+= 'and a.status="1" '
+        console.log('SQL',sql)
+        return sql
+    },
+    searchProductCount = obj => {
+        sql = 'select count(id) cnt from vendors '
+        sql+= 'where status="1" '
+        sql+= 'and ('
+        sql+= 'name like "%'+obj.name+'%" ' 
+        sql+= 'or address like "%'+obj.address+'%" '
+        sql+= 'or phone like "%'+obj.phone+'%" '
+        sql+= 'or bankaccount like "%'+obj.bankaccount+'%" '
+        sql+= ') '
+        return sql
+    },
+    saveCategory = obj => {
         console.log("OBJ",obj)
         sql = 'insert into categories ';
         sql+= '(name,description,createuser)';
@@ -131,7 +188,7 @@ var saveVendor = (obj) => {
         sql+= 'createuser="'+obj.createuser+'" ';
         return sql;
     },
-    updateCategory = (obj) => {
+    updateCategory = obj => {
         console.log("OBJ",obj)
         sql = 'update categories ';
         sql+= 'set name="'+obj.name+'",';
@@ -139,7 +196,7 @@ var saveVendor = (obj) => {
         sql+= 'where id="'+obj.id+'"';
         return sql;
     },
-    getCategory = (obj) => {
+    getCategory = obj => {
         sql = 'select id,name,description,status,createuser,createdate from categories ';
         sql+= 'where id="'+obj.id+'" ';
         sql+= 'and status="1" '
@@ -150,7 +207,7 @@ var saveVendor = (obj) => {
         sql+= 'where status="1" '
         return sql;
     },
-    getCategorypage = (obj) => {
+    getCategorypage = obj => {
         sql = 'select id,name,description,status,createuser,createdate from categories ';
         sql+= 'where status="1" '
         sql+= 'limit '+obj.page+','+obj.pageSize
@@ -161,7 +218,7 @@ var saveVendor = (obj) => {
         sql+= 'where status="1" '
         return sql;
     },
-    searchCategory = (obj) => {
+    searchCategory = obj => {
         sql = 'select id,name,description,status,createuser,createdate from categories '
         sql+= 'where '
         sql+= 'status="1" '
@@ -170,7 +227,7 @@ var saveVendor = (obj) => {
         console.log("Search Query",sql)
         return sql
     },
-    searchCategoryCount = (obj) => {
+    searchCategoryCount = obj => {
         sql = 'select count(id) cnt from categories '
         sql+= 'where '
         sql+= 'status="1" '
@@ -179,7 +236,7 @@ var saveVendor = (obj) => {
         console.log("Count Query",sql)
         return sql
     },
-    setCategoryActive = (obj) => {
+    setCategoryActive = obj => {
         sql = 'update categories '
         sql+= 'set status="'+obj.status+'" '
         sql+= 'where id='+obj.id+' '
@@ -197,12 +254,12 @@ var saveVendor = (obj) => {
         sql = 'select * from submissions ';
         return sql;
     },
-    getSubmissionDetails = (obj) => {
+    getSubmissionDetails = obj => {
         sql = 'select * from submission_details '
         sql+= 'where submission_id='+obj.submission_id+' '
         return sql
     },
-    getSubmissionDetail = (obj) => {
+    getSubmissionDetail = obj => {
         sql = 'select * from submission_details '
         sql+= 'where id = ' + obj.id
         return sql
@@ -237,7 +294,7 @@ var saveVendor = (obj) => {
         sql = 'select * from users '
         return sql
     },
-    getUser = (obj) => {
+    getUser = obj => {
         sql = 'select * from users '
         sql+= 'where id = ' + obj.id + ' '
         return sql
@@ -299,10 +356,14 @@ module.exports = {
     getProductpage : getProductpage,
     getProductCount : getProductCount,
     updateProduct:updateProduct,
+    searchProduct : searchProduct,
+    searchProductCount : searchProductCount,
+    setProductActive:setProductActive,
     updateVendor:updateVendor,
     getVendorpage : getVendorpage,
     getVendorCount : getVendorCount,
-    setProductActive:setProductActive,
+    searchVendor : searchVendor,
+    searchVendorCount : searchVendorCount,
     saveSubmission:saveSubmission,
     getSubmissions:getSubmissions,
     getUsers:getUsers,

@@ -129,7 +129,7 @@ app.post('/saveproduct',(req,res) => {
         partnumber:req.body.partnumber,
         unit:req.body.unit,
         price:req.body.price,
-	createuser:req.body.createuser,
+	    createuser:req.body.createuser,
         discountlevel:req.body.discountlevel
     }),(result) => {
         console.log("Save Product",result);
@@ -183,7 +183,17 @@ app.get('/setproductactive/:id/:status',(req,res) => {
         res.send(result)
     })
 })
-
+app.post('/searchproduct', (req,res) => {
+    con.getdata(query.searchProduct(req.body),result => {
+        res.send(result)
+    })
+})
+app.post('/searchproductcount', (req,res) => {
+    console.log("req.bdy",req.body)
+    con.getdata(query.searchProductCount(req.body),result => {
+        res.send(result)
+    })
+})
 app.post('/savevendor',(req,res) => {
     name = req.body.name;
     address = req.body.address;
@@ -242,7 +252,17 @@ app.get('/getvendorcount', (req,res) => {
         res.send(result)
     })
 })
-
+app.post('/searchvendor', (req,res) => {
+    con.getdata(query.searchVendor(req.body),result => {
+        res.send(result)
+    })
+})
+app.post('/searchvendorcount', (req,res) => {
+    console.log("req.bdy",req.body)
+    con.getdata(query.searchVendorCount(req.body),result => {
+        res.send(result)
+    })
+})
 app.post('/savecategory',(req,res) => {
     con.getdata(query.saveCategory({
         name:req.body.name,
