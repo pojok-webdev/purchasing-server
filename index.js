@@ -338,6 +338,27 @@ app.get('/getsubmissions',(req,res) => {
         res.send(result);
     })
 })
+app.get('/getsubmissionpage/:pageIndex/:pageSize',(req,res) => {
+    console.log('req params',req.params)
+    con.getdata(query.getSubmissionpage(req.params),result => {
+        res.send(result)
+    })
+})
+app.get('/getsubmissioncount',(req,res) => {
+    con.getdata(query.getSubmissioncount(req.params),result => {
+        res.send(result)
+    })
+})
+app.get('/searchsubmission/:searchData/:pageIndex/:pageSize',(req,res) => {
+    con.getdata(query.searchSubmission(req.params),result => {
+        res.send(result)
+    })
+})
+app.get('/searchsubmissioncount/:searchData',(req,res) => {
+    con.getdata(query.searchSubmissioncount(req.params),result => {
+        res.send(result)
+    })
+})
 app.get('/getsubmissiondetails/:submission_id',(req,res)=>{
     console.log("Query",query.getSubmissionDetails({submission_id:req.params.submission_id}));
     con.getdata(query.getSubmissionDetails({submission_id:req.params.submission_id}),result=>{
@@ -360,6 +381,30 @@ app.post('/savesubmissiondetail',(req,res)=>{
 app.post('/updatesubmissiondetail',(req,res) => {
     con.getdata(query.updateSubmissionDetail(req.body),result => {
         console.log("Result",result)
+        res.send(result)
+    })
+})
+app.get('/getsubmissiondetailpage/:submission_id/:pageIndex/:pageSize',(req,res) => {
+    con.getdata(query.getSubmissiondetailpage(req.params),result => {
+        console.log('submissiondetail page',result)
+        res.send(result)
+    })
+})
+app.get('/getsubmissiondetailcount/:submission_id',(req,res) => {
+    con.getdata(query.getSubmissiondetailcount(req.params),result => {
+        console.log('submissiondetail page',result)
+        res.send(result)
+    })
+})
+app.get('/searchsubmissiondetail/:searchData/:submission_id/:pageIndex/:pageSize',(req,res) => {
+    con.getdata(query.searchSubmissiondetail(req.params),result => {
+        console.log('submissiondetail page',result)
+        res.send(result)
+    })
+})
+app.get('/searchSubmissiondetailcount/:searchData/:submission_id',(req,res) => {
+    con.getdata(query.searchSubmissiondetailcount(req.params),result => {
+        console.log('submissiondetail page',result)
         res.send(result)
     })
 })

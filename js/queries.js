@@ -262,6 +262,61 @@ var saveVendor = obj => {
         sql = 'select * from submissions ';
         return sql;
     },
+    getSubmissionpage = obj => {
+        sql = 'select '
+        sql+= 'submission_date,staff_name,implementation_target,purchase_target,createuser '
+        sql+= 'from submissions '
+        sql+= 'where status="1" '
+        sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
+        return sql
+    },
+    getSubmissioncount = obj => {
+        sql = 'select count(id) cnt from submissions '
+        return sql
+    },
+    searchSubmission = obj => {
+        sql = 'select '
+        sql+= 'a.submission_date,a.staff_name,a.implementation_target,a.purchase_target,a.createuser, '
+        sql+= 'b.placement_location,b.vendor_comparation '
+        sql+= 'from submissions a '
+        sql+= 'left outer join submission_details b on b.submission_id=a.id '
+        sql+= 'where '
+        sql+= 'a.status="1" '
+        sql+= 'and ('
+        sql+= 'a.staff_name like "%'+obj.searchData+'%" '
+        sql+= 'or b.itemname like "%'+obj.searchData+'%" '
+        sql+= 'or b.brand like "%'+obj.searchData+'%" '
+        sql+= 'or b.description like "%'+obj.searchData+'%" '
+        sql+= 'or b.partnumber like "%'+obj.searchData+'%" '
+        sql+= 'or b.proposed_vendor like "%'+obj.searchData+'%" '
+        sql+= 'or b.vendor like "%'+obj.searchData+'%" '
+        sql+= 'or b.information like "%'+obj.searchData+'%" '
+        sql+= 'or b.placement_location like "%'+obj.searchData+'%" '
+        sql+= 'or b.vendor_comparation like "%'+obj.searchData+'%" '
+        sql+= ')'
+        sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
+        console.log('SQL',sql)
+        return sql
+    },
+    searchSubmissioncount = obj => {
+        sql = 'select count(a.id) cnt '
+        sql+= 'from submissions a '
+        sql+= 'left outer join submission_details b on b.submission_id=a.id '
+        sql+= 'where a.status="1" '
+        sql+= 'and ('
+        sql+= 'a.staff_name like "%'+obj.searchData+'%" '
+        sql+= 'or b.itemname like "%'+obj.searchData+'%" '
+        sql+= 'or b.brand like "%'+obj.searchData+'%" '
+        sql+= 'or b.description like "%'+obj.searchData+'%" '
+        sql+= 'or b.partnumber like "%'+obj.searchData+'%" '
+        sql+= 'or b.proposed_vendor like "%'+obj.searchData+'%" '
+        sql+= 'or b.vendor like "%'+obj.searchData+'%" '
+        sql+= 'or b.information like "%'+obj.searchData+'%" '
+        sql+= 'or b.placement_location like "%'+obj.searchData+'%" '
+        sql+= 'or b.vendor_comparation like "%'+obj.searchData+'%" '
+        sql+= ')'
+        return sql
+    },
     getSubmissionDetails = obj => {
         sql = 'select * from submission_details '
         sql+= 'where submission_id='+obj.submission_id+' '
@@ -296,6 +351,52 @@ var saveVendor = obj => {
         sql+= 'purchase_reason="'+obj.purchase_reason+'",'
         sql+= 'placement_location="'+obj.placement_location+'",'
         sql+= 'vendor_comparation="'+obj.vendor_comparation+'" '
+        return sql
+    },
+    getSubmissiondetailpage = obj => {
+        sql = 'select '
+        sql+= 'submission_id,itemname,brand,partnumber,description,proposed_vendor,'
+        sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
+        sql+= 'placement_location,vendor_comparation,createuser '
+        sql+= 'from submission_details '
+        sql+= 'where submission_id='+obj.submission_id+' '
+        sql+= 'and status="1" '
+        sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
+        return sql
+    },
+    getSubmissiondetailcount = obj => {
+        sql = 'select count(id) cnt from submission_details '
+        sql+= 'where submission_id='+obj.submission_id+' '
+        return sql
+    },
+    searchSubmissiondetail = obj => {
+        sql = 'select '
+        sql+= 'submission_id,itemname,brand,partnumber,description,proposed_vendor,'
+        sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
+        sql+= 'placement_location,vendor_comparation,createuser '
+        sql+= 'from submission_details '
+        sql+= 'where submission_id='+obj.submission_id+' '
+        sql+= 'and status="1" '
+        sql+= 'and ('
+        sql+= 'itemname like "%'+obj.searchData+'%" '
+        sql+= 'or brand like "%'+obj.searchData+'%" '
+        sql+= 'or partnumber like "%'+obj.searchData+'%" '
+        sql+= 'or description like "%'+obj.searchData+'%" '
+        sql+= ')'
+        sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
+        return sql
+    },
+    searchSubmissiondetailcount = obj => {
+        sql = 'select count(submission_id)cnt '
+        sql+= 'from submission_details '
+        sql+= 'where submission_id='+obj.submission_id+' '
+        sql+= 'and status="1" '
+        sql+= 'and ('
+        sql+= 'itemname like "%'+obj.searchData+'%" '
+        sql+= 'or brand like "%'+obj.searchData+'%" '
+        sql+= 'or partnumber like "%'+obj.searchData+'%" '
+        sql+= 'or description like "%'+obj.searchData+'%" '
+        sql+= ')'
         return sql
     },
     getUsers = () => {
@@ -384,6 +485,14 @@ module.exports = {
     getSubmissionDetail:getSubmissionDetail,
     saveSubmissionDetail:saveSubmissionDetail,
     updateSubmissionDetail:updateSubmissionDetail,
+    getSubmissiondetailpage:getSubmissiondetailpage,
+    getSubmissiondetailcount:getSubmissiondetailcount,
+    searchSubmissiondetail:searchSubmissiondetail,
+    searchSubmissiondetailcount:searchSubmissiondetailcount,
+    getSubmissionpage:getSubmissionpage,
+    getSubmissioncount:getSubmissioncount,
+    searchSubmission:searchSubmission,
+    searchSubmissioncount:searchSubmissioncount,
     getCategories:getCategories,
     getCategory:getCategory,
     saveCategory:saveCategory,
