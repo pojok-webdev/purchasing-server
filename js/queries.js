@@ -361,7 +361,7 @@ var saveVendor = obj => {
         sql+= 'placement_location,vendor_comparation,createuser '
         sql+= 'from submission_details '
         sql+= 'where submission_id='+obj.submission_id+' '
-        sql+= 'and status="1" '
+        sql+= 'and status!="0" '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         return sql
     },
@@ -385,6 +385,7 @@ var saveVendor = obj => {
     getSubmissiondetailcount = obj => {
         sql = 'select count(id) cnt from submission_details '
         sql+= 'where submission_id='+obj.submission_id+' '
+        sql+= 'and status!="0" '
         return sql
     },
     searchSubmissiondetail = obj => {
