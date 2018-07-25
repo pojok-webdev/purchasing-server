@@ -373,6 +373,7 @@ app.get('/getsubmissiondetail/:id',(req,res)=>{
     })
 })
 app.post('/savesubmissiondetail',(req,res)=>{
+    console.log('req body',req.body)
     con.getdata(query.saveSubmissionDetail(req.body),result => {
         console.log("Result",result)
         res.send(result)
