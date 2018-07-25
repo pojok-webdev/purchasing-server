@@ -365,6 +365,16 @@ var saveVendor = obj => {
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         return sql
     },
+    getAllSubmissiondetailpage = obj => {
+        sql = 'select '
+        sql+= 'submission_id,itemname,brand,partnumber,description,proposed_vendor,'
+        sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
+        sql+= 'placement_location,vendor_comparation,createuser '
+        sql+= 'from submission_details '
+        sql+= 'where status="2" '
+        sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
+        return sql
+    },
     getSubmissiondetailcount = obj => {
         sql = 'select count(id) cnt from submission_details '
         sql+= 'where submission_id='+obj.submission_id+' '
@@ -485,6 +495,7 @@ module.exports = {
     getSubmissionDetails:getSubmissionDetails,
     getSubmissionDetail:getSubmissionDetail,
     saveSubmissionDetail:saveSubmissionDetail,
+    getAllSubmissiondetailpage:getAllSubmissiondetailpage,
     updateSubmissionDetail:updateSubmissionDetail,
     getSubmissiondetailpage:getSubmissiondetailpage,
     getSubmissiondetailcount:getSubmissiondetailcount,
