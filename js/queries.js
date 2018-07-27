@@ -262,6 +262,13 @@ var saveVendor = obj => {
         sql = 'select * from submissions ';
         return sql;
     },
+    getSubmissionById = obj => {
+        sql = 'select '
+        sql+= 'submission_date,staff_name,implementation_target,purchase_target,createuser '
+        sql+= 'from submissions '
+        sql+= 'where id="'+ obj.id +'" '
+        return sql
+    },
     getSubmissionpage = obj => {
         sql = 'select '
         sql+= 'submission_date,staff_name,implementation_target,purchase_target,createuser '
@@ -511,6 +518,7 @@ module.exports = {
     searchSubmissiondetail:searchSubmissiondetail,
     searchSubmissiondetailcount:searchSubmissiondetailcount,
     getSubmissionpage:getSubmissionpage,
+    getSubmissionById: getSubmissionById,
     getSubmissioncount:getSubmissioncount,
     searchSubmission:searchSubmission,
     searchSubmissioncount:searchSubmissioncount,

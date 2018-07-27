@@ -338,6 +338,13 @@ app.get('/getsubmissions',(req,res) => {
         res.send(result);
     })
 })
+app.get('/getsubmissionbyid/:id', (req,res) => {
+    console.log("getSubmissionById invoked")
+    con.getdata(query.getSubmissionById({id:req.params.id}),result => {
+        console.log('Result',result)
+        res.send(result)
+    })
+})
 app.get('/getsubmissionpage/:pageIndex/:pageSize',(req,res) => {
     console.log('req params',req.params)
     con.getdata(query.getSubmissionpage(req.params),result => {
