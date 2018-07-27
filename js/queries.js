@@ -271,7 +271,7 @@ var saveVendor = obj => {
     },
     getSubmissionpage = obj => {
         sql = 'select '
-        sql+= 'submission_date,staff_name,implementation_target,purchase_target,createuser '
+        sql+= 'id,submission_date,staff_name,implementation_target,purchase_target,createuser '
         sql+= 'from submissions '
         sql+= 'where status="1" '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
@@ -283,7 +283,7 @@ var saveVendor = obj => {
     },
     searchSubmission = obj => {
         sql = 'select '
-        sql+= 'a.submission_date,a.staff_name,a.implementation_target,a.purchase_target,a.createuser, '
+        sql+= 'a.id,a.submission_date,a.staff_name,a.implementation_target,a.purchase_target,a.createuser, '
         sql+= 'b.placement_location,b.vendor_comparation '
         sql+= 'from submissions a '
         sql+= 'left outer join submission_details b on b.submission_id=a.id '
