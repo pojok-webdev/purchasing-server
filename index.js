@@ -345,23 +345,23 @@ app.get('/getsubmissionbyid/:id', (req,res) => {
         res.send(result)
     })
 })
-app.get('/getsubmissionpage/:pageIndex/:pageSize',(req,res) => {
+app.get('/getsubmissionpage/:status/:pageIndex/:pageSize',(req,res) => {
     console.log('req params',req.params)
     con.getdata(query.getSubmissionpage(req.params),result => {
         res.send(result)
     })
 })
-app.get('/getsubmissioncount',(req,res) => {
+app.get('/getsubmissioncount/:status',(req,res) => {
     con.getdata(query.getSubmissioncount(req.params),result => {
         res.send(result)
     })
 })
-app.get('/searchsubmission/:searchData/:pageIndex/:pageSize',(req,res) => {
+app.get('/searchsubmission/:status/:searchData/:pageIndex/:pageSize',(req,res) => {
     con.getdata(query.searchSubmission(req.params),result => {
         res.send(result)
     })
 })
-app.get('/searchsubmissioncount/:searchData',(req,res) => {
+app.get('/searchsubmissioncount/:status/:searchData',(req,res) => {
     con.getdata(query.searchSubmissioncount(req.params),result => {
         res.send(result)
     })
