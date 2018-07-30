@@ -386,6 +386,12 @@ app.post('/savesubmissiondetail',(req,res)=>{
         res.send(result)
     })
 })
+app.get('/getallsubmissiondetail', (req,res) => {
+    con.getdata(query.getAllSubmissiondetail(), result => {
+        console.log('getAllSubmissiondetail',result)
+        res.send(result)
+    })
+})
 app.get('/getallsubmissiondetailpage/:pageIndex/:pageSize', (req,res) => {
     con.getdata(query.getAllSubmissiondetailpage(req.params), result => {
         console.log('AllSubmissiondetailpage',result)
