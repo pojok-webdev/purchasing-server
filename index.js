@@ -357,12 +357,12 @@ app.get('/getsubmissioncount/:status',(req,res) => {
     })
 })
 app.post('/searchsubmission',(req,res) => {
-    con.getdata(query.searchSubmission(req.body.params),result => {
+    con.getdata(query.searchSubmission(req.body),result => {
         res.send(result)
     })
 })
 app.post('/searchsubmissioncount',(req,res) => {
-    con.getdata(query.searchSubmissioncount(req.body.params),result => {
+    con.getdata(query.searchSubmissioncount(req.body),result => {
         res.send(result)
     })
 })
@@ -424,13 +424,13 @@ app.get('/getsubmissiondetailcount/:submission_id',(req,res) => {
     })
 })
 app.post('/searchsubmissiondetail',(req,res) => {
-    con.getdata(query.searchSubmissiondetail(req.body.params),result => {
+    con.getdata(query.searchSubmissiondetail(req.body),result => {
         console.log('submissiondetail page',result)
         res.send(result)
     })
 })
 app.post('/searchsubmissiondetailcount',(req,res) => {
-    con.getdata(query.searchSubmissiondetailcount(req.body.params),result => {
+    con.getdata(query.searchSubmissiondetailcount(req.body),result => {
         console.log('submissiondetail page',result)
         res.send(result)
     })
