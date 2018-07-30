@@ -386,9 +386,9 @@ app.post('/savesubmissiondetail',(req,res)=>{
         res.send(result)
     })
 })
-app.get('/getallsubmissiondetail', (req,res) => {
-    con.getdata(query.getAllSubmissiondetail(), result => {
-        console.log('getAllSubmissiondetail',result)
+app.get('/getallsubmissiondetails', (req,res) => {
+    con.getdata(query.getAllSubmissiondetails(), result => {
+        console.log('getAllSubmissiondetails',result)
         res.send(result)
     })
 })

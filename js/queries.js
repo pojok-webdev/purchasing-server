@@ -372,7 +372,7 @@ var saveVendor = obj => {
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         return sql
     },
-    getAllSubmissiondetail = () => {
+    getAllSubmissiondetails = () => {
         sql = 'select '
         sql+= 'submission_id,itemname,brand,partnumber,description,proposed_vendor,'
         sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
@@ -519,7 +519,7 @@ module.exports = {
     getSubmissionDetails:getSubmissionDetails,
     getSubmissionDetail:getSubmissionDetail,
     saveSubmissionDetail:saveSubmissionDetail,
-    getAllSubmissiondetail:getAllSubmissiondetail,
+    getAllSubmissiondetails:getAllSubmissiondetails,
     getAllSubmissiondetailpage:getAllSubmissiondetailpage,
     getAllSubmissiondetailcount:getAllSubmissiondetailcount,
     updateSubmissionDetail:updateSubmissionDetail,
