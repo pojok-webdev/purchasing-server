@@ -280,6 +280,7 @@ var saveVendor = obj => {
     getSubmissioncount = obj => {
         sql = 'select count(id) cnt from submissions '
         sql+= 'where status="'+obj.id+'" '
+        console.log('sql',sql)
         return sql
     },
     searchSubmission = obj => {
