@@ -273,12 +273,13 @@ var saveVendor = obj => {
         sql = 'select '
         sql+= 'id,submission_date,staff_name,implementation_target,purchase_target,createuser '
         sql+= 'from submissions '
-        sql+= 'where status="1" '
+        sql+= 'where status="'+obj.status+'" '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         return sql
     },
     getSubmissioncount = obj => {
         sql = 'select count(id) cnt from submissions '
+        sql+= 'where status="'+obj.id+'" '
         return sql
     },
     searchSubmission = obj => {
@@ -288,7 +289,7 @@ var saveVendor = obj => {
         sql+= 'from submissions a '
         sql+= 'left outer join submission_details b on b.submission_id=a.id '
         sql+= 'where '
-        sql+= 'a.status="1" '
+        sql+= 'a.status="'+obj.status+'" '
         sql+= 'and ('
         sql+= 'a.staff_name like "%'+obj.searchData+'%" '
         sql+= 'or b.itemname like "%'+obj.searchData+'%" '
@@ -309,7 +310,7 @@ var saveVendor = obj => {
         sql = 'select count(a.id) cnt '
         sql+= 'from submissions a '
         sql+= 'left outer join submission_details b on b.submission_id=a.id '
-        sql+= 'where a.status="1" '
+        sql+= 'where a.status="'+obj.status+'" '
         sql+= 'and ('
         sql+= 'a.staff_name like "%'+obj.searchData+'%" '
         sql+= 'or b.itemname like "%'+obj.searchData+'%" '
