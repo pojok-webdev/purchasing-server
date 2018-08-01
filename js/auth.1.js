@@ -4,6 +4,7 @@ login = (obj,password) => {
     salt = obj.salt
     console.log("SALT",salt)
     saltedpassword = sha1(salt+password)
+    console.log('given passwrd',password)
     //__temp = saltedpassword//.substring(0,30)
     //_password = salt+__temp
     //console.log("PASSWORD",_password)
