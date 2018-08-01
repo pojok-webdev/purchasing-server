@@ -6,7 +6,7 @@ login = (obj,password) => {
     saltedpassword = sha1(salt+password)
     //__temp = saltedpassword//.substring(0,30)
     //_password = salt+__temp
-    console.log("PASSWORD",_password)
+    //console.log("PASSWORD",_password)
     console.log("OBJ.PASSWORD",obj.password)
     //if(_password===obj.password){
     if(saltedpassword===obj.password){
