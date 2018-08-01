@@ -332,7 +332,17 @@ var saveVendor = obj => {
         sql+= 'where id='+obj.id+' '
         console.log('SetSubmissionStatus',sql)
         return sql
-    }
+    },
+    updateSubmission = obj => {
+        sql = 'update submissions '
+        sql+= 'set submission_date="'+obj.submission_date+'",'
+        sql+= 'staff_name="'+obj.staff_name+'",'
+        sql+= 'implementation_target="'+obj.implementation_target+'",'
+        sql+= 'purchase_target="'+obj.purchase_target+'" '
+        sql+= 'where id='+obj.id+' '
+        console.log('SQL',sql)
+        return sql
+    },
     getSubmissionDetails = obj => {
         sql = 'select * from submission_details '
         sql+= 'where submission_id='+obj.submission_id+' '
@@ -353,7 +363,7 @@ var saveVendor = obj => {
     },
     updateSubmissionDetail = obj => {
         sql = 'update submission_details '
-        sql+= 'set item_name="'+obj.item_name+'",'
+        sql+= 'set itemname="'+obj.itemname+'",'
         sql+= 'brand="'+obj.brand+'",'
         sql+= 'partnumber="'+obj.partnumber+'",'
         sql+= 'description="'+obj.description+'",'
@@ -368,6 +378,8 @@ var saveVendor = obj => {
         sql+= 'purchase_reason="'+obj.purchase_reason+'",'
         sql+= 'placement_location="'+obj.placement_location+'",'
         sql+= 'vendor_comparation="'+obj.vendor_comparation+'" '
+        sql+= 'where id='+obj.id+' '
+        console.log('SQL',sql);
         return sql
     },
     getSubmissiondetailpage = obj => {
@@ -527,6 +539,7 @@ module.exports = {
     saveSubmission:saveSubmission,
     getSubmissions:getSubmissions,
     setSubmissionStatus:setSubmissionStatus,
+    updateSubmission:updateSubmission,
     getUsers:getUsers,
     getUser:getUser,
     saveUser:saveUser,

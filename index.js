@@ -371,6 +371,12 @@ app.get('/setsubmissionstatus/:id/:status',(req,res) => {
         res.send(result)
     })
 })
+app.post('/updatesubmission',(req,res) => {
+    con.getdata(query.updateSubmission(req.body),result => {
+        console.log("Result",result)
+        res.send(result)
+    })
+})
 app.get('/getsubmissiondetails/:submission_id',(req,res)=>{
     console.log("Query",query.getSubmissionDetails({submission_id:req.params.submission_id}));
     con.getdata(query.getSubmissionDetails({submission_id:req.params.submission_id}),result=>{
