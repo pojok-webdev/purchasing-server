@@ -1,13 +1,14 @@
 var sha1 = require('sha1')
 login = (obj,password) => {
-    mypassword = (obj.password).trim()    
+    mypassword = (obj.password)
     salt = obj.salt
     console.log("SALT",salt)
-    saltedpassword = sha1(salt+password.trim())
+    saltedpassword = sha1(salt+password)
     //__temp = saltedpassword//.substring(0,30)
     //_password = salt+__temp
     //console.log("PASSWORD",_password)
-    console.log("OBJ.PASSWORD",obj.password)
+    console.log("OBJ.PASSWORD",mypassword)
+    console.log('SALTED',saltedpassword)
     //if(_password===obj.password){
     if(saltedpassword===mypassword){
         console.log("Login benar")
@@ -18,9 +19,9 @@ login = (obj,password) => {
     }
 }
 changePassword = (obj,password) => {
-    mypassword = (obj.password).trim()
     salt = obj.salt
-    saltedpassword = sha1(salt+password.trim())
+    saltedpassword = sha1(salt+password)
+    console.log('Salted',saltedpassword)
     __temp = saltedpassword//.substring(0,30)
     //return salt+__temp
     return saltedpassword
