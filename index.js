@@ -366,6 +366,11 @@ app.post('/searchsubmissioncount',(req,res) => {
         res.send(result)
     })
 })
+app.get('/setsubmissionstatus/:id/:status',(req,res) => {
+    con.getdata(query.setSubmissionStatus(req.params),result => {
+        res.send(result)
+    })
+})
 app.get('/getsubmissiondetails/:submission_id',(req,res)=>{
     console.log("Query",query.getSubmissionDetails({submission_id:req.params.submission_id}));
     con.getdata(query.getSubmissionDetails({submission_id:req.params.submission_id}),result=>{
@@ -432,6 +437,11 @@ app.post('/searchsubmissiondetail',(req,res) => {
 app.post('/searchsubmissiondetailcount',(req,res) => {
     con.getdata(query.searchSubmissiondetailcount(req.body),result => {
         console.log('submissiondetail page',result)
+        res.send(result)
+    })
+})
+app.get('/setsubmissiondetailstatus/:id/:status',(req,res) => {
+    con.getdata(query.setSubmissionDetailStatus(req.params),result => {
         res.send(result)
     })
 })
