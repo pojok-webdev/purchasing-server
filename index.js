@@ -403,14 +403,14 @@ app.get('/getallsubmissiondetails', (req,res) => {
         res.send(result)
     })
 })
-app.get('/getallsubmissiondetailpage/:pageIndex/:pageSize', (req,res) => {
+app.get('/getallsubmissiondetailpage/:status/:pageIndex/:pageSize', (req,res) => {
     con.getdata(query.getAllSubmissiondetailpage(req.params), result => {
         console.log('AllSubmissiondetailpage',result)
         res.send(result)
     })
 })
 
-app.get('/getallsubmissiondetailcount', (req,res) => {
+app.get('/getallsubmissiondetailcount/:status', (req,res) => {
     con.getdata(query.getAllSubmissiondetailcount(req.params), result => {
         console.log('AllSubmissiondetailcount',result)
         res.send(result)
