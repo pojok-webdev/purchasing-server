@@ -284,9 +284,10 @@ var saveVendor = obj => {
         return sql
     },
     searchSubmission = obj => {
+        sql= 'b.placement_location,b.vendor_comparation '
         sql = 'select '
         sql+= 'distinct a.id,a.subject,a.submission_date,a.staff_name,a.implementation_target,a.purchase_target,a.createuser '
-        sql_+= 'b.placement_location,b.vendor_comparation '
+        
         sql+= 'from submissions a '
         sql+= 'left outer join submission_details b on b.submission_id=a.id '
         sql+= 'where '
