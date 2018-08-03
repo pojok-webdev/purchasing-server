@@ -285,8 +285,8 @@ var saveVendor = obj => {
     },
     searchSubmission = obj => {
         sql = 'select '
-        sql+= 'a.id,a.subject,a.submission_date,a.staff_name,a.implementation_target,a.purchase_target,a.createuser, '
-        sql+= 'b.placement_location,b.vendor_comparation '
+        sql+= 'distinct a.id,a.subject,a.submission_date,a.staff_name,a.implementation_target,a.purchase_target,a.createuser '
+        sql_+= 'b.placement_location,b.vendor_comparation '
         sql+= 'from submissions a '
         sql+= 'left outer join submission_details b on b.submission_id=a.id '
         sql+= 'where '
@@ -326,6 +326,7 @@ var saveVendor = obj => {
         sql+= 'or b.placement_location like "%'+obj.searchData+'%" '
         sql+= 'or b.vendor_comparation like "%'+obj.searchData+'%" '
         sql+= ')'
+        console.log('searchsubmissioncount',sql)
         return sql
     },
     setSubmissionStatus = obj => {
