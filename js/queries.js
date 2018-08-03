@@ -264,7 +264,7 @@ var saveVendor = obj => {
     },
     getSubmissionById = obj => {
         sql = 'select '
-        sql+= 'subject,submission_date,staff_name,implementation_target,purchase_target,createuser '
+        sql+= 'id,subject,submission_date,staff_name,implementation_target,purchase_target,createuser '
         sql+= 'from submissions '
         sql+= 'where id="'+ obj.id +'" '
         return sql
