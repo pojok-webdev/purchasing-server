@@ -253,9 +253,9 @@ var saveVendor = obj => {
     },
     saveSubmission = obj => {
         sql = 'insert into submissions ';
-        sql+= '(submission_date,staff_name,implementation_target,purchase_target,createuser)';
+        sql+= '(subject,submission_date,staff_name,implementation_target,purchase_target,createuser)';
         sql+= 'values ';
-        sql+= '("'+obj.submission_date+'","'+obj.staff_name+'","'+obj.implementation_target+'","'+obj.purchase_target+'","'+obj.createuser+'")';
+        sql+= '("'+obj.subject+'","'+obj.submission_date+'","'+obj.staff_name+'","'+obj.implementation_target+'","'+obj.purchase_target+'","'+obj.createuser+'")';
         return sql;
     },
     getSubmissions = () => {
@@ -264,14 +264,14 @@ var saveVendor = obj => {
     },
     getSubmissionById = obj => {
         sql = 'select '
-        sql+= 'submission_date,staff_name,implementation_target,purchase_target,createuser '
+        sql+= 'subject,submission_date,staff_name,implementation_target,purchase_target,createuser '
         sql+= 'from submissions '
         sql+= 'where id="'+ obj.id +'" '
         return sql
     },
     getSubmissionpage = obj => {
         sql = 'select '
-        sql+= 'id,submission_date,staff_name,implementation_target,purchase_target,createuser '
+        sql+= 'id,subject,submission_date,staff_name,implementation_target,purchase_target,createuser '
         sql+= 'from submissions '
         sql+= 'where status="'+obj.status+'" '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
@@ -285,7 +285,7 @@ var saveVendor = obj => {
     },
     searchSubmission = obj => {
         sql = 'select '
-        sql+= 'a.id,a.submission_date,a.staff_name,a.implementation_target,a.purchase_target,a.createuser, '
+        sql+= 'a.id,a.subject,a.submission_date,a.staff_name,a.implementation_target,a.purchase_target,a.createuser, '
         sql+= 'b.placement_location,b.vendor_comparation '
         sql+= 'from submissions a '
         sql+= 'left outer join submission_details b on b.submission_id=a.id '
@@ -293,6 +293,7 @@ var saveVendor = obj => {
         sql+= 'a.status="'+obj.status+'" '
         sql+= 'and ('
         sql+= 'a.staff_name like "%'+obj.searchData+'%" '
+        sql+= 'or a.subject like "%'+obj.searchData+'%" '
         sql+= 'or b.itemname like "%'+obj.searchData+'%" '
         sql+= 'or b.brand like "%'+obj.searchData+'%" '
         sql+= 'or b.description like "%'+obj.searchData+'%" '
@@ -314,6 +315,7 @@ var saveVendor = obj => {
         sql+= 'where a.status="'+obj.status+'" '
         sql+= 'and ('
         sql+= 'a.staff_name like "%'+obj.searchData+'%" '
+        sql+= 'or a.subject like "%'+obj.searchData+'%" '
         sql+= 'or b.itemname like "%'+obj.searchData+'%" '
         sql+= 'or b.brand like "%'+obj.searchData+'%" '
         sql+= 'or b.description like "%'+obj.searchData+'%" '
@@ -336,6 +338,7 @@ var saveVendor = obj => {
     updateSubmission = obj => {
         sql = 'update submissions '
         sql+= 'set submission_date="'+obj.submission_date+'",'
+        sql+= 'subject="'+obj.subject+'",'
         sql+= 'staff_name="'+obj.staff_name+'",'
         sql+= 'implementation_target="'+obj.implementation_target+'",'
         sql+= 'purchase_target="'+obj.purchase_target+'" '
