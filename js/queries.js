@@ -387,7 +387,7 @@ var saveVendor = obj => {
     },
     getSubmissiondetailpage = obj => {
         sql = 'select '
-        sql+= 'submission_id,itemname,brand,partnumber,description,proposed_vendor,'
+        sql+= 'id,submission_id,itemname,brand,partnumber,description,proposed_vendor,'
         sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
         sql+= 'placement_location,vendor_comparation,createuser '
         sql+= 'from submission_details '
@@ -398,7 +398,7 @@ var saveVendor = obj => {
     },
     getAllSubmissiondetails = () => {
         sql = 'select '
-        sql+= 'submission_id,itemname,brand,partnumber,description,proposed_vendor,'
+        sql+= 'id,submission_id,itemname,brand,partnumber,description,proposed_vendor,'
         sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
         sql+= 'placement_location,vendor_comparation,createuser '
         sql+= 'from submission_details '
@@ -407,7 +407,7 @@ var saveVendor = obj => {
     }
     getAllSubmissiondetailpage = obj => {
         sql = 'select '
-        sql+= 'submission_id,itemname,brand,partnumber,description,proposed_vendor,'
+        sql+= 'id,submission_id,itemname,brand,partnumber,description,proposed_vendor,'
         sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
         sql+= 'placement_location,vendor_comparation,createuser '
         sql+= 'from submission_details '
@@ -430,7 +430,7 @@ var saveVendor = obj => {
     },
     searchSubmissiondetail = obj => {
         sql = 'select '
-        sql+= 'submission_id,itemname,brand,partnumber,description,proposed_vendor,'
+        sql+= 'id,submission_id,itemname,brand,partnumber,description,proposed_vendor,'
         sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
         sql+= 'placement_location,vendor_comparation,createuser '
         sql+= 'from submission_details '
