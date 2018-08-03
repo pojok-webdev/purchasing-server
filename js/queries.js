@@ -443,6 +443,7 @@ var saveVendor = obj => {
         sql+= 'or description like "%'+obj.searchData+'%" '
         sql+= ')'
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
+        console.log('searchsubmissiondetail',sql)
         return sql
     },
     searchSubmissiondetailcount = obj => {
@@ -456,6 +457,7 @@ var saveVendor = obj => {
         sql+= 'or partnumber like "%'+obj.searchData+'%" '
         sql+= 'or description like "%'+obj.searchData+'%" '
         sql+= ')'
+        console.log('searchsubmissiondetail',sql)
         return sql
     },
     setSubmissionDetailStatus = obj => {
