@@ -201,9 +201,7 @@ app.post('/savevendor',(req,res) => {
     phone = req.body.phone;
     bankaccount = req.body.bankaccount;
     createuser = req.body.createuser;
-    con.getdata(query.saveVendor({
-        name:name,address:address,phone:phone,bankaccount:bankaccount,createuser:createuser
-    }),(result) => {
+    con.getdata(query.saveVendor(req.body),(result) => {
         console.log("save vendor post data",req.body);
         res.send(result);
     })
@@ -215,9 +213,7 @@ app.post('/updatevendor',(req,res) => {
     phone = req.body.phone;
     bankaccount = req.body.bankaccount;
     createuser = req.body.createuser;
-    con.getdata(query.updateVendor({
-        id:id,name:name,address:address,phone:phone,bankaccount:bankaccount,createuser:createuser
-    }),(result) => {
+    con.getdata(query.updateVendor(req.body),(result) => {
         console.log("save vendor post data",req.body);
         res.send(result);
     })

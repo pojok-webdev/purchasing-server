@@ -1,12 +1,22 @@
 var saveVendor = obj => {
         sql = 'insert into vendors ';
-        sql+= '(name,address,phone,bankaccount,createuser)';
+        sql+= '(name,address,phone,bankaccount,createuser,namecard,offeringsample,invoicesample,receiptsample)';
         sql+= 'values ';
         sql+= '(';
         sql+= '"'+obj.name+'",';
         sql+= '"'+obj.address+'",';
         sql+= '"'+obj.phone+'",';
         sql+= '"'+obj.bankaccount+'",';
+
+
+
+        sql+= '"'+obj.namecard+'",';
+        sql+= '"'+obj.offeringsample+'",';
+        sql+= '"'+obj.invoicesample+'",';
+        sql+= '"'+obj.receiptsample+'",';
+
+
+
         sql+= '"'+obj.createuser+'"';
         sql+= ')';
         sql+= 'on duplicate key update ';
@@ -14,6 +24,15 @@ var saveVendor = obj => {
         sql+= 'address="'+obj.address+'",'
         sql+= 'phone="'+obj.phone+'",';
         sql+= 'bankaccount="'+obj.bankaccount+'", '
+
+
+
+
+        sql+= 'namecard="'+obj.namecard+'",';
+        sql+= 'offeringsample="'+obj.offeringsample+'",'
+        sql+= 'invoicesample="'+obj.invoicesample+'",';
+        sql+= 'receiptsample="'+obj.receiptsample+'", '
+
         sql+= 'createuser="'+obj.createuser+'" '
         return sql;
     },
@@ -23,22 +42,31 @@ var saveVendor = obj => {
         sql+= 'address="'+obj.address+'",';
         sql+= 'phone="'+obj.phone+'",';
         sql+= 'bankaccount="'+obj.bankaccount+'",';
+
+        sql+= 'namecard="'+obj.namecard+'",';
+        sql+= 'offeringsample="'+obj.offeringsample+'",';
+        sql+= 'invoicesample="'+obj.invoicesample+'",';
+        sql+= 'receiptsample="'+obj.receiptsample+'",';
+
+
+
+
         sql+= 'createuser="'+obj.createuser+'"';
         sql+= 'where id ="'+obj.id+'" '
         return sql;
     },
     getVendor = obj => {
-        sql = 'select id,name,address,phone,bankaccount from vendors ';
+        sql = 'select id,name,address,phone,bankaccount,namecard,offeringsample,invoicesample,receiptsample from vendors ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
     },
     getVendors = () => {
-        sql = 'select id,name,address,phone,bankaccount from vendors ';
+        sql = 'select id,name,address,phone,bankaccount,namecard,offeringsample,invoicesample,receiptsample from vendors ';
         sql+= 'where status="1" '
         return sql;
     },
     getVendorpage = obj => {
-        sql = 'select id,name,address,phone,bankaccount from vendors ';
+        sql = 'select id,name,address,phone,bankaccount,namecard,offeringsample,invoicesample,receiptsample from vendors ';
         sql+= 'where status="1" '
         sql+= 'limit '+obj.page+','+obj.pageSize+' '
         return sql;
@@ -54,7 +82,7 @@ var saveVendor = obj => {
         return sql
     },
     searchVendor = obj => {
-        sql = 'select id,name,address,phone,bankaccount from vendors '
+        sql = 'select id,name,address,phone,bankaccount,namecard,offeringsample,invoicesample,receiptsample from vendors '
         sql+= 'where status="1" '
         sql+= 'and ('
         sql+= 'name like "%'+obj.searchData+'%" ' 
