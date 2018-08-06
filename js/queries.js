@@ -513,8 +513,13 @@ var saveVendor = obj => {
     },
     updateUser = obj => {
         sql = 'update users '
-        sql+= 'set username="' + obj.username + '",email="' + obj.email + '",level="' + obj.level + '",active="' + obj.active + '" '
+        sql+= 'set username="' + obj.username + '",'
+        sql+= 'email="' + obj.email + '",'
+        sql+= 'image="' + obj.image + '",'
+        sql+= 'level="' + obj.level + '",'
+        sql+= 'active="' + obj.active + '" '
         sql+= 'where id=' + obj.id
+        console.log('update user',sql)
         return sql
     },
     getUserByEmail = email => {
