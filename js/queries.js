@@ -1,6 +1,6 @@
 var saveVendor = obj => {
         sql = 'insert into vendors ';
-        sql+= '(name,address,phone,bankaccount,createuser,namecard,offeringsample,invoicesample,receiptsample)';
+        sql+= '(name,address,phone,bankaccount,namecard,offeringsample,invoicesample,receiptsample,createuser)';
         sql+= 'values ';
         sql+= '(';
         sql+= '"'+obj.name+'",';
