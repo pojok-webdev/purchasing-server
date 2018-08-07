@@ -459,6 +459,12 @@ app.post('/getuser',(req,res)=>{
         res.send(result)
     })
 })
+app.post('/getuserimage',(req,res)=>{
+    con.getdata(query.getUserImage({id:req.body.id}),result=>{
+        console.log("Result",result)
+        res.send(result)
+    })
+})
 app.post('/saveuser',(req,res)=>{
     obj = common.saveUser(req.body)
     res.send(obj)

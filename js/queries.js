@@ -504,6 +504,12 @@ var saveVendor = obj => {
         sql+= 'where id = ' + obj.id + ' '
         return sql
     },
+    getUserImage = obj => {
+        sql = 'select image from users '
+        sql+= 'where id = ' + obj.id + ' '
+        console.log('SQL',sql)
+        return sql
+    }
     saveUser = obj => {
         sql = 'insert into users '
         sql+= '(username,email,salt,password,level,createuser) '
