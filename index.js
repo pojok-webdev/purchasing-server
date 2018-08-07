@@ -461,7 +461,7 @@ app.post('/getuser',(req,res)=>{
 })
 app.post('/getuserimage',(req,res)=>{
     con.getdata(query.getUserImage({id:req.body.id}),result=>{
-        console.log("Result",result)
+        console.log("GetUserImageResult",result)
         res.send(result)
     })
 })
