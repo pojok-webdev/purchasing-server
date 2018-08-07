@@ -459,10 +459,10 @@ app.post('/getuser',(req,res)=>{
         res.send(result)
     })
 })
-app.post('/getuserimage',(req,res)=>{
+app.get('/getuserimage',(req,res)=>{
     con.getdata(query.getUserImage({id:req.body.id}),result=>{
         console.log("GetUserImageResult",result)
-        res.header("Content-Type", "blob");
+       // res.header("Content-Type", "blob");
         res.send(result)
     })
 })
