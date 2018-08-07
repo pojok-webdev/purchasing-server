@@ -459,8 +459,8 @@ app.post('/getuser',(req,res)=>{
         res.send(result)
     })
 })
-app.get('/getuserimage',(req,res)=>{
-    con.getdata(query.getUserImage({id:req.body.id}),result=>{
+app.get('/getuserimage/:id',(req,res)=>{
+    con.getdata(query.getUserImage({id:req.params.id}),result=>{
         console.log("GetUserImageResult",result)
        // res.header("Content-Type", "blob");
         res.send(result)
