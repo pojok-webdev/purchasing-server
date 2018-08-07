@@ -462,9 +462,9 @@ app.post('/getuser',(req,res)=>{
 app.get('/getuserimage/:id',(req,res)=>{
     con.getdata(query.getUserImage({id:req.params.id}),result=>{
         console.log("GetUserImageResult",result)
-        res.header("Content-Type", "image/jpeg");
+//        res.header("Content-Type", "image/jpeg");
         //res.header("Content-Type", "application/octet-stream");
-        res.send(result[0].image)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        res.send(result[0].image)
     })
 })
 app.post('/saveuser',(req,res)=>{
