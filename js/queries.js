@@ -586,6 +586,7 @@ module.exports = {
     updateSubmission:updateSubmission,
     getUsers:getUsers,
     getUser:getUser,
+    getUserImage:getUserImage,
     saveUser:saveUser,
     updateUser:updateUser,
     getUserByEmail:getUserByEmail,
