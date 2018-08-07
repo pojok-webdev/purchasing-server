@@ -464,7 +464,7 @@ app.get('/getuserimage/:id',(req,res)=>{
         console.log("GetUserImageResult",result)
         res.header("Content-Type", "image/jpeg");
 //        res.header("Content-Type", "application/octet-stream");
-        res.send(result[0].image)
+        res.end(result[0].image,'binary')
     })
 })
 app.post('/saveuser',(req,res)=>{
