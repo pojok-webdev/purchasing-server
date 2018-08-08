@@ -467,6 +467,14 @@ app.get('/getuserimage/:id',(req,res)=>{
         res.end(result[0].image,'binary')
     })
 })
+app.get('/getvendorimage/:id/:type',(req,res)=>{
+    con.getdata(query.getVendorImage({id:req.params.id,type:req.params.type}),result=>{
+        console.log("GetVendorImageResult",result)
+        res.header("Content-Type", "jpeg");
+//        res.header("Content-Type", "application/octet-stream");
+        res.end(result[0].image,'binary')
+    })
+})
 app.post('/saveuser',(req,res)=>{
     obj = common.saveUser(req.body)
     res.send(obj)

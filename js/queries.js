@@ -510,6 +510,19 @@ var saveVendor = obj => {
         console.log('SQL',sql)
         return sql
     }
+    getVendorImage = obj => {
+        switch(obj.type){
+            case 'namecard':
+            imagetype = 'namecard'
+            break
+            default:
+            imagetype = 'namecard'
+        }
+        sql = 'select '+imagetype+' image from vendors '
+        sql+= 'where id='+obj.id+' '
+        console.log('VendorImage SQL',sql)
+        return sql
+    }
     saveUser = obj => {
         sql = 'insert into users '
         sql+= '(username,email,salt,password,level,createuser) '
@@ -580,6 +593,7 @@ module.exports = {
     getVendorCount : getVendorCount,
     searchVendor : searchVendor,
     searchVendorCount : searchVendorCount,
+    getVendorImage:getVendorImage,
     saveSubmission:saveSubmission,
     getSubmissions:getSubmissions,
     setSubmissionStatus:setSubmissionStatus,
