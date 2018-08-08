@@ -109,14 +109,13 @@ var saveVendor = obj => {
     saveProduct = obj => {
         console.log("OBJ",obj)
         sql = 'insert into products ';
-        sql+= '(name,category_id,partnumber,unit,discountlevel,createuser,price)';
+        sql+= '(name,category_id,partnumber,unit,createuser,price)';
         sql+= 'values ';
         sql+= '(';
         sql+= '"'+obj.name+'",';
         sql+= '"'+obj.category_id+'",';
         sql+= '"'+obj.partnumber+'",';
         sql+= '"'+obj.unit+'",';
-        sql+= '"'+obj.discountlevel+'",';
         sql+= '"'+obj.createuser+'",';
         sql+= '"'+obj.price+'")';
         sql+= 'on duplicate key update ';
@@ -125,7 +124,6 @@ var saveVendor = obj => {
         sql+= 'category_id="'+obj.category_id+'",';
         sql+= 'partnumber="'+obj.partnumber+'",'
         sql+= 'unit="'+obj.unit+'",';
-        sql+= 'discountlevel="1", '
         sql+= 'price="'+obj.price+'"';
         return sql;
     },
@@ -136,25 +134,24 @@ var saveVendor = obj => {
         sql+= 'partnumber="'+obj.partnumber+'",';
         sql+= 'category_id="'+obj.category_id+'",';
         sql+= 'unit="'+obj.unit+'",';
-        sql+= 'discountlevel="'+obj.discountlevel+'",';
         sql+= 'price="'+obj.price+'" ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
     },
     getProduct = obj => {
-        sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a ';
+        sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.price,a.lastupdate from products a ';
         sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where a.id="'+obj.id+'"';
         return sql;
     },
     getProducts = () => {
-        sql = 'select a.id,a.category_id,b.name category_name,a.name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a ';
+        sql = 'select a.id,a.category_id,b.name category_name,a.name,a.partnumber,a.unit,a.price,a.lastupdate from products a ';
         sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where a.status="1" '
         return sql;
     },
     getProductpage = obj => {
-        sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a ';
+        sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.price,a.lastupdate from products a ';
         sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where a.status="1" '
         sql+= 'limit '+obj.page+','+obj.pageSize
@@ -172,7 +169,7 @@ var saveVendor = obj => {
     },
     searchProduct = obj => {
         console.log("OBJ",obj)
-        sql = 'select a.id,a.name,b.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a '
+        sql = 'select a.id,a.name,b.name category_name,a.partnumber,a.unit,a.price,a.lastupdate from products a '
         sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where  '
         sql+= ' ('
