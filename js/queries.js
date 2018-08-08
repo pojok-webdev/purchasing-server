@@ -119,7 +119,6 @@ var saveVendor = obj => {
         sql+= '"'+obj.createuser+'",';
         sql+= 'on duplicate key update ';
         sql+= 'name="'+obj.name+'",';
-        sql+= 'vendor_id="'+obj.vendor_id+'",';
         sql+= 'category_id="'+obj.category_id+'",';
         sql+= 'partnumber="'+obj.partnumber+'",'
         sql+= 'unit="'+obj.unit+'"';
