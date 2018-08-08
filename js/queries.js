@@ -116,7 +116,7 @@ var saveVendor = obj => {
         sql+= '"'+obj.category_id+'",';
         sql+= '"'+obj.partnumber+'",';
         sql+= '"'+obj.unit+'",';
-        sql+= '"'+obj.createuser+'",';
+        sql+= '"'+obj.createuser+'" ';
         sql+= 'on duplicate key update ';
         sql+= 'name="'+obj.name+'",';
         sql+= 'category_id="'+obj.category_id+'",';
