@@ -109,7 +109,7 @@ var saveVendor = obj => {
     saveProduct = obj => {
         console.log("OBJ",obj)
         sql = 'insert into products ';
-        sql+= '(name,category_id,partnumber,unit,createuser,price)';
+        sql+= '(name,category_id,partnumber,unit,createuser)';
         sql+= 'values ';
         sql+= '(';
         sql+= '"'+obj.name+'",';
@@ -117,14 +117,12 @@ var saveVendor = obj => {
         sql+= '"'+obj.partnumber+'",';
         sql+= '"'+obj.unit+'",';
         sql+= '"'+obj.createuser+'",';
-        sql+= '"'+obj.price+'")';
         sql+= 'on duplicate key update ';
         sql+= 'name="'+obj.name+'",';
         sql+= 'vendor_id="'+obj.vendor_id+'",';
         sql+= 'category_id="'+obj.category_id+'",';
         sql+= 'partnumber="'+obj.partnumber+'",'
-        sql+= 'unit="'+obj.unit+'",';
-        sql+= 'price="'+obj.price+'"';
+        sql+= 'unit="'+obj.unit+'"';
         return sql;
     },
     updateProduct = obj => {
@@ -133,25 +131,24 @@ var saveVendor = obj => {
         sql+= 'set name="'+obj.name+'",';
         sql+= 'partnumber="'+obj.partnumber+'",';
         sql+= 'category_id="'+obj.category_id+'",';
-        sql+= 'unit="'+obj.unit+'",';
-        sql+= 'price="'+obj.price+'" ';
+        sql+= 'unit="'+obj.unit+'" ';
         sql+= 'where id="'+obj.id+'"';
         return sql;
     },
     getProduct = obj => {
-        sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.price,a.lastupdate from products a ';
+        sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.lastupdate from products a ';
         sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where a.id="'+obj.id+'"';
         return sql;
     },
     getProducts = () => {
-        sql = 'select a.id,a.category_id,b.name category_name,a.name,a.partnumber,a.unit,a.price,a.lastupdate from products a ';
+        sql = 'select a.id,a.category_id,b.name category_name,a.name,a.partnumber,a.unit,a.lastupdate from products a ';
         sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where a.status="1" '
         return sql;
     },
     getProductpage = obj => {
-        sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.price,a.lastupdate from products a ';
+        sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.lastupdate from products a ';
         sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where a.status="1" '
         sql+= 'limit '+obj.page+','+obj.pageSize
@@ -169,7 +166,7 @@ var saveVendor = obj => {
     },
     searchProduct = obj => {
         console.log("OBJ",obj)
-        sql = 'select a.id,a.name,b.name category_name,a.partnumber,a.unit,a.price,a.lastupdate from products a '
+        sql = 'select a.id,a.name,b.name category_name,a.partnumber,a.unit,a.lastupdate from products a '
         sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where  '
         sql+= ' ('
