@@ -109,11 +109,10 @@ var saveVendor = obj => {
     saveProduct = obj => {
         console.log("OBJ",obj)
         sql = 'insert into products ';
-        sql+= '(name,vendor_id,category_id,partnumber,unit,discountlevel,createuser,price)';
+        sql+= '(name,category_id,partnumber,unit,discountlevel,createuser,price)';
         sql+= 'values ';
         sql+= '(';
         sql+= '"'+obj.name+'",';
-        sql+= '"'+obj.vendor_id+'",';
         sql+= '"'+obj.category_id+'",';
         sql+= '"'+obj.partnumber+'",';
         sql+= '"'+obj.unit+'",';
@@ -135,7 +134,6 @@ var saveVendor = obj => {
         sql = 'update products ';
         sql+= 'set name="'+obj.name+'",';
         sql+= 'partnumber="'+obj.partnumber+'",';
-        sql+= 'vendor_id="'+obj.vendor_id+'",';
         sql+= 'category_id="'+obj.category_id+'",';
         sql+= 'unit="'+obj.unit+'",';
         sql+= 'discountlevel="'+obj.discountlevel+'",';
@@ -144,23 +142,20 @@ var saveVendor = obj => {
         return sql;
     },
     getProduct = obj => {
-        sql = 'select a.id,a.vendor_id,a.category_id,a.name,b.name vendor_name,c.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a ';
-        sql+= 'left outer join vendors b on b.id=a.vendor_id '
-        sql+= 'left outer join categories c on c.id=a.category_id '
+        sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a ';
+        sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where a.id="'+obj.id+'"';
         return sql;
     },
     getProducts = () => {
-        sql = 'select a.id,a.vendor_id,a.category_id,b.name vendor_name,c.name category_name,a.name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a ';
-        sql+= 'left outer join vendors b on b.id=a.vendor_id '
-        sql+= 'left outer join categories c on c.id=a.category_id '
+        sql = 'select a.id,a.category_id,b.name category_name,a.name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a ';
+        sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where a.status="1" '
         return sql;
     },
     getProductpage = obj => {
-        sql = 'select a.id,a.vendor_id,a.category_id,a.name,b.name vendor_name,c.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a ';
-        sql+= 'left outer join vendors b on b.id=a.vendor_id '
-        sql+= 'left outer join categories c on c.id=a.category_id '
+        sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a ';
+        sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where a.status="1" '
         sql+= 'limit '+obj.page+','+obj.pageSize
         return sql;
@@ -177,16 +172,14 @@ var saveVendor = obj => {
     },
     searchProduct = obj => {
         console.log("OBJ",obj)
-        sql = 'select a.id,a.name,b.name vendor_name,c.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a '
-        sql+= 'left outer join vendors b on b.id=a.vendor_id '
-        sql+= 'left outer join categories c on c.id=a.category_id '
+        sql = 'select a.id,a.name,b.name category_name,a.partnumber,a.unit,a.discountlevel,a.price,a.lastupdate from products a '
+        sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where  '
         sql+= ' ('
         sql+= 'a.name like "%'+obj.searchData+'%" ' 
         sql+= 'or a.partnumber like "%'+obj.searchData+'%" '
         sql+= 'or a.unit like "%'+obj.searchData+'%" '
         sql+= 'or b.name like "%'+obj.searchData+'%" '
-        sql+= 'or c.name like "%'+obj.searchData+'%" '
         sql+= ') '
         sql+= 'and a.status="1" '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
@@ -195,15 +188,13 @@ var saveVendor = obj => {
     },
     searchProductCount = obj => {
         sql = 'select count(a.id)cnt from products a '
-        sql+= 'left outer join vendors b on b.id=a.vendor_id '
-        sql+= 'left outer join categories c on c.id=a.category_id '
+        sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where  '
         sql+= ' ('
         sql+= 'a.name like "%'+obj.searchData+'%" ' 
         sql+= 'or a.partnumber like "%'+obj.searchData+'%" '
         sql+= 'or a.unit like "%'+obj.searchData+'%" '
         sql+= 'or b.name like "%'+obj.searchData+'%" '
-        sql+= 'or c.name like "%'+obj.searchData+'%" '
         sql+= ') '
         sql+= 'and a.status="1" '
         console.log('SQL',sql)
