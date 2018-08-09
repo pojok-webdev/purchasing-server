@@ -600,12 +600,14 @@ var saveVendor = obj => {
     getPurchaseHistory = obj => {
         sql = 'select * from purchasehistories '
         sql+= 'where submission_detail_id='+obj.submission_detail_id
+        console.log('getpurchasehistory',sql)
         return sql
     },
     getPurchaseHistoryBySubmission = obj => {
-        sql = 'select from submission_details a '
+        sql = 'select b.* from submission_details a '
         sql+= 'left outer join purchasehistories b on b.submission_detail_id=a.id '
         sql+= 'where a.submission_id = ' + obj.submission_id + ' '
+        console.log('getpurchasehistorybysubmission',sql)
         return sql
     }
 
