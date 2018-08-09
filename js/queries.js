@@ -141,7 +141,7 @@ var saveVendor = obj => {
     getProduct = obj => {
         sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.lastupdate from products a ';
         sql+= 'left outer join categories b on b.id=a.category_id '
-        sql+= 'where a.id="'+obj.id+'"';
+        sql+= 'where a.id="'+obj.id+'" ';
         sql+= 'order by a.name asc '
         return sql;
     },
@@ -240,8 +240,8 @@ var saveVendor = obj => {
     getCategorypage = obj => {
         sql = 'select id,name,description,status,createuser,createdate from categories ';
         sql+= 'where status="1" '
-        sql+= 'limit '+obj.page+','+obj.pageSize
         sql+= 'order by name asc '
+        sql+= 'limit '+obj.page+','+obj.pageSize
         return sql;
     },
     getCategoryCount = () => {
