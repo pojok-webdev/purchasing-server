@@ -491,25 +491,25 @@ app.post('/login',(req,res)=>{
     obj = common.login(req.body.email,req.body.password)
     res.send(obj)
 })
-app.post('getvendorbyproduct',(req,res) => {
+app.post('/getvendorbyproduct',(req,res) => {
     con.getdata(query.getvendorbyproduct(req.body), result => {
         console.log('getvendorbyproduct',result)
         res.send(result)
     })
 }),
-app.post('getproductbyvendor',(req,res) => {
+app.post('/getproductbyvendor',(req,res) => {
     con.getdata(query.getproductbyvendor(req.body), result => {
         console.log('getproductbyvendor',result)
         res.send(result)
     })
 }),
-app.post('disassociate_product_vendor',(req,res) => {
+app.post('/disassociate_product_vendor',(req,res) => {
     con.getdata(query.disassociate_product_vendor(req.body), result => {
         console.log('disassociate_product_vendor',result)
         res.send(result)
     })
 }),
-app.post('associate_product_vendor',(req,res) => {
+app.post('/associate_product_vendor',(req,res) => {
     con.getdata(query.associate_product_vendor(req.body), result => {
         console.log('associate_product_vendor',result)
         res.send(result)
