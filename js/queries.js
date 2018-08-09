@@ -588,12 +588,12 @@ var saveVendor = obj => {
         sql+= '(submission_detail_id,product_name,vendor_name,submission_date,implementation_target,createuser) '
         sql+= 'values '
         sql+= '('
-        sql+= obj.submission_detail_id+','
-        sql+= obj.product_name+','
-        sql+= obj.vendor_name+','
-        sql+= obj.submission_date+','
-        sql+= obj.implementation_target+','
-        sql+= obj.createuser+')'
+        sql+= obj.submission_detail_id+',"'
+        sql+= obj.product_name+'","'
+        sql+= obj.vendor_name+'","'
+        sql+= obj.submission_date+'","'
+        sql+= obj.implementation_target+'","'
+        sql+= obj.createuser+'")'
         console.log('savepurchasehistory',sql)
         return sql
     }
