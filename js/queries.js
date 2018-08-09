@@ -594,6 +594,7 @@ var saveVendor = obj => {
         sql+= obj.submission_date+','
         sql+= obj.implementation_target+','
         sql+= obj.createuser+')'
+        console.log('savepurchasehistory',sql)
         return sql
     }
 
