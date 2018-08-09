@@ -471,7 +471,6 @@ app.get('/getvendorimage/:id/:type',(req,res)=>{
     con.getdata(query.getVendorImage({id:req.params.id,type:req.params.type}),result=>{
         console.log("GetVendorImageResult",result)
         res.header("Content-Type", "jpeg");
-//        res.header("Content-Type", "application/octet-stream");
         res.end(result[0].image,'binary')
     })
 })
@@ -492,4 +491,29 @@ app.post('/login',(req,res)=>{
     obj = common.login(req.body.email,req.body.password)
     res.send(obj)
 })
+app.post('getvendorbyproduct',(req,res) => {
+    con.getdata(query.getvendorbyproduct, result => {
+        console.log('getvendorbyproduct',result)
+        res.send(result)
+    })
+}),
+app.post('getproductbyvendor',(req,res) => {
+    con.getdata(query.getproductbyvendor, result => {
+        console.log('getproductbyvendor',result)
+        res.send(result)
+    })
+}),
+app.post('disassociate_product_vendor',(req,res) => {
+    con.getdata(query.disassociate_product_vendor, result => {
+        console.log('disassociate_product_vendor',result)
+        res.send(result)
+    })
+}),
+app.post('associate_product_vendor',(req,res) => {
+    con.getdata(query.associate_product_vendor, result => {
+        console.log('associate_product_vendor',result)
+        res.send(result)
+    })
+}),
+
 app.listen(process.env.PORT || 2018);

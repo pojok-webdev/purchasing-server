@@ -556,9 +556,39 @@ var saveVendor = obj => {
         sql+= 'values '
         sql+= '("'+obj.username+'","'+obj.email+'","'+obj.password+'","'+obj.salt+'")'
         return sql
+    },
+    associate_product_vendor = obj => {
+        sql = 'insert into products_vendors '
+        sql+= '(product_id,vendor_id,createuser) '
+        sql+= 'values '
+        sql+= '('+obj.product_id+','+obj.vendor_id+',"'+obj.createuser+'")'
+        return sql
+    },
+    disassociate_product_vendor = obj => {
+        sql = 'delete from products_vendors '
+        sql+= 'where product_id=' + obj.product_id+' '
+        sql+= 'and vendor_id = ' + obj.vendor_id + ' '
+        return sql
+    },
+    getproductbyvendor = obj => {
+        sql = 'select b.name,b.partnumber,b.unit,c.name category from products_vendors a '
+        sql+= 'left outer join products b on b.id=a.product_id '
+        sql+= 'left outer join categories c on c.id=b.category_id '
+        sql+= 'where a.vendor_id = '+ obj.vendor_id+' '
+        return sql
+    },
+    getvendorbyproduct = obj => {
+        sql = 'select b.name,b.address,b.phone,b.bankaccount,b.namecard from products_vendors a '
+        sql+= 'left outer join vendors b on b.id=a.vendor_id '
+        sql+= 'where a.product_id = '+obj.product_id
+        return sql
     }
     
 module.exports = {
+    getvendorbyproduct:getvendorbyproduct,
+    getproductbyvendor:getproductbyvendor,
+    disassociate_product_vendor:disassociate_product_vendor,
+    associate_product_vendor:associate_product_vendor,
     saveVendor: saveVendor,
     getVendor: getVendor,
     getVendors:getVendors,
