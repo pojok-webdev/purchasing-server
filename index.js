@@ -462,7 +462,7 @@ app.post('/getuser',(req,res)=>{
 app.get('/getuserimage/:id',(req,res)=>{
     con.getdata(query.getUserImage({id:req.params.id}),result=>{
         console.log("GetUserImageResult",result)
-        res.header("Content-Type", "jpeg");
+        //res.header("Content-Type", "jpeg");
 //        res.header("Content-Type", "application/octet-stream");
         res.end(result[0].image,'binary')
     })
