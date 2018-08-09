@@ -515,5 +515,10 @@ app.post('/associate_product_vendor',(req,res) => {
         res.send(result)
     })
 }),
-
+app.post('/savehistory',(req,res) => {
+    con.getdata(query.saveHistory(req.body),result => {
+        console.log('save history',result)
+        res.send(result)
+    })
+})
 app.listen(process.env.PORT || 2018);

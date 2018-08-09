@@ -582,9 +582,23 @@ var saveVendor = obj => {
         sql+= 'left outer join vendors b on b.id=a.vendor_id '
         sql+= 'where a.product_id = '+obj.product_id
         return sql
+    },
+    saveHistory = obj => {
+        sql = 'insert into histories '
+        sql+= '(id_submission_detail,product_name,vendor_name,submission_date,implementation_target,createuser) '
+        sql+= 'values '
+        sql+= '('
+        sql+= obj.id_submission_detail+','
+        sql+= obj.product_name+','
+        sql+= obj.vendor_name+','
+        sql+= obj.submission_date+','
+        sql+= obj.implementation_target+','
+        sql+= obj.createuser+')'
+        return sql
     }
-    
-module.exports = {
+
+    module.exports = {
+        saveHistory:saveHistory,
     getvendorbyproduct:getvendorbyproduct,
     getproductbyvendor:getproductbyvendor,
     disassociate_product_vendor:disassociate_product_vendor,
