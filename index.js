@@ -515,9 +515,9 @@ app.post('/associate_product_vendor',(req,res) => {
         res.send(result)
     })
 }),
-app.post('/savehistory',(req,res) => {
-    con.getdata(query.saveHistory(req.body),result => {
-        console.log('save history',result)
+app.post('/savepurchasehistory',(req,res) => {
+    con.getdata(query.savePurchaseHistory(req.body),result => {
+        console.log('save purchase history',result)
         res.send(result)
     })
 })

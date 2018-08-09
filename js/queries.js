@@ -583,8 +583,8 @@ var saveVendor = obj => {
         sql+= 'where a.product_id = '+obj.product_id
         return sql
     },
-    saveHistory = obj => {
-        sql = 'insert into histories '
+    savePurchaseHistory = obj => {
+        sql = 'insert into purchasehistories '
         sql+= '(id_submission_detail,product_name,vendor_name,submission_date,implementation_target,createuser) '
         sql+= 'values '
         sql+= '('
@@ -598,7 +598,7 @@ var saveVendor = obj => {
     }
 
     module.exports = {
-        saveHistory:saveHistory,
+        savePurchaseHistory:savePurchaseHistory,
     getvendorbyproduct:getvendorbyproduct,
     getproductbyvendor:getproductbyvendor,
     disassociate_product_vendor:disassociate_product_vendor,
