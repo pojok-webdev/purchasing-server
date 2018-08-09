@@ -5,7 +5,8 @@ login = (obj,password) => {
     console.log("SALT",salt)
     saltedpassword = sha1(salt+password)
     __temp = saltedpassword.substring(0,30)
-    _password = salt+__temp
+//    _password = salt+__temp
+    _password = salt+saltedpassword
     console.log("PASSWORD",_password)
     console.log("OBJ.PASSWORD",obj.password)
     if(_password===obj.password){
@@ -21,7 +22,8 @@ changePassword = (obj,password) => {
     salt = obj.salt
     saltedpassword = sha1(salt+password)
     __temp = saltedpassword.substring(0,30)
-    return salt+__temp
+    return salt+saltedpassword
+//    return salt+__temp
 }
 createSalt = (length,chars) => {
     var result = '';
