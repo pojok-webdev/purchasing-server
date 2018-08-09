@@ -57,17 +57,20 @@ var saveVendor = obj => {
     },
     getVendor = obj => {
         sql = 'select id,name,address,phone,bankaccount,namecard,offeringsample,invoicesample,receiptsample from vendors ';
-        sql+= 'where id="'+obj.id+'"';
+        sql+= 'where id="'+obj.id+'" '
+        sql+= 'order by name asc '
         return sql;
     },
     getVendors = () => {
         sql = 'select id,name,address,phone,bankaccount,namecard,offeringsample,invoicesample,receiptsample from vendors ';
         sql+= 'where status="1" '
+        sql+= 'order by name asc '
         return sql;
     },
     getVendorpage = obj => {
         sql = 'select id,name,address,phone,bankaccount,namecard,offeringsample,invoicesample,receiptsample from vendors ';
         sql+= 'where status="1" '
+        sql+= 'order by name asc '
         sql+= 'limit '+obj.page+','+obj.pageSize+' '
         return sql;
     },
@@ -90,6 +93,7 @@ var saveVendor = obj => {
         sql+= 'or phone like "%'+obj.searchData+'%" '
         sql+= 'or bankaccount like "%'+obj.searchData+'%" '
         sql+= ') '
+        sql+= 'order by name asc '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         console.log('SQL',sql)
         return sql
@@ -138,18 +142,21 @@ var saveVendor = obj => {
         sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.lastupdate from products a ';
         sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where a.id="'+obj.id+'"';
+        sql+= 'order by a.name asc '
         return sql;
     },
     getProducts = () => {
         sql = 'select a.id,a.category_id,b.name category_name,a.name,a.partnumber,a.unit,a.lastupdate from products a ';
         sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where a.status="1" '
+        sql+= 'order by a.name asc '
         return sql;
     },
     getProductpage = obj => {
         sql = 'select a.id,a.category_id,a.name,b.name category_name,a.partnumber,a.unit,a.lastupdate from products a ';
         sql+= 'left outer join categories b on b.id=a.category_id '
         sql+= 'where a.status="1" '
+        sql+= 'order by a.name asc '
         sql+= 'limit '+obj.page+','+obj.pageSize
         return sql;
     },
@@ -175,6 +182,7 @@ var saveVendor = obj => {
         sql+= 'or b.name like "%'+obj.searchData+'%" '
         sql+= ') '
         sql+= 'and a.status="1" '
+        sql+= 'order by a.name asc '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         console.log('SQL',sql)
         return sql
@@ -220,17 +228,20 @@ var saveVendor = obj => {
         sql = 'select id,name,description,status,createuser,createdate from categories ';
         sql+= 'where id="'+obj.id+'" ';
         sql+= 'and status="1" '
+        sql+= 'order by name asc '
         return sql;
     },
     getCategories = () => {
         sql = 'select id,name,description,status,createuser,createdate from categories ';
         sql+= 'where status="1" '
+        sql+= 'order by name asc '
         return sql;
     },
     getCategorypage = obj => {
         sql = 'select id,name,description,status,createuser,createdate from categories ';
         sql+= 'where status="1" '
         sql+= 'limit '+obj.page+','+obj.pageSize
+        sql+= 'order by name asc '
         return sql;
     },
     getCategoryCount = () => {
@@ -244,6 +255,7 @@ var saveVendor = obj => {
         sql+= 'status="1" '
         sql+= 'and '
         sql+= 'name like "%'+obj.searchData+'%" '
+        sql+= 'order by name asc '
         console.log("Search Query",sql)
         return sql
     },
@@ -271,7 +283,8 @@ var saveVendor = obj => {
         return sql;
     },
     getSubmissions = () => {
-        sql = 'select * from submissions ';
+        sql = 'select * from submissions '
+        sql+= 'order by createdate desc '
         return sql;
     },
     getSubmissionById = obj => {
@@ -279,6 +292,8 @@ var saveVendor = obj => {
         sql+= 'id,subject,submission_date,staff_name,implementation_target,purchase_target,createuser '
         sql+= 'from submissions '
         sql+= 'where id="'+ obj.id +'" '
+        sql+= 'order by createdate desc '
+
         return sql
     },
     getSubmissionpage = obj => {
@@ -286,6 +301,7 @@ var saveVendor = obj => {
         sql+= 'id,subject,submission_date,staff_name,implementation_target,purchase_target,createuser '
         sql+= 'from submissions '
         sql+= 'where status="'+obj.status+'" '
+        sql+= 'order by createdate desc '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         return sql
     },
@@ -317,6 +333,7 @@ var saveVendor = obj => {
         sql+= 'or b.placement_location like "%'+obj.searchData+'%" '
         sql+= 'or b.vendor_comparation like "%'+obj.searchData+'%" '
         sql+= ')'
+        sql+= 'order by a.createdate desc '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         console.log('SQL',sql)
         return sql
@@ -339,6 +356,8 @@ var saveVendor = obj => {
         sql+= 'or b.placement_location like "%'+obj.searchData+'%" '
         sql+= 'or b.vendor_comparation like "%'+obj.searchData+'%" '
         sql+= ')'
+        sql+= 'order by a.createdate desc '
+
         console.log('searchsubmissioncount',sql)
         return sql
     },
@@ -363,11 +382,13 @@ var saveVendor = obj => {
     getSubmissionDetails = obj => {
         sql = 'select * from submission_details '
         sql+= 'where submission_id='+obj.submission_id+' '
+        sql+= 'order by createdate desc '
         return sql
     },
     getSubmissionDetail = obj => {
         sql = 'select * from submission_details '
         sql+= 'where id = ' + obj.id
+        sql+= 'order by createdate desc '
         return sql
     },
     saveSubmissionDetail = obj => {
@@ -407,6 +428,7 @@ var saveVendor = obj => {
         sql+= 'from submission_details '
         sql+= 'where submission_id='+obj.submission_id+' '
         sql+= 'and status!="0" '
+        sql+= 'order by createdate desc '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         return sql
     },
@@ -417,6 +439,7 @@ var saveVendor = obj => {
         sql+= 'placement_location,vendor_comparation,createuser '
         sql+= 'from submission_details '
         sql+= 'where status!="0" '
+        sql+= 'order by createdate desc '
         return sql
     }
     getAllSubmissiondetailpage = obj => {
@@ -426,6 +449,7 @@ var saveVendor = obj => {
         sql+= 'placement_location,vendor_comparation,createuser '
         sql+= 'from submission_details '
         sql+= 'where status="'+obj.status+'" '
+        sql+= 'order by createdate desc '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         return sql
     },
@@ -455,6 +479,7 @@ var saveVendor = obj => {
         sql+= 'or partnumber like "%'+obj.searchData+'%" '
         sql+= 'or description like "%'+obj.searchData+'%" '
         sql+= ')'
+        sql+= 'order by createdate desc '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
         console.log('searchsubmissiondetail',sql)
         return sql
@@ -481,6 +506,7 @@ var saveVendor = obj => {
     }
     getUsers = () => {
         sql = 'select * from users '
+        sql+= 'order by username asc '
         return sql
     },
     getUser = obj => {
@@ -575,12 +601,14 @@ var saveVendor = obj => {
         sql+= 'left outer join products b on b.id=a.product_id '
         sql+= 'left outer join categories c on c.id=b.category_id '
         sql+= 'where a.vendor_id = '+ obj.vendor_id+' '
+        sql+= 'order by b.name asc '
         return sql
     },
     getvendorbyproduct = obj => {
         sql = 'select b.name,b.address,b.phone,b.bankaccount,b.namecard from products_vendors a '
         sql+= 'left outer join vendors b on b.id=a.vendor_id '
         sql+= 'where a.product_id = '+obj.product_id
+        sql+= 'order by b.name asc '
         return sql
     },
     savePurchaseHistory = obj => {
@@ -599,7 +627,9 @@ var saveVendor = obj => {
     },
     getPurchaseHistory = obj => {
         sql = 'select * from purchasehistories '
-        sql+= 'where submission_detail_id='+obj.submission_detail_id
+        sql+= 'where submission_detail_id='+obj.submission_detail_id+' '
+        sql+= 'order by createdate desc '
+
         console.log('getpurchasehistory',sql)
         return sql
     },
@@ -607,6 +637,7 @@ var saveVendor = obj => {
         sql = 'select b.* from submission_details a '
         sql+= 'left outer join purchasehistories b on b.submission_detail_id=a.id '
         sql+= 'where a.submission_id = ' + obj.submission_id + ' '
+        sql+= 'order by b.createdate desc '
         console.log('getpurchasehistorybysubmission',sql)
         return sql
     }
