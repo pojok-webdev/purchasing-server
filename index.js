@@ -520,5 +520,19 @@ app.post('/savepurchasehistory',(req,res) => {
         console.log('save purchase history',result)
         res.send(result)
     })
-})
+}),
+
+app.post('/getpurchasehistory',(req,res) => {
+    con.getdata(query.getPurchaseHistory(req.body),result => {
+        console.log('save getPurchaseHistory',result)
+        res.send(result)
+    })
+}),
+app.post('/getpurchasehistorybysubmission',(req,res) => {
+    con.getdata(query.getPurchaseHistoryBySubmission(req.body),result => {
+        console.log('save getPurchaseHistoryBySubmission',result)
+        res.send(result)
+    })
+}),
+
 app.listen(process.env.PORT || 2018);

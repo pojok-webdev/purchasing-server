@@ -596,9 +596,22 @@ var saveVendor = obj => {
         sql+= obj.createuser+'")'
         console.log('savepurchasehistory',sql)
         return sql
+    },
+    getPurchaseHistory = obj => {
+        sql = 'select * from purchasehistories '
+        sql+= 'where submission_detail_id='+obj.submission_detail_id
+        return sql
+    },
+    getPurchaseHistoryBySubmission = obj => {
+        sql = 'select from submission_details a '
+        sql+= 'left outer join purchasehistories b on b.submission_detail_id=a.id '
+        sql+= 'where a.submission_id = ' + obj.submission_id + ' '
+        return sql
     }
 
     module.exports = {
+        getPurchaseHistory:getPurchaseHistory,
+        getPurchaseHistoryBySubmission:getPurchaseHistoryBySubmission,
         savePurchaseHistory:savePurchaseHistory,
     getvendorbyproduct:getvendorbyproduct,
     getproductbyvendor:getproductbyvendor,
