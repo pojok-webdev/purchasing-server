@@ -714,6 +714,7 @@ var saveVendor = obj => {
 
     module.exports = {
         getPayment:getPayment,
+        getPayments:getPayments,
         updatePayment:updatePayment,
         savePayment:savePayment,
         getPurchaseHistory:getPurchaseHistory,

@@ -534,6 +534,12 @@ app.post('/getpurchasehistorybysubmission',(req,res) => {
         res.send(result)
     })
 }),
+app.post('/getpayments',(req,res) => {
+    con.getdata(query.getPayments(req.body),result => {
+        console.log('save getpayments',result)
+        res.send(result)
+    })
+}),
 app.post('/getpayment',(req,res) => {
     con.getdata(query.getPayment(req.body),result => {
         console.log('save getpayment',result)
