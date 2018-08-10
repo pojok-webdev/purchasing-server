@@ -408,6 +408,8 @@ var saveVendor = obj => {
         sql+= 'purchase_reason,'
         sql+= 'placement_location,'
         sql+= 'vendor_comparation,'
+        sql+= 'guarantee,'
+        sql+= 'note,'
         sql+= 'createuser'
         sql+= ') '
         sql+= 'values '
@@ -427,6 +429,8 @@ var saveVendor = obj => {
         sql+= obj.purchase_reason+'","'
         sql+= obj.placement_location+'","'
         sql+= obj.vendor_comparation+'","'
+        sql+= obj.guarantee+'","'
+        sql+= obj.note+'","'
         sql+= obj.createuser
         sql+= '") '
         console.log('SQL',sql)
@@ -448,6 +452,8 @@ var saveVendor = obj => {
         sql+= 'information="'+obj.information+'",'
         sql+= 'purchase_reason="'+obj.purchase_reason+'",'
         sql+= 'placement_location="'+obj.placement_location+'",'
+        sql+= 'guarantee="'+obj.guarantee+'",'
+        sql+= 'note="'+obj.note+'"'
         sql+= 'vendor_comparation="'+obj.vendor_comparation+'" '
         sql+= 'where id='+obj.id+' '
         console.log('SQL',sql);
@@ -457,7 +463,7 @@ var saveVendor = obj => {
         sql = 'select '
         sql+= 'id,submission_id,itemname,brand,partnumber,description,proposed_vendor,'
         sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
-        sql+= 'placement_location,vendor_comparation,createuser '
+        sql+= 'placement_location,vendor_comparation,guarantee,note,createuser '
         sql+= 'from submission_details '
         sql+= 'where submission_id='+obj.submission_id+' '
         sql+= 'and status!="0" '
@@ -469,7 +475,7 @@ var saveVendor = obj => {
         sql = 'select '
         sql+= 'id,submission_id,itemname,brand,partnumber,description,proposed_vendor,'
         sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
-        sql+= 'placement_location,vendor_comparation,createuser '
+        sql+= 'placement_location,vendor_comparation,guarantee,note,createuser '
         sql+= 'from submission_details '
         sql+= 'where status!="0" '
         sql+= 'order by createdate desc '
@@ -479,7 +485,7 @@ var saveVendor = obj => {
         sql = 'select '
         sql+= 'id,submission_id,itemname,brand,partnumber,description,proposed_vendor,'
         sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
-        sql+= 'placement_location,vendor_comparation,createuser '
+        sql+= 'placement_location,vendor_comparation,guarantee,note,createuser '
         sql+= 'from submission_details '
         sql+= 'where status="'+obj.status+'" '
         sql+= 'order by createdate desc '
@@ -503,7 +509,7 @@ var saveVendor = obj => {
         sql = 'select '
         sql+= 'id,submission_id,itemname,brand,partnumber,description,proposed_vendor,'
         sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
-        sql+= 'placement_location,vendor_comparation,createuser '
+        sql+= 'placement_location,vendor_comparation,guarantee,note,createuser '
         sql+= 'from submission_details '
         sql+= 'where status='+obj.status+' '
         sql+= 'and ('
@@ -673,9 +679,11 @@ var saveVendor = obj => {
         sql+= 'order by b.createdate desc '
         console.log('getpurchasehistorybysubmission',sql)
         return sql
-    }
+    },
+    savePayment = obj => {}
 
     module.exports = {
+        savePayment:savePayment,
         getPurchaseHistory:getPurchaseHistory,
         getPurchaseHistoryBySubmission:getPurchaseHistoryBySubmission,
         savePurchaseHistory:savePurchaseHistory,
