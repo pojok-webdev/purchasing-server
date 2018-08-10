@@ -680,9 +680,36 @@ var saveVendor = obj => {
         console.log('getpurchasehistorybysubmission',sql)
         return sql
     },
-    savePayment = obj => {}
+    savePayment = obj => {
+        sql = 'insert into payment '
+        sql+= '(payment_type,amount,payment_date,createuser) '
+        sql+= 'values '
+        sql+= '("'+obj.payment_type+'","'+obj.amount+'","'+obj.payment_date+'","'+obj.createuser+'")'
+        return sql
+    },
+    updatePayment = obj => {
+        sql = 'update payment '
+        sql+= 'set '
+        sql+= 'payment_type="'+obj.payment_type+'", '
+        sql+= 'payment_type="'+obj.amount+'", '
+        sql+= 'payment_type="'+obj.payment_date+'", '
+        sql+= 'payment_type="'+obj.createuser+'" '
+        sql+= 'where id='+obj.id+' '
+        return sql
+    },
+    getPayments = obj => {
+        sql = 'select * from payment '
+        return sql
+    },
+    getPayment = obj => {
+        sql = 'select * from payment '
+        sql+= 'where id='+obj.id+' '
+        return sql
+    }
 
     module.exports = {
+        getPayment:getPayment,
+        updatePayment:updatePayment,
         savePayment:savePayment,
         getPurchaseHistory:getPurchaseHistory,
         getPurchaseHistoryBySubmission:getPurchaseHistoryBySubmission,
