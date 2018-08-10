@@ -693,9 +693,9 @@ var saveVendor = obj => {
         sql+= 'set '
         sql+= 'id_submission_detail="'+obj.id_submission_detail+'", '
         sql+= 'payment_type="'+obj.payment_type+'", '
-        sql+= 'payment_type="'+obj.amount+'", '
-        sql+= 'payment_type="'+obj.payment_date+'", '
-        sql+= 'payment_type="'+obj.createuser+'" '
+        sql+= 'amount="'+obj.amount+'", '
+        sql+= 'payment_date="'+obj.payment_date+'", '
+        sql+= 'createuser="'+obj.createuser+'" '
         sql+= 'where id='+obj.id+' '
         console.log('updatepayment',sql)
         return sql
