@@ -122,16 +122,7 @@ app.get('/help/:method',(req,res) => {
     });
 })
 app.post('/saveproduct',(req,res) => {
-    con.getdata(query.saveProduct({
-        name:req.body.name,
-        vendor_id:req.body.vendor_id,
-        category_id:req.body.category_id,
-        partnumber:req.body.partnumber,
-        unit:req.body.unit,
-        price:req.body.price,
-	    createuser:req.body.createuser,
-        discountlevel:req.body.discountlevel
-    }),(result) => {
+    con.getdata(query.saveProduct(req.body),(result) => {
         console.log("Save Product",result);
         res.send(result);
     });
