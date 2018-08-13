@@ -640,7 +640,7 @@ var saveVendor = obj => {
     getvendorbyproduct = obj => {
         sql = 'select b.id,b.name,b.address,b.phone,b.bankaccount,b.namecard from products_vendors a '
         sql+= 'left outer join vendors b on b.id=a.vendor_id '
-        sql+= 'where a.product_id = '+obj.product_id
+        sql+= 'where a.product_id = '+obj.product_id + ' '
         sql+= 'order by b.name asc '
         console.log('getvendorbyproduct',sql)
         return sql
