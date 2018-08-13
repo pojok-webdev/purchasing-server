@@ -674,17 +674,17 @@ var saveVendor = obj => {
         return sql
     },
     savePayment = obj => {
-        sql = 'insert into payment '
-        sql+= '(id_submission_detail,payment_type,amount,payment_date,createuser) '
+        sql = 'insert into payments '
+        sql+= '(submission_detail_id,payment_type,amount,payment_date,createuser) '
         sql+= 'values '
-        sql+= '("'+obj.id_submission_detail+'","'+obj.payment_type+'","'+obj.amount+'","'+obj.payment_date+'","'+obj.createuser+'")'
+        sql+= '("'+obj.submission_detail_id+'","'+obj.payment_type+'","'+obj.amount+'","'+obj.payment_date+'","'+obj.createuser+'")'
         console.log('savepayment',sql)
         return sql
     },
     updatePayment = obj => {
-        sql = 'update payment '
+        sql = 'update payments '
         sql+= 'set '
-        sql+= 'id_submission_detail="'+obj.id_submission_detail+'", '
+        sql+= 'submission_detail_id="'+obj.submission_detail_id+'", '
         sql+= 'payment_type="'+obj.payment_type+'", '
         sql+= 'amount="'+obj.amount+'", '
         sql+= 'payment_date="'+obj.payment_date+'", '
@@ -694,12 +694,12 @@ var saveVendor = obj => {
         return sql
     },
     getPayments = obj => {
-        sql = 'select * from payment '
+        sql = 'select * from payments '
         console.log('getpayments',sql)
         return sql
     },
     getPayment = obj => {
-        sql = 'select * from payment '
+        sql = 'select * from payments '
         sql+= 'where id='+obj.id+' '
         console.log('getpayment',sql)
         return sql
