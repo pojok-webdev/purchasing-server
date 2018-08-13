@@ -677,7 +677,13 @@ var saveVendor = obj => {
         sql = 'insert into payments '
         sql+= '(submission_detail_id,payment_type,amount,payment_date,createuser) '
         sql+= 'values '
-        sql+= '("'+obj.submission_detail_id+'","'+obj.payment_type+'","'+obj.amount+'","'+obj.payment_date+'","'+obj.createuser+'")'
+        sql+= '("'
+        sql+= obj.submission_detail_id+'","'
+        sql+= obj.payment_type+'","'
+        sql+= obj.amount+'","'
+        sql+= obj.payment_date+'","'
+        sql+= obj.createuser
+        sql+= '")'
         console.log('savepayment',sql)
         return sql
     },
@@ -711,8 +717,16 @@ var saveVendor = obj => {
         sql+= 'where a.id = ' + obj.id + ' '
         console.log('getpaymentbysubmissionid:',sql)
         return sql
+    },
+    getPaymentsBySubmissionDetailId = obj => {
+        sql = 'select c.* from submission_details a '
+        sql+= 'left outer join payments b on b.submission_detail_id = a.id '
+        sql+= 'where a.id = ' + obj.id + ' '
+        console.log('getpaymentbysubmissiondetailid:',sql)
+        return sql
     }
     module.exports = {
+        getPaymentsBySubmissionDetailId:getPaymentsBySubmissionDetailId,
         getPaymentsBySubmissionId:getPaymentsBySubmissionId,
         getPayment:getPayment,
         getPayments:getPayments,

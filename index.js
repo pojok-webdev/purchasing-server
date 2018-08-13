@@ -543,6 +543,13 @@ app.post('/getpaymentsbysubmissionid', (req,res) => {
         res.send(result)
     })
 })
+app.post('/getpaymentsbysubmissiondetailid', (req,res) => {
+    con.getdata(query.getPaymentsBySubmissionDetailId(req.body), result => {
+        console.log('getPaymentsBySubmissionDetailId',result)
+        res.send(result)
+    })
+})
+
 app.post('/updatepayment',(req,res) => {
     con.getdata(query.updatePayment(req.body),result => {
         console.log('save updatepayment',result)
