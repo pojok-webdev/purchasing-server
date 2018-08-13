@@ -711,7 +711,7 @@ var saveVendor = obj => {
     },
     getPaymentBySubmissionId = obj => {
         sql = 'select c.* from submissions a '
-        sql+= 'left outer join submission_detail b on b.submission_id=a.id '
+        sql+= 'left outer join submission_details b on b.submission_id=a.id '
         sql+= 'left outer join payments c on c.submission_detail_id = b.id '
         sql+= 'where a.id = ' + obj.id + ' '
         console.log('getpaymentbysubmissionid:',sql)
