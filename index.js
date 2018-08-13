@@ -546,6 +546,12 @@ app.post('/getpayment',(req,res) => {
         res.send(result)
     })
 }),
+app.post('/getpaymentbysubmissionid', (req,res) => {
+    con.getdata(query.getPaymentBySubmissionId(req.body), result => {
+        console.log('getpaymentbysubmissionbyid',result)
+        res.send(result)
+    })
+})
 app.post('/updatepayment',(req,res) => {
     con.getdata(query.updatePayment(req.body),result => {
         console.log('save updatepayment',result)
