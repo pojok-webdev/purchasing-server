@@ -709,7 +709,7 @@ var saveVendor = obj => {
         console.log('getpayment',sql)
         return sql
     },
-    getPaymentBySubmissionId = obj => {
+    getPaymentsBySubmissionId = obj => {
         sql = 'select c.* from submissions a '
         sql+= 'left outer join submission_details b on b.submission_id=a.id '
         sql+= 'left outer join payments c on c.submission_detail_id = b.id '
@@ -718,7 +718,7 @@ var saveVendor = obj => {
         return sql
     }
     module.exports = {
-        getPaymentBySubmissionId:getPaymentBySubmissionId,
+        getPaymentsBySubmissionId:getPaymentsBySubmissionId,
         getPayment:getPayment,
         getPayments:getPayments,
         updatePayment:updatePayment,

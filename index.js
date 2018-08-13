@@ -546,8 +546,8 @@ app.post('/getpayment',(req,res) => {
         res.send(result)
     })
 }),
-app.post('/getpaymentbysubmissionid', (req,res) => {
-    con.getdata(query.getPaymentBySubmissionId(req.body), result => {
+app.post('/getpaymentsbysubmissionid', (req,res) => {
+    con.getdata(query.getPaymentsBySubmissionId(req.body), result => {
         console.log('getpaymentbysubmissionbyid',result)
         res.send(result)
     })
