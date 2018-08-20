@@ -562,7 +562,7 @@ app.post('/savepayment',(req,res) => {
         res.send(result)
     })
 }),
-app.get('/submission_detail_from_purchase_history',(req,res) => {
+app.get('/submissiondetailfrompurchasehistory',(req,res) => {
     con.getdata(query.submission_detail_from_purchase_history(),result => {
         console.log('submission_detail_from_purchase_history',result)
         res.send(result)
