@@ -733,8 +733,19 @@ var saveVendor = obj => {
         sql+= 'where a.id = ' + obj.id + ' '
         console.log('getpaymentbysubmissiondetailid:',sql)
         return sql
+    },
+    submission_detail_from_purchase_history = obj => {
+        sql = 'SELECT purchasehistories.id, purchasehistories.submission_detail_id, purchasehistories.product_name, '
+        sql+= 'purchasehistories.vendor_name, submission_details.purchase_date, submission_details.amount, '
+        sql+= 'submission_details.price, submission_details.totalprice '
+        sql+= 'FROM `purchasehistories`, `submission_details` '
+        sql+= 'WHERE purchasehistories.submission_detail_id=obj.submission_details.id'
+        console.log("submission_detail_from_purchase_history",sql)
+        return sql
+        comment = 'query by Raka'
     }
     module.exports = {
+        submission_detail_from_purchase_history:submission_detail_from_purchase_history,
         getPaymentsBySubmissionDetailId:getPaymentsBySubmissionDetailId,
         getPaymentsBySubmissionId:getPaymentsBySubmissionId,
         getPayment:getPayment,

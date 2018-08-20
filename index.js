@@ -561,5 +561,12 @@ app.post('/savepayment',(req,res) => {
         console.log('save savepayment',result)
         res.send(result)
     })
+}),
+app.get('/submission_detail_from_purchase_history',(req,res) => {
+    con.getdata(query.submission_detail_from_purchase_history(),result => {
+        console.log('submission_detail_from_purchase_history',result)
+        res.send(result)
+    })
 })
+
 app.listen(process.env.PORT || 2018);
