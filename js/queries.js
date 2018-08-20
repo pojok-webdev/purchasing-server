@@ -736,10 +736,10 @@ var saveVendor = obj => {
     },
     submission_detail_from_purchase_history = obj => {
         sql = 'SELECT purchasehistories.id, purchasehistories.submission_detail_id, purchasehistories.product_name, '
-        sql+= 'purchasehistories.vendor_name, submission_details.purchase_date, submission_details.amount, '
-        sql+= 'submission_details.price, submission_details.totalprice '
-        sql+= 'FROM `purchasehistories`, `submission_details` '
-        sql+= 'WHERE purchasehistories.submission_detail_id=submission_details.id'
+        sql+= 'purchasehistories.vendor_name, submission_details.purchase_date, '
+        sql+= 'submission_details.amount, submission_details.price, submission_details.totalprice, '
+        sql+= 'submissions.staff_name FROM `purchasehistories`, `submission_details`, `submissions` '
+        sql+= 'WHERE purchasehistories.submission_detail_id=submission_details.id AND submissions.id=submission_details.submission_id '
         console.log("submission_detail_from_purchase_history",sql)
         return sql
         comment = 'query by Raka'
