@@ -749,14 +749,20 @@ var saveVendor = obj => {
         return sql
         comment = 'query by Raka'
     },
-    g = obj => {
-        sql = 'UPDATE `purchasehistories` SET `product_name`='+obj.product_name+',`vendor_name`=[value-4],`submission_date`=[value-5],'
-        sql+= '`implementation_target`=[value-6],`createuser`=[value-7] '
-        sql+= 'WHERE `submission_detail_id`=[value-8]'
+    updatepurchasehistory = obj => {
+        sql = 'UPDATE `purchasehistories` '
+        sql+= 'SET `product_name`='+obj.product_name+','
+        sql+= '`vendor_name`='+obj.vendor_name+','
+        sql+= '`submission_date`='+obj.submission_date+','
+        sql+= '`implementation_target`='+obj.implementation_target+','
+        sql+= '`createuser`='+obj.createuser+' '
+        sql+= 'WHERE `submission_detail_id`='+obj.submission_detail_id+''
         console.log('update purchase history',sql)
         return sql
+        comment = 'query by raka'
     }
     module.exports = {
+        updatepurchasehistory:updatepurchasehistory,
         getproductbycategory:getproductbycategory,
         submission_detail_from_purchase_history:submission_detail_from_purchase_history,
         getPaymentsBySubmissionDetailId:getPaymentsBySubmissionDetailId,

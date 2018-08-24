@@ -499,50 +499,55 @@ app.post('/getproductbyvendor',(req,res) => {
         console.log('getproductbyvendor',result)
         res.send(result)
     })
-}),
+})
 app.post('/disassociate_product_vendor',(req,res) => {
     con.getdata(query.disassociate_product_vendor(req.body), result => {
         console.log('disassociate_product_vendor',result)
         res.send(result)
     })
-}),
+})
 app.post('/associate_product_vendor',(req,res) => {
     con.getdata(query.associate_product_vendor(req.body), result => {
         console.log('associate_product_vendor',result)
         res.send(result)
     })
-}),
+})
 app.post('/savepurchasehistory',(req,res) => {
     con.getdata(query.savePurchaseHistory(req.body),result => {
         console.log('save purchase history',result)
         res.send(result)
     })
-}),
-
+})
+app.post('/updatepurchasehistory',(req,res) => {
+    con.getdata(query.updatepurchasehistory(req.body),result => {
+        console.log('updatepurchasehistory',result)
+        res.send(result)
+    })
+})
 app.post('/getpurchasehistory',(req,res) => {
     con.getdata(query.getPurchaseHistory(req.body),result => {
         console.log('save getPurchaseHistory',result)
         res.send(result)
     })
-}),
+})
 app.post('/getpurchasehistorybysubmission',(req,res) => {
     con.getdata(query.getPurchaseHistoryBySubmission(req.body),result => {
         console.log('save getPurchaseHistoryBySubmission',result)
         res.send(result)
     })
-}),
+})
 app.get('/getpayments',(req,res) => {
     con.getdata(query.getPayments(),result => {
         console.log('save getpayments',result)
         res.send(result)
     })
-}),
+})
 app.post('/getpayment',(req,res) => {
     con.getdata(query.getPayment(req.body),result => {
         console.log('save getpayment',result)
         res.send(result)
     })
-}),
+})
 app.post('/getpaymentsbysubmissionid', (req,res) => {
     con.getdata(query.getPaymentsBySubmissionId(req.body), result => {
         console.log('getpaymentbysubmissionbyid',result)
@@ -561,13 +566,13 @@ app.post('/updatepayment',(req,res) => {
         console.log('save updatepayment',result)
         res.send(result)
     })
-}),
+})
 app.post('/savepayment',(req,res) => {
     con.getdata(query.savePayment(req.body),result => {
         console.log('save savepayment',result)
         res.send(result)
     })
-}),
+})
 app.get('/submissiondetailfrompurchasehistory',(req,res) => {
     con.getdata(query.submission_detail_from_purchase_history(),result => {
         console.log('submission_detail_from_purchase_history',result)
