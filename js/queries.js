@@ -386,7 +386,7 @@ var saveVendor = obj => {
     },
     getSubmissionDetail = obj => {
         sql = 'select * from submission_details '
-        sql+= 'where id = ' + obj.id
+        sql+= 'where id = ' + obj.id + ' '
         sql+= 'order by createdate desc '
         return sql
     },
