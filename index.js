@@ -372,7 +372,7 @@ app.get('/getsubmissiondetails/:submission_id',(req,res)=>{
     })
 })
 app.get('/getsubmissiondetail/:id',(req,res)=>{
-    con.getdata(query.getSubmissionDetails({id:req.params.id}),result=>{
+    con.getdata(query.getSubmissionDetail({id:req.params.id}),result=>{
         console.log("Result",result)
         res.send(result)
     })
