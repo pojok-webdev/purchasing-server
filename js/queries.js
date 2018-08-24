@@ -314,7 +314,6 @@ var saveVendor = obj => {
         return sql
     },
     searchSubmission = obj => {
-        sql= 'b.placement_location,b.vendor_comparation '
         sql = 'select '
         sql+= 'distinct a.id,a.subject,a.submission_date,a.staff_name,a.implementation_target,a.purchase_target,a.createuser '
         
@@ -333,7 +332,6 @@ var saveVendor = obj => {
         sql+= 'or b.vendor like "%'+obj.searchData+'%" '
         sql+= 'or b.information like "%'+obj.searchData+'%" '
         sql+= 'or b.placement_location like "%'+obj.searchData+'%" '
-        sql+= 'or b.vendor_comparation like "%'+obj.searchData+'%" '
         sql+= ')'
         sql+= 'order by a.createdate desc '
         sql+= 'limit '+obj.pageIndex+','+obj.pageSize+' '
@@ -356,7 +354,6 @@ var saveVendor = obj => {
         sql+= 'or b.vendor like "%'+obj.searchData+'%" '
         sql+= 'or b.information like "%'+obj.searchData+'%" '
         sql+= 'or b.placement_location like "%'+obj.searchData+'%" '
-        sql+= 'or b.vendor_comparation like "%'+obj.searchData+'%" '
         sql+= ')'
         sql+= 'order by a.createdate desc '
 
@@ -751,6 +748,13 @@ var saveVendor = obj => {
         console.log("submission_detail_from_purchase_history",sql)
         return sql
         comment = 'query by Raka'
+    },
+    g = obj => {
+        sql = 'UPDATE `purchasehistories` SET `product_name`='+obj.product_name+',`vendor_name`=[value-4],`submission_date`=[value-5],'
+        sql+= '`implementation_target`=[value-6],`createuser`=[value-7] '
+        sql+= 'WHERE `submission_detail_id`=[value-8]'
+        console.log('update purchase history',sql)
+        return sql
     }
     module.exports = {
         getproductbycategory:getproductbycategory,
