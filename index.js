@@ -579,5 +579,17 @@ app.get('/submissiondetailfrompurchasehistory',(req,res) => {
         res.send(result)
     })
 })
+app.get('/removeallassociatedvendors/:id',(req,res) => {
+    con.getdata(query.remove_all_associated_vendor(req.params.id),result => {
+        console.log('remove_all_associated_vendor',result)
+        res.send(result)
+    })
+})
+app.get('/removeallassociatedproducts/:id',(req,res) => {
+    con.getdata(query.remove_all_associated_product(req.params.id),result => {
+        console.log('remove_all_associated_product',result)
+        res.send(result)
+    })
+})
 
 app.listen(process.env.PORT || 2018);

@@ -632,6 +632,18 @@ var saveVendor = obj => {
         sql+= 'and vendor_id = ' + obj.vendor_id + ' '
         return sql
     },
+    remove_all_associated_vendor = obj => {
+        sql = "delete from products_vendors "
+        sql+= "where product_id="+obj.product_id+" "
+        console.log("remove all associated vendors",sql)
+        return sql
+    },
+    remove_all_associated_product = obj => {
+        sql = "delete from products_vendors "
+        sql+= "where vendor_id="+obj.vendor_id+" "
+        console.log("remove all associated products",sql)
+        return sql
+    },
     getproductbycategory = obj => {
         sql = 'select a.id,a.name,a.partnumber,a.unit,b.name category from products a '
         sql+= 'left outer join categories b on b.id=a.category_id '
@@ -762,6 +774,8 @@ var saveVendor = obj => {
         comment = 'query by raka'
     }
     module.exports = {
+        remove_all_associated_product:remove_all_associated_product,
+        remove_all_associated_vendor:remove_all_associated_vendor,
         updatepurchasehistory:updatepurchasehistory,
         getproductbycategory:getproductbycategory,
         submission_detail_from_purchase_history:submission_detail_from_purchase_history,
