@@ -635,6 +635,14 @@ var saveVendor = obj => {
         sql+= 'and vendor_id = ' + obj.vendor_id + ' '
         return sql
     },
+    getproductbycategory = obj => {
+        sql = 'select a.id,a.name,a.partnumber,a.unit,b.name category from products a '
+        sql+= 'left outer join categories b on b.id=a.category_id '
+        sql+= 'where b.id = '+ obj.category_id+' '
+        sql+= 'order by a.name asc '
+        console.log('getproductbycategory',sql)
+        return sql
+    },
     getproductbyvendor = obj => {
         sql = 'select b.id,b.name,b.partnumber,b.unit,c.name category from products_vendors a '
         sql+= 'left outer join products b on b.id=a.product_id '
@@ -745,6 +753,7 @@ var saveVendor = obj => {
         comment = 'query by Raka'
     }
     module.exports = {
+        getproductbycategory:getproductbycategory,
         submission_detail_from_purchase_history:submission_detail_from_purchase_history,
         getPaymentsBySubmissionDetailId:getPaymentsBySubmissionDetailId,
         getPaymentsBySubmissionId:getPaymentsBySubmissionId,

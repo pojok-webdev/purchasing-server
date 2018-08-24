@@ -487,7 +487,13 @@ app.post('/getvendorbyproduct',(req,res) => {
         console.log('getvendorbyproduct',result)
         res.send(result)
     })
-}),
+})
+app.post('/getproductbycategory',(req,res) => {
+    con.getdata(query.getproductbycategory(req.body),result => {
+        console.log('getproductbycategory',result)
+        res.send(result)
+    })
+})
 app.post('/getproductbyvendor',(req,res) => {
     con.getdata(query.getproductbyvendor(req.body), result => {
         console.log('getproductbyvendor',result)
