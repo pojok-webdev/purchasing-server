@@ -751,11 +751,11 @@ var saveVendor = obj => {
     },
     updatepurchasehistory = obj => {
         sql = 'UPDATE `purchasehistories` '
-        sql+= 'SET `product_name`='+obj.product_name+','
-        sql+= '`vendor_name`='+obj.vendor_name+','
-        sql+= '`submission_date`='+obj.submission_date+','
-        sql+= '`implementation_target`='+obj.implementation_target+','
-        sql+= '`createuser`='+obj.createuser+' '
+        sql+= 'SET `product_name`="'+obj.product_name+'",'
+        sql+= '`vendor_name`="'+obj.vendor_name+'",'
+        sql+= '`submission_date`="'+obj.submission_date+'",'
+        sql+= '`implementation_target`="'+obj.implementation_target+'",'
+        sql+= '`createuser`="'+obj.createuser+'" '
         sql+= 'WHERE `submission_detail_id`='+obj.submission_detail_id+''
         console.log('update purchase history',sql)
         return sql
