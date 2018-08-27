@@ -459,6 +459,7 @@ app.get('/getuserimage/:id',(req,res)=>{
     })
 })
 app.get('/getvendorimage/:id/:type',(req,res)=>{
+    //imagetype: namecard,offeringsample,invoicesample,receiptsample
     con.getdata(query.getVendorImage({id:req.params.id,type:req.params.type}),result=>{
         console.log("GetVendorImageResult",result)
         res.header("Content-Type", "jpeg");

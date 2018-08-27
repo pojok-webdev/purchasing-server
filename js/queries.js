@@ -401,7 +401,7 @@ var saveVendor = obj => {
         sql+= 'description,'
         sql+= 'proposed_vendor,'
         sql+= 'amount,'
-        sql+= 'discountlevel',
+        sql+= 'discountlevel,',
         sql+= 'proposed_price,'
         sql+= 'proposed_totalprice,'
         sql+= 'information,'
@@ -566,7 +566,7 @@ var saveVendor = obj => {
             default:
             imagetype = 'namecard'
         }
-        sql = 'select '+imagetype+' image from vendors '
+        sql = 'select '+obj.type+' image from vendors '
         sql+= 'where id='+obj.id+' '
         console.log('VendorImage SQL',sql)
         return sql
