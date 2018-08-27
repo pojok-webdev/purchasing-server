@@ -53,6 +53,7 @@ var saveVendor = obj => {
 
         sql+= 'createuser="'+obj.createuser+'"';
         sql+= 'where id ="'+obj.id+'" '
+        console.log('SQL',sql)
         return sql;
     },
     getVendor = obj => {
