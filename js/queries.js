@@ -777,7 +777,14 @@ var saveVendor = obj => {
         return sql
         comment = 'query by raka'
     }
+    updateVendorImage = obj => {
+        sql = 'update vendor set '+obj.imagetype+' = '+obj.image+' '
+        sql+= 'where id='+obj.id +' '
+        console.log('update vendor image query',sql)
+        return sql
+    }
     module.exports = {
+        updateVendorImage:updateVendorImage,
         remove_all_associated_product:remove_all_associated_product,
         remove_all_associated_vendor:remove_all_associated_vendor,
         updatepurchasehistory:updatepurchasehistory,

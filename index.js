@@ -186,13 +186,18 @@ app.post('/searchproductcount', (req,res) => {
         res.send(result)
     })
 })
+app.post('/updatevendorimage',(req,res) => {
+    con.getdata(query.updateVendorImage(req.body), result => {
+        res.send(result)
+    })
+})
 app.post('/savevendor',(req,res) => {
     name = req.body.name;
     address = req.body.address;
     phone = req.body.phone;
     bankaccount = req.body.bankaccount;
     createuser = req.body.createuser;
-    con.getdata(query.saveVendor(req.body),(result) => {
+    con.getdata(query.saveVendor(req.body),result => {
         console.log("save vendor post data",req.body);
         res.send(result);
     })
