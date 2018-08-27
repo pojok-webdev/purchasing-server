@@ -401,6 +401,7 @@ var saveVendor = obj => {
         sql+= 'description,'
         sql+= 'proposed_vendor,'
         sql+= 'amount,'
+        sql+= 'discountlevel',
         sql+= 'proposed_price,'
         sql+= 'proposed_totalprice,'
         sql+= 'information,'
@@ -421,6 +422,7 @@ var saveVendor = obj => {
         sql+= obj.description+'","'
         sql+= obj.proposed_vendor+'","'
         sql+= obj.amount+'","'
+        sql+= obj.discountlevel+'","'
         sql+= obj.proposed_price+'","'
         sql+= obj.proposed_totalprice+'","'
         sql+= obj.information+'","'
