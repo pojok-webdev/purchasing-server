@@ -778,7 +778,7 @@ var saveVendor = obj => {
         comment = 'query by raka'
     }
     updateVendorImage = obj => {
-        sql = 'update vendor set '+obj.imagetype+' = '+obj.image+' '
+        sql = 'update vendors set '+obj.imagetype+' = "'+obj.image+'" '
         sql+= 'where id='+obj.id +' '
         console.log('update vendor image query',sql)
         return sql
