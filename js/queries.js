@@ -785,7 +785,7 @@ var saveVendor = obj => {
     }
     updateRejectReason = obj => {
         sql = 'update submission_details '
-        sql+= 'set reject_reason = '+obj.reject_reason+' '
+        sql+= 'set reject_reason = "'+obj.reject_reason+'" '
         sql+= 'where id = ' + obj.id + ' '
         console.log('update rejectreason sql',sql)
         return sql
