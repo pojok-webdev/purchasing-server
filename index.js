@@ -597,5 +597,10 @@ app.get('/removeallassociatedproducts/:id',(req,res) => {
         res.send(result)
     })
 })
-
+app.post('updateRejectReason',(req,res) => {
+    con.getdata(query.updateRejectReason(req.body),result => {
+        console.log('updateRejectReason',result)
+        res.send(result)
+    })
+})
 app.listen(process.env.PORT || 2018);

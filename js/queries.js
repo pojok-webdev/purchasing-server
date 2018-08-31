@@ -464,7 +464,7 @@ var saveVendor = obj => {
         sql = 'select '
         sql+= 'id,submission_id,itemname,brand,partnumber,description,proposed_vendor,'
         sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
-        sql+= 'placement_location,guarantee,note,purchase_date,createuser '
+        sql+= 'placement_location,guarantee,note,purchase_date,reject_reason,createuser '
         sql+= 'from submission_details '
         sql+= 'where submission_id='+obj.submission_id+' '
         sql+= 'and status!="0" '
@@ -510,7 +510,7 @@ var saveVendor = obj => {
         sql = 'select '
         sql+= 'id,submission_id,itemname,brand,partnumber,description,proposed_vendor,'
         sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
-        sql+= 'placement_location,guarantee,note,purchase_date,createuser '
+        sql+= 'placement_location,guarantee,note,purchase_date,reject_reason,createuser '
         sql+= 'from submission_details '
         sql+= 'where status='+obj.status+' '
         sql+= 'and ('
@@ -783,7 +783,16 @@ var saveVendor = obj => {
         console.log('update vendor image query',sql)
         return sql
     }
+    updateRejectReason = obj => {
+        sql = 'update submission_details '
+        sql+= 'set reject_reason = '+obj.reject_reason+' '
+        sql+= 'where id = ' + obj.id + ' '
+        console.log('update rejectreason sql',sql)
+        return sql
+    }
+
     module.exports = {
+        updateRejectReason:updateRejectReason,
         updateVendorImage:updateVendorImage,
         remove_all_associated_product:remove_all_associated_product,
         remove_all_associated_vendor:remove_all_associated_vendor,
