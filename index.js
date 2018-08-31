@@ -586,13 +586,13 @@ app.get('/submissiondetailfrompurchasehistory',(req,res) => {
     })
 })
 app.get('/removeallassociatedvendors/:id',(req,res) => {
-    con.getdata(query.remove_all_associated_vendor(req.params.id),result => {
+    con.getdata(query.remove_all_associated_vendor({product_id:req.params.id}),result => {
         console.log('remove_all_associated_vendor',result)
         res.send(result)
     })
 })
 app.get('/removeallassociatedproducts/:id',(req,res) => {
-    con.getdata(query.remove_all_associated_product(req.params.id),result => {
+    con.getdata(query.remove_all_associated_product({vendor_id:req.params.id}),result => {
         console.log('remove_all_associated_product',result)
         res.send(result)
     })
