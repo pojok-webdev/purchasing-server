@@ -486,7 +486,7 @@ var saveVendor = obj => {
         sql = 'select '
         sql+= 'id,submission_id,itemname,brand,partnumber,description,proposed_vendor,'
         sql+= 'amount,proposed_price,proposed_totalprice,information,purchase_reason,'
-        sql+= 'placement_location,guarantee,note,purchase_date,createuser '
+        sql+= 'placement_location,guarantee,note,purchase_date,reject_reason,createuser '
         sql+= 'from submission_details '
         sql+= 'where status="'+obj.status+'" '
         sql+= 'order by createdate desc '
