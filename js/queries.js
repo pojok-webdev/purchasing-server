@@ -453,7 +453,9 @@ var saveVendor = obj => {
         sql+= 'totalprice="'+obj.totalprice+'",'
         sql+= 'information="'+obj.information+'",'
         sql+= 'purchase_reason="'+obj.purchase_reason+'",'
-        sql+= 'purchase_date="'+obj.purchase_date+'",'
+        if(obj.purchase_date != null){
+            sql+= 'purchase_date="'+obj.purchase_date+'",'
+        }
         sql+= 'placement_location="'+obj.placement_location+'",'
         sql+= 'guarantee="'+obj.guarantee+'",'
         sql+= 'note="'+obj.note+'"'
