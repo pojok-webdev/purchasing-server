@@ -615,7 +615,7 @@ app.get('/getplafons',(req,res) => {
         res.send(result)
     })
 })
-app.get('/getplafon',(req,res) => {
+app.get('/getplafon/:id',(req,res) => {
     con.getdata(query.getPlafon(req.params),result => {
         console.log('getPlafon',result)
         res.send(result)
