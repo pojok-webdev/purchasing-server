@@ -609,14 +609,14 @@ app.post('/saveplafon',(req,res) => {
         res.send(result)
     })
 })
-app.post('/getplafons',(req,res) => {
-    con.getdata(query.getPlafons(req.body),result => {
+app.get('/getplafons',(req,res) => {
+    con.getdata(query.getPlafons(),result => {
         console.log('getPlafons',result)
         res.send(result)
     })
 })
-app.post('/getplafon',(req,res) => {
-    con.getdata(query.getPlafon(req.body),result => {
+app.get('/getplafon',(req,res) => {
+    con.getdata(query.getPlafon(req.params),result => {
         console.log('getPlafon',result)
         res.send(result)
     })
