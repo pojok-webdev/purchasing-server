@@ -816,7 +816,7 @@ var saveVendor = obj => {
         sql = 'update plafons '
         sql+= 'set division = ' + obj.division + ', '
         sql+= 'city = "' + obj.city + '", '
-        sql+= 'quarter = ' + obj.quarter + '", '
+        sql+= 'quarter = ' + obj.quarter + ', '
         sql+= 'budget_limit = ' + obj.budget_limit + ' '
         sql+= 'where id = ' + obj.id + ' '
         console.log("Update plafon",sql)
