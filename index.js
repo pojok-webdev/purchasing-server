@@ -603,4 +603,35 @@ app.post('/updaterejectreason',(req,res) => {
         res.send(result)
     })
 })
+app.post('/saveplafon',(req,res) => {
+    con.getdata(query.savePlafon(req.body),result => {
+        console.log('savePlafon',result)
+        res.send(result)
+    })
+})
+app.post('/getplafons',(req,res) => {
+    con.getdata(query.getPlafons(req.body),result => {
+        console.log('getPlafons',result)
+        res.send(result)
+    })
+})
+app.post('/getplafon',(req,res) => {
+    con.getdata(query.getPlafon(req.body),result => {
+        console.log('getPlafon',result)
+        res.send(result)
+    })
+})
+app.post('/updateplafon',(req,res) => {
+    con.getdata(query.updatePlafon(req.body),result => {
+        console.log('updatePlafon',result)
+        res.send(result)
+    })
+})
+app.post('/removeplafon',(req,res) => {
+    con.getdata(query.removePlafon(req.body),result => {
+        console.log('removePlafon',result)
+        res.send(result)
+    })
+})
+
 app.listen(process.env.PORT || 2018);

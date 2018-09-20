@@ -779,22 +779,61 @@ var saveVendor = obj => {
         console.log('update purchase history',sql)
         return sql
         comment = 'query by raka'
-    }
+    },
     updateVendorImage = obj => {
         sql = 'update vendors set '+obj.imagetype+' = "'+obj.image+'" '
         sql+= 'where id='+obj.id +' '
         console.log('update vendor image query',sql)
         return sql
-    }
+    },
     updateRejectReason = obj => {
         sql = 'update submission_details '
         sql+= 'set reject_reason = "'+obj.reject_reason+'" '
         sql+= 'where id = ' + obj.id + ' '
         console.log('update rejectreason sql',sql)
         return sql
+    },
+    savePlafon = obj => {
+        sql = 'insert into plafons '
+        sql+= '(division,city,quarter,budget_limit) '
+        sql+= 'values '
+        sql+= '("'+obj.division+'","'+obj.city+'","'+obj.quarter+'","'+obj.budget_limit+'")'
+        console.log("Save plafon",sql)
+        return sql
     }
-
+    getPlafons = () => {
+        sql = 'select * from plafons '
+        console.log('Get plafons',sql)
+        return sql
+    }
+    getPlafon = obj => {
+        sql = 'select * from plafons '
+        sql+= 'where id=' + obj.id + ' '
+        console.log("Get plafon",sql)
+        return sql
+    }
+    updatePlafon = obj => {
+        sql = 'update plafons '
+        sql+= 'set division = ' + obj.division + ', '
+        sql+= 'city = "' + obj.city + '", '
+        sql+= 'quarter = ' + obj.quarter + '", '
+        sql+= 'budget_limit = ' + obj.budget_limit + ' '
+        sql+= 'where id = ' + obj.id + ' '
+        console.log("Update plafon",sql)
+        return sql
+    },
+    removePlafon = obj => {
+        sql = 'delete from plafons '
+        sql+= 'where id = ' + obj.id + ' '
+        console.log('Remove plafon',sql)
+        return sql
+    }
     module.exports = {
+        savePlafon:savePlafon,
+        getPlafons:getPlafons,
+        getPlafon:getPlafon,
+        updatePlafon:updatePlafon,
+        removePlafon:removePlafon,
         updateRejectReason:updateRejectReason,
         updateVendorImage:updateVendorImage,
         remove_all_associated_product:remove_all_associated_product,
