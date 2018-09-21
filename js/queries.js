@@ -273,10 +273,11 @@ var saveVendor = obj => {
     },
     saveSubmission = obj => {
         sql = 'insert into submissions ';
-        sql+= '(subject,submission_date,staff_name,implementation_target,purchase_target,createuser)';
+        sql+= '(subject,budgeting_number,submission_date,staff_name,implementation_target,purchase_target,createuser)';
         sql+= 'values ';
         sql+= '("'
         sql+= obj.subject+'","'
+        sql+= obj.budgeting_number+'","'
         sql+= obj.submission_date+'","'
         sql+= obj.staff_name+'","'
         sql+= obj.implementation_target+'","'
@@ -292,7 +293,7 @@ var saveVendor = obj => {
     },
     getSubmissionById = obj => {
         sql = 'select '
-        sql+= 'id,subject,submission_date,staff_name,implementation_target,purchase_target,createuser '
+        sql+= 'id,subject,submission_date,staff_name,implementation_target,purchase_target,createuser,budgeting_number '
         sql+= 'from submissions '
         sql+= 'where id="'+ obj.id +'" '
         sql+= 'order by createdate desc '
@@ -301,7 +302,7 @@ var saveVendor = obj => {
     },
     getSubmissionpage = obj => {
         sql = 'select '
-        sql+= 'id,subject,submission_date,staff_name,implementation_target,purchase_target,createuser '
+        sql+= 'id,subject,submission_date,staff_name,implementation_target,purchase_target,createuser,budgeting_number '
         sql+= 'from submissions '
         sql+= 'where status="'+obj.status+'" '
         sql+= 'order by createdate desc '
@@ -316,8 +317,8 @@ var saveVendor = obj => {
     },
     searchSubmission = obj => {
         sql = 'select '
-        sql+= 'distinct a.id,a.subject,a.submission_date,a.staff_name,a.implementation_target,a.purchase_target,a.createuser '
-        
+        sql+= 'distinct a.id,a.subject,a.submission_date,a.staff_name,a.implementation_target,a.purchase_target,a.createuser, '
+        sql+= 'a.budgeting_number '
         sql+= 'from submissions a '
         sql+= 'left outer join submission_details b on b.submission_id=a.id '
         sql+= 'where '
@@ -371,6 +372,7 @@ var saveVendor = obj => {
     updateSubmission = obj => {
         sql = 'update submissions '
         sql+= 'set submission_date="'+obj.submission_date+'",'
+        sql+= 'budgeting_number="'+obj.budgeting_number+'",'
         sql+= 'subject="'+obj.subject+'",'
         sql+= 'staff_name="'+obj.staff_name+'",'
         sql+= 'implementation_target="'+obj.implementation_target+'",'
