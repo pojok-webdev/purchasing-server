@@ -829,8 +829,26 @@ var saveVendor = obj => {
         sql+= 'where id = ' + obj.id + ' '
         console.log('Remove plafon',sql)
         return sql
+    },
+    getUsersByDivisionId = obj => {
+        sql = 'select a.*,c.name division from users a '
+        sql+= 'left outer join divisions_users b on b.user_id=a.id '
+        sql+= 'left outer join divisions c on c.id=b.division_id '
+        sql+= 'where c.id=' + obj.division_id + ' '
+        console.log("Get User By Division Id",sql)
+        return sql
+    }
+    getDivisionsByUserId = obj => {
+        sql = 'select c.name division from users a '
+        sql+= 'left outer join divisions_users b on b.user_id=a.id '
+        sql+= 'left outer join divisions c on c.id=b.division_id '
+        sql+= 'where a.id=' + obj.user_id + ' '
+        console.log("Get DIvision By User ID",sql)
+        return sql
     }
     module.exports = {
+        getUsersByDivisionId:getUsersByDivisionId,
+        getDivisionsByUserId:getDivisionsByUserId,
         savePlafon:savePlafon,
         getPlafons:getPlafons,
         getPlafon:getPlafon,

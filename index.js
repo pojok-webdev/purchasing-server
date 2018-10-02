@@ -633,5 +633,16 @@ app.post('/removeplafon',(req,res) => {
         res.send(result)
     })
 })
-
+app.get('/getusersbydivisionid/:division_id', (req,res) => {
+    con.getdata(query.getUsersByDivisionId(req.params),result => {
+        console.log('getusersbydivisonid',result)
+        res.send(result)
+    })
+})
+app.get('/getdivisionsbyuserid/:user_id', (req,res) => {
+    con.getdata(query.getDivisionsByUserId(req.params),result => {
+        console.log('getusersbydivisonid',result)
+        res.send(result)
+    })
+})
 app.listen(process.env.PORT || 2018);
