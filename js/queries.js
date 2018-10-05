@@ -804,9 +804,9 @@ var saveVendor = obj => {
     },
     savePlafon = obj => {
         sql = 'insert into plafons '
-        sql+= '(division,city,quarter,budget_limit,current_budget) '
+        sql+= '(division,city,year,quarter,budget_limit,current_budget) '
         sql+= 'values '
-        sql+= '("'+obj.division+'","'+obj.city+'","'+obj.quarter+'","'+obj.budget_limit+'","'+obj.current_budget+'")'
+        sql+= '("'+obj.division+'","'+obj.city+'","'+obj.year+'","'+obj.quarter+'","'+obj.budget_limit+'","'+obj.current_budget+'")'
         console.log("Save plafon",sql)
         return sql
     }
@@ -825,6 +825,7 @@ var saveVendor = obj => {
         sql = 'update plafons '
         sql+= 'set division = ' + obj.division + ', '
         sql+= 'city = "' + obj.city + '", '
+        sql+= 'year = "' + obj.year + '", '
         sql+= 'quarter = ' + obj.quarter + ', '
         sql+= 'current_budget = ' + obj.current_budget + ' '
         sql+= 'budget_limit = ' + obj.budget_limit + ' '
