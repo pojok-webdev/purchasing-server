@@ -566,6 +566,11 @@ var saveVendor = obj => {
         sql+= 'where id = ' + obj.id + ' '
         return sql
     },
+    getUserByName = obj => {
+        sql = 'select * from users '
+        sql+= 'where username="' + obj.username + '" '
+        return sql
+    },
     getUserImage = obj => {
         sql = 'select image from users '
         sql+= 'where id = ' + obj.id + ' '
@@ -856,6 +861,7 @@ var saveVendor = obj => {
         return sql
     }
     module.exports = {
+        getUserByName:getUserByName,
         getUsersByDivisionId:getUsersByDivisionId,
         getDivisionsByUserId:getDivisionsByUserId,
         savePlafon:savePlafon,

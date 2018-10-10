@@ -449,6 +449,12 @@ app.get('/getusers',(req,res)=>{
         res.send(result)
     })
 })
+app.get('/getuserbyname',(req,res) => {
+    con.getdata(query.getUserByName(req.params),result => {
+        console.log('getUserByName',result)
+        res.send(result)
+    })
+})
 app.post('/getuser',(req,res)=>{
     con.getdata(query.getUser({id:req.body.id}),result=>{
         console.log("Result",result)
