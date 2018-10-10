@@ -827,7 +827,7 @@ var saveVendor = obj => {
         sql+= 'city = "' + obj.city + '", '
         sql+= 'year = "' + obj.year + '", '
         sql+= 'quarter = ' + obj.quarter + ', '
-        sql+= 'current_budget = ' + obj.current_budget + ' '
+        sql+= 'current_budget = ' + obj.current_budget + ', '
         sql+= 'budget_limit = ' + obj.budget_limit + ' '
         sql+= 'where id = ' + obj.id + ' '
         console.log("Update plafon",sql)
