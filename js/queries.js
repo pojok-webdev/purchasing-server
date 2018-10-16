@@ -434,8 +434,8 @@ var saveVendor = obj => {
         sql+= obj.information+'","'
         sql+= obj.purchase_reason+'","'
         sql+= obj.placement_location+'","'
-        sql+= obj.guarantee+'","'
-        sql+= obj.ppn+'","'
+        sql+= obj.guarantee+'",'
+        sql+= obj.ppn+',"'
         sql+= obj.ongkir+'","'
         sql+= obj.note+'","'
         sql+= obj.createuser
