@@ -868,9 +868,9 @@ var saveVendor = obj => {
     },
     saveVendorPic = obj => {
         sql = 'insert into vendor_pics '
-        sql+= '(vendor_id,name,phone,mail,role) '
+        sql+= '(vendor_id,name,phone,email,role) '
         sql+= 'values '
-        sql+= '('+obj.vendor_id+',"'+obj.name+'","'+obj.phone+'","'+obj.mail+'","'+obj.role+'") '
+        sql+= '('+obj.vendor_id+',"'+obj.name+'","'+obj.phone+'","'+obj.email+'","'+obj.role+'") '
         console.log('save vendor pic',sql)
         return sql
     },
@@ -878,7 +878,7 @@ var saveVendor = obj => {
         sql = 'update vendor_pics '
         sql+= 'set name = "' + obj.name + '", '
         sql+= 'phone="' + obj.phone + '", '
-        sql+= 'mail="' + obj.mail + '", '
+        sql+= 'email="' + obj.email + '", '
         sql+= 'role="' + obj.role + '" '
         sql+= 'where id = ' + obj.id + ' '
         console.log('update vendor pic',sql)
