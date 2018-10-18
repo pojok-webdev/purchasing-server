@@ -876,10 +876,10 @@ var saveVendor = obj => {
     },
     updateVendorPic = obj => {
         sql = 'update vendor_pics '
-        sql+= 'set name = ' + obj.name + ', '
-        sql+= 'phone=' + obj.phone + ', '
-        sql+= 'mail=' + obj.mail + ', '
-        sql+= 'role=' + obj.role + ' '
+        sql+= 'set name = "' + obj.name + '", '
+        sql+= 'phone="' + obj.phone + '", '
+        sql+= 'mail="' + obj.mail + '", '
+        sql+= 'role="' + obj.role + '" '
         sql+= 'where id = ' + obj.id + ' '
         console.log('update vendor pic',sql)
         return sql
@@ -907,7 +907,7 @@ var saveVendor = obj => {
     updateProductImage = obj => {
         sql = 'update product_images '
         sql+= 'set '
-        sql+= 'image = ' + obj.image + ' '
+        sql+= 'image = "' + obj.image + '" '
         sql+= 'where id = ' + obj.id + ' '
         console.log("update product image",sql)
         return sql
