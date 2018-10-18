@@ -651,4 +651,52 @@ app.get('/getdivisionsbyuserid/:user_id', (req,res) => {
         res.send(result)
     })
 })
+app.get('/getvendorpics/:vendor_id',(req,res) => {
+    con.getdata(query.getVendorPics(req.params),result => {
+        console.log('getVendorPics',result)
+        res.send(result)
+    })
+})
+app.post('/savevendorpic',(req,res) => {
+    con.getdata(query.saveVendorPic(req.body),result => {
+        console.log('saveVendorPic',result)
+        res.send(result)
+    })
+})
+app.post('/updatevendorpic',(req,res) => {
+    con.getdata(query.updateVendorPic(req.body),result => {
+        console.log('updateVendorPic',result)
+        res.send(result)
+    })
+})
+app.get('/deletevendorpic/:id',(req,res) => {
+    con.getdata(query.deleteVendorPic(req.params),result => {
+        console.log('deletevendorPic',result)
+        res.send(result)
+    })
+})
+app.get('/getproductimages/:product_id',(req,res) => {
+    con.getdata(query.getProductImages(req.params),result => {
+        console.log('getProductImages',result)
+        res.send(result)
+    })
+})
+app.post('/saveproductimage',(req,res) => {
+    con.getdata(query.saveProductImage(req.body),result => {
+        console.log('saveProductImage',result)
+        res.send(result)
+    })
+})
+app.post('/updateproductimage',(req,res) => {
+    con.getdata(query.updateProductImage(req.body),result => {
+        console.log('updateProductImage',result)
+        res.send(result)
+    })
+})
+app.get('/deleteproductimage/:id',(req,res) => {
+    con.getdata(query.deleteProductImage(req.params),result => {
+        console.log('deleteProductImage',result)
+        res.send(result)
+    })
+})
 app.listen(process.env.PORT || 2018);

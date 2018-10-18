@@ -426,8 +426,8 @@ var saveVendor = obj => {
         sql+= obj.brand+'","'
         sql+= obj.partnumber+'","'
         sql+= obj.description+'","'
-        sql+= obj.proposed_vendor+'","'
-        sql+= obj.amount+'","'
+        sql+= obj.proposed_vendor+'",'
+        sql+= obj.amount+',"'
         sql+= obj.discountlevel+'","'
         sql+= obj.proposed_price+'","'
         sql+= obj.proposed_totalprice+'","'
@@ -435,8 +435,8 @@ var saveVendor = obj => {
         sql+= obj.purchase_reason+'","'
         sql+= obj.placement_location+'","'
         sql+= obj.guarantee+'",'
-        sql+= obj.ppn+',"'
-        sql+= obj.ongkir+'","'
+        sql+= obj.ppn+','
+        sql+= obj.ongkir+',"'
         sql+= obj.note+'","'
         sql+= obj.createuser
         sql+= '") '
@@ -851,7 +851,7 @@ var saveVendor = obj => {
         sql+= 'where c.id=' + obj.division_id + ' '
         console.log("Get User By Division Id",sql)
         return sql
-    }
+    },
     getDivisionsByUserId = obj => {
         sql = 'select c.name division from users a '
         sql+= 'left outer join divisions_users b on b.user_id=a.id '
@@ -859,8 +859,74 @@ var saveVendor = obj => {
         sql+= 'where a.id=' + obj.user_id + ' '
         console.log("Get DIvision By User ID",sql)
         return sql
+    },
+    getVendorPics = obj => {
+        sql = 'select * from vendor_pics '
+        sql+= 'where vendor_id = ' + obj.vendor_id + ' '
+        console.log('get vendor pics',sql)
+        return sql
+    },
+    saveVendorPic = obj => {
+        sql = 'insert into vendor_pics '
+        sql+= '(vendor_id,name,phone,mail,role) '
+        sql+= 'values '
+        sql+= '('+obj.vendor_id+',"'+obj.name+'","'+obj.phone+'","'+obj.mail+'","'+obj.role+'") '
+        console.log('save vendor pic',sql)
+        return sql
+    },
+    updateVendorPic = obj => {
+        sql = 'update vendor_pics '
+        sql+= 'set name = ' + obj.name + ', '
+        sql+= 'phone=' + obj.phone + ', '
+        sql+= 'mail=' + obj.mail + ', '
+        sql+= 'role=' + obj.role + ' '
+        sql+= 'where id = ' + obj.id + ' '
+        console.log('update vendor pic',sql)
+        return sql
+    },
+    deleteVendorPic = obj => {
+        sql = 'delete from vendor_pics '
+        sql+= 'where id = ' + obj.id
+        console.log('delete vendor pic',sql)
+        return sql
+    },
+    getProductImages = obj => {
+        sql = 'select * from product_images '
+        sql+= 'where product_id = ' + obj.product_id + ' '
+        console.log('get product image',sql)
+        return sql
+    },
+    saveProductImage = obj => {
+        sql = 'insert into product_images '
+        sql+= '(product_id,image) '
+        sql+= 'values '
+        sql+= '("'+obj.product_id+'","'+obj.image+'")'
+        console.log("save product image",sql)
+        return sql
+    },
+    updateProductImage = obj => {
+        sql = 'update product_images '
+        sql+= 'set '
+        sql+= 'image = ' + obj.image + ' '
+        sql+= 'where id = ' + obj.id + ' '
+        console.log("update product image",sql)
+        return sql
+    },
+    deleteProductImage = obj => {
+        sql = 'delete from product_images '
+        sql+= 'where id = ' + obj.id
+        console.log('remove product_image',sql)
+        return sql
     }
     module.exports = {
+        getVendorPics:getVendorPics,
+        saveVendorPic:saveVendorPic,
+        updateVendorPic:updateVendorPic,
+        deleteVendorPic:deleteVendorPic,
+        getProductImages:getProductImages,
+        saveProductImage:saveProductImage,
+        updateProductImage:updateProductImage,
+        deleteProductImage:deleteProductImage,
         getUserByName:getUserByName,
         getUsersByDivisionId:getUsersByDivisionId,
         getDivisionsByUserId:getDivisionsByUserId,
