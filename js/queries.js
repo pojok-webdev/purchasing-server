@@ -898,16 +898,17 @@ var saveVendor = obj => {
     },
     saveProductImage = obj => {
         sql = 'insert into product_images '
-        sql+= '(product_id,image) '
+        sql+= '(product_id,image,imagetype) '
         sql+= 'values '
-        sql+= '("'+obj.product_id+'","'+obj.image+'")'
+        sql+= '("'+obj.product_id+'","'+obj.image+'","'+obj.imagetype+'")'
         console.log("save product image",sql)
         return sql
     },
     updateProductImage = obj => {
         sql = 'update product_images '
         sql+= 'set '
-        sql+= 'image = "' + obj.image + '" '
+        sql+= 'image = "' + obj.image + '", '
+        sql+= 'imagetype = "' + obj.imagetype + '" '
         sql+= 'where id = ' + obj.id + ' '
         console.log("update product image",sql)
         return sql
