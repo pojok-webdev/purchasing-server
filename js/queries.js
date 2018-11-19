@@ -926,8 +926,8 @@ var saveVendor = obj => {
     },
     saveSubmissionDetailVendor = obj => {
         sql = 'insert into submissiondetails_vendors '
-        sql+= '(submission_detail_id,vendor_id,createuser,price) values '
-        sql+= '("'+obj.submission_detail_id+'","'+obj.vendor_id+'","'+obj.createuser+'","'+obj.price+'")'
+        sql+= '(submission_detail_id,vendor_id,createuser,price,ppn,ongkir) values '
+        sql+= '("'+obj.submission_detail_id+'","'+obj.vendor_id+'","'+obj.createuser+'","'+obj.price+'","'+obj.ppn+'","'+obj.ongkir+'")'
         console.log("save submissiondetailvendor",sql)
         return sql
     },
