@@ -890,6 +890,12 @@ var saveVendor = obj => {
         console.log('delete vendor pic',sql)
         return sql
     },
+    getProductImage = obj => {
+        sql = 'select image from product_images '
+        sql+= 'where id='+obj.id+' '
+        console.log('ProductImage SQL',sql)
+        return sql
+    },
     getProductImages = obj => {
         sql = 'select * from product_images '
         sql+= 'where product_id = ' + obj.product_id + ' '
@@ -898,17 +904,16 @@ var saveVendor = obj => {
     },
     saveProductImage = obj => {
         sql = 'insert into product_images '
-        sql+= '(product_id,image,imagetype) '
+        sql+= '(product_id,image) '
         sql+= 'values '
-        sql+= '("'+obj.product_id+'","'+obj.image+'","'+obj.imagetype+'")'
+        sql+= '("'+obj.product_id+'","'+obj.image+'")'
         console.log("save product image",sql)
         return sql
     },
     updateProductImage = obj => {
         sql = 'update product_images '
         sql+= 'set '
-        sql+= 'image = "' + obj.image + '", '
-        sql+= 'imagetype = "' + obj.imagetype + '" '
+        sql+= 'image = "' + obj.image + '" '
         sql+= 'where id = ' + obj.id + ' '
         console.log("update product image",sql)
         return sql
@@ -918,13 +923,28 @@ var saveVendor = obj => {
         sql+= 'where id = ' + obj.id
         console.log('remove product_image',sql)
         return sql
+    },
+    saveSubmissionDetailVendor = obj => {
+        sql = 'insert into submissiondetails_vendors '
+        sql+= '(submission_detail_id,vendor_id,createuser,price) values '
+        sql+= '("'+obj.submission_detail_id+'","'+obj.vendor_id+'","'+obj.createuser+'","'+obj.price+'")'
+        console.log("save submissiondetailvendor",sql)
+        return sql
+    },
+    removeSubmissionDetailVendor = obj => {
+        sql = 'delete from submissiondetails_vendors '
+        sql+= 'where submission_detail_id= "'+obj.submission_detail_id+'" and vendor_id="'+obj.vendor_id+'" '
+        console.log("remove submissiondetailvendor",sql)
+        return sql
     }
+
     module.exports = {
+        saveSubmissionDetailVendor:saveSubmissionDetailVendor,
+        removeSubmissionDetailVendor:removeSubmissionDetailVendor,
         getVendorPics:getVendorPics,
         saveVendorPic:saveVendorPic,
         updateVendorPic:updateVendorPic,
         deleteVendorPic:deleteVendorPic,
-        getProductImages:getProductImages,
         saveProductImage:saveProductImage,
         updateProductImage:updateProductImage,
         deleteProductImage:deleteProductImage,
@@ -965,6 +985,8 @@ var saveVendor = obj => {
         getProducts:getProducts,
         getProductpage : getProductpage,
         getProductCount : getProductCount,
+        getProductImage:getProductImage,
+        getProductImages:getProductImages,
         updateProduct:updateProduct,
         searchProduct : searchProduct,
         searchProductCount : searchProductCount,

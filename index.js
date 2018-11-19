@@ -699,4 +699,16 @@ app.get('/deleteproductimage/:id',(req,res) => {
         res.send(result)
     })
 })
+app.post('/savesubmissiondetailvendor/',(req,res) => {
+    con.getdata(query.saveSubmissionDetailVendor(req.body),result => {
+        console.log('savesubmissionvendor',result)
+        res.send(result)
+    })
+})
+app.post('/removesubmissiondetailvendor/',(req,res) => {
+    con.getdata(query.removeSubmissionDetailVendor(req.body),result => {
+        console.log('removesubmissionvendor',result)
+        res.send(result)
+    })
+})
 app.listen(process.env.PORT || 2018);
