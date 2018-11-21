@@ -936,9 +936,16 @@ var saveVendor = obj => {
         sql+= 'where submission_detail_id= "'+obj.submission_detail_id+'" and vendor_id="'+obj.vendor_id+'" '
         console.log("remove submissiondetailvendor",sql)
         return sql
+    },
+    getSubmissionDetailVendor = obj => {
+        sql = 'select * from submissiondetails_vendors '
+        sql+= 'where submission_detail_id = ' + obj.submission_detail_id + ' '
+        console.log('comparison sql',sql)
+        return sql
     }
 
     module.exports = {
+        getSubmissionDetailVendor:getSubmissionDetailVendor,
         saveSubmissionDetailVendor:saveSubmissionDetailVendor,
         removeSubmissionDetailVendor:removeSubmissionDetailVendor,
         getVendorPics:getVendorPics,

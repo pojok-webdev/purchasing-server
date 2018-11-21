@@ -711,4 +711,10 @@ app.post('/removesubmissiondetailvendor/',(req,res) => {
         res.send(result)
     })
 })
+app.get('/getsubmissiondetailvendor/:submission_detail_id',(req,res) => {
+    con.getdata(query.getSubmissionDetailVendor(req.params),result => {
+        console.log('removesubmissionvendor',result)
+        res.send(result)
+    })
+})
 app.listen(process.env.PORT || 2018);
