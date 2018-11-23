@@ -103,7 +103,7 @@ var saveVendor = obj => {
         sql = 'select count(id) cnt from vendors '
         sql+= 'where status="1" '
         sql+= 'and ('
-        sql+= 'or like "%'+obj.searchData+'%" ' 
+        sql+= 'name like "%'+obj.searchData+'%" ' 
         sql+= 'or address like "%'+obj.searchData+'%" '
         sql+= 'or phone like "%'+obj.searchData+'%" '
         sql+= 'or bankaccount like "%'+obj.searchData+'%" '
